@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="next_steps.html">Next Steps</a></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="terraform.html" class="active"><strong aria-hidden="true">1.</strong> Terraform</a></li><li class="chapter-item expanded "><a href="aws.html"><strong aria-hidden="true">2.</strong> AWS</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><a href="next_steps.html">Next Steps</a></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="terraform.html" class="active"><strong aria-hidden="true">1.</strong> Terraform</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -176,7 +176,18 @@
                         <h1 id="terraform"><a class="header" href="#terraform">Terraform</a></h1>
 <p>If you need dynamic information, you can use datasources instead of variables. Datasources will pull their information from a remote API before it turns into a variable that can be used in *.tf files</p>
 <p>The terraform.tfstate can be read easily by opening the terraform.tfstate file in a text editor. You will see that the contents is in the JSON format. It can even be changed manually (if you know what you're doing).</p>
-<h3 id="creating-a-vpc"><a class="header" href="#creating-a-vpc">Creating a VPC</a></h3>
+<h3 id="ec2"><a class="header" href="#ec2">EC2</a></h3>
+<h4 id="ebs"><a class="header" href="#ebs">EBS</a></h4>
+<h4 id="elb"><a class="header" href="#elb">ELB</a></h4>
+<h4 id="alb"><a class="header" href="#alb">ALB</a></h4>
+<h3 id="s3"><a class="header" href="#s3">S3</a></h3>
+<h3 id="vpc"><a class="header" href="#vpc">VPC</a></h3>
+<h4 id="subnet"><a class="header" href="#subnet">Subnet</a></h4>
+<h4 id="route-table"><a class="header" href="#route-table">Route Table</a></h4>
+<h3 id="route-53"><a class="header" href="#route-53">Route 53</a></h3>
+<h3 id="rds"><a class="header" href="#rds">RDS</a></h3>
+<h3 id="iam"><a class="header" href="#iam">IAM</a></h3>
+<h3 id="elastic-beanstalk"><a class="header" href="#elastic-beanstalk">Elastic Beanstalk</a></h3>
 
                     </main>
 
@@ -186,9 +197,6 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="aws.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -200,9 +208,6 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="aws.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
             </nav>
 
         </div>
