@@ -8,5 +8,3 @@
 
 - [Terraform](./terraform.md)
 
-- [AWS](./aws.md)
-
