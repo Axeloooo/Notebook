@@ -2,9 +2,8 @@
 
 [Introduction](./introduction.md)
 
-[Next Steps](./next_steps.md)
-
 # Chapters
 
-- [Terraform](./terraform.md)
+- [Machine Learning](./machine_learning.md)
 
+- [Terraform](./terraform.md)
