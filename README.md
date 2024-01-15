@@ -1,10 +1,11 @@
 # 📖 Notebook
 
-![GitHub repo size](https://img.shields.io/github/repo-size/Axeloooo/mynotesNotes?logo=github&color=blue)
-![Github tag](https://img.shields.io/github/v/tag/Axeloooo/Notes?logo=github&color=red)
-![GitHub contributors](https://img.shields.io/github/contributors/Axeloooo/Notes?logo=github&color=yellow)
-![Github pull requests](https://img.shields.io/github/issues-pr/Axeloooo/Notes?logo=github)
-![Github license](https://img.shields.io/github/license/Axeloooo/Notes?logo=github&color=orange)
+[![CI/CD](https://github.com/Axeloooo/Notebook/actions/workflows/deploy.yml/badge.svg)](https://github.com/Axeloooo/Notebook/actions/workflows/deploy.yml)
+![GitHub repo size](https://img.shields.io/github/repo-size/Axeloooo/Notebook?logo=github&color=blue)
+![Github tag](https://img.shields.io/github/v/tag/Axeloooo/Notebook?logo=github&color=red)
+![GitHub contributors](https://img.shields.io/github/contributors/Axeloooo/Notebook?logo=github&color=yellow)
+![Github pull requests](https://img.shields.io/github/issues-pr/Axeloooo/Notebook?logo=github)
+![Github license](https://img.shields.io/github/license/Axeloooo/Notebook?logo=github&color=orange)
 
 ## 📖 Table of Contents
 
