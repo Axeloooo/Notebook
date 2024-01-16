@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Terraform - Software Engineering</title>
+        <title>Architecture - Software Engineering</title>
 
 
         <!-- Custom HTML head -->
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="machine_learning.html"><strong aria-hidden="true">2.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="terraform.html" class="active"><strong aria-hidden="true">3.</strong> Terraform</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="architecture.html" class="active"><strong aria-hidden="true">1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="machine_learning.html"><strong aria-hidden="true">2.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="terraform.html"><strong aria-hidden="true">3.</strong> Terraform</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -173,30 +173,245 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="terraform"><a class="header" href="#terraform">Terraform</a></h1>
-<p>If you need dynamic information, you can use datasources instead of variables. Datasources will pull their information from a remote API before it turns into a variable that can be used in *.tf files</p>
-<p>The terraform.tfstate can be read easily by opening the terraform.tfstate file in a text editor. You will see that the contents is in the JSON format. It can even be changed manually (if you know what you're doing).</p>
-<h3 id="ec2"><a class="header" href="#ec2">EC2</a></h3>
-<h4 id="ebs"><a class="header" href="#ebs">EBS</a></h4>
-<h4 id="elb"><a class="header" href="#elb">ELB</a></h4>
-<h4 id="alb"><a class="header" href="#alb">ALB</a></h4>
-<h3 id="s3"><a class="header" href="#s3">S3</a></h3>
-<h3 id="vpc"><a class="header" href="#vpc">VPC</a></h3>
-<h4 id="subnet"><a class="header" href="#subnet">Subnet</a></h4>
-<h4 id="route-table"><a class="header" href="#route-table">Route Table</a></h4>
-<h3 id="route-53"><a class="header" href="#route-53">Route 53</a></h3>
-<h3 id="rds"><a class="header" href="#rds">RDS</a></h3>
-<h3 id="iam"><a class="header" href="#iam">IAM</a></h3>
-<h3 id="elastic-beanstalk"><a class="header" href="#elastic-beanstalk">Elastic Beanstalk</a></h3>
+                        <h1 id="architecture"><a class="header" href="#architecture">Architecture</a></h1>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<ul>
+<li><a href="#abstraction">Abstraction</a></li>
+</ul>
+<h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
+<p>High-level representation or simplification of complex systems, design or structures.</p>
+<h3 id="decomposition"><a class="header" href="#decomposition">Decomposition</a></h3>
+<p>Segregation is the idea of breaking down large entities into into smaller and more specialized ones. Create more modular, maintainable, and flexible software designs.</p>
+<pre><code class="language-java">// Class representing a customer
+class Cutomer {
+  private String name;
+  private String email;
+
+  public Customer(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  // Getters and setters ...
+}
+
+// Class responsible for managing customers
+class customerManager {
+  public void addCustomer(Customer customer) {
+    // Code for adding a new customer
+    System.out.println(&quot;Customer added successfully.&quot;);
+  }
+
+  public void updateCustomer(Customer customer) {
+    // Code for updating a customer
+    System.out.println(&quot;Customer information updated.&quot;);
+  }
+}
+</code></pre>
+<h3 id="coupling"><a class="header" href="#coupling">Coupling</a></h3>
+<p>Coupling is the density of dependencies among classes. If a class changes and there is high coupling, many other classes will need to change as well.</p>
+<ul>
+<li>
+<p>Tight coupling:</p>
+<ul>
+<li>Customer class creates an Order object directly within its method.</li>
+<li>Order class maintains a direct reference to the Customer object (customer attribute).</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">// Class representing a customer
+class Cutomer {
+  private String name;
+  private String email;
+
+  public Customer(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  public Order createOrder(String orderDetails) {
+    return new Order(this.orderDetails);
+  }
+
+  // Getters and setters ...
+}
+
+// Class representing an order
+class Order {
+  private Customer customer;
+  private String details;
+
+  public Order(Customer customer, String details) {
+    this.customer = customer; // Reference to the customer object
+    this.details = details;
+  }
+
+  public void displayOrder() {
+    System.out.println(&quot;Order details: &quot; + this.details);
+    System.out.println(&quot;Customer name: &quot; + this.customer.getName());
+    System.out.println(&quot;Customer email: &quot; + this.customer.getEmail());
+  }
+
+  // Getters and setters ...
+}
+</code></pre>
+<ul>
+<li>
+<p>Loose coupling:</p>
+<ul>
+<li>Order class no longer directly references the Customer class.</li>
+<li>Customer information (name and email) referred as parameters with methods get() and set().</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">// Class representing a customer
+class Cutomer {
+  private String name;
+  private String email;
+
+  public Customer(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  // Getters and setters ...
+}
+
+// Class representing an order
+class Order {
+  private String details;
+  private String customerName;
+  private String customerEmail;
+
+  public Order(String details, String customerName, String customerEmail) {
+    this.details = details;
+    this.customerName = customerName;
+    this.customerEmail = customerEmail;
+  }
+
+  public void displayOrder() {
+    System.out.println(&quot;Order details: &quot; + this.details);
+    System.out.println(&quot;Customer name: &quot; + this.customerName);
+    System.out.println(&quot;Customer email: &quot; + this.customerEmail);
+  }
+
+  // Getters and setters ...
+}
+</code></pre>
+<h3 id="cohesion"><a class="header" href="#cohesion">Cohesion</a></h3>
+<p>Cohesion is the degree of unity or closeness among the elements within a class. Each component should represent a single concept. All logic/data of the component should be directly applicable to the concept.</p>
+<ul>
+<li>
+<p>Low cohesion:</p>
+<ul>
+<li>Customer mixing responsibilities with createOrder and sendEmail.</li>
+<li>Order mixing responsabilities with calculateTotal and sendConfirmationEmail.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">// Class representing a customer
+class Cutomer {
+  private String name;
+  private String email;
+  private int age;
+
+  public Customer(String name, String email, int age) {
+    this.name = name;
+    this.email = email;
+    this.age = age;
+  }
+
+  public void createOrder(String product, int quantity) {
+    // Create order - Diverse responsibility
+  }
+
+  public void sendEmail(String message) {
+    // Send email - Unrelated responsibility
+  }
+
+  // Getters and setters ...
+}
+
+// Class representing an order
+class Order {
+  private String product;
+  private int quantity;
+  private double totalAmount;
+
+  public Order(String product, int quantity, double totalAmount) {
+    this.product = product;
+    this.quantity = quantity;
+    this.totalAmount = totalAmount;
+  }
+
+  public void calculateTotal() {
+    // Calculate total amount - Diverse responsibility
+  }
+
+  public void sendConfirmationEmail() {
+    // Send confirmation email - Unrelated responsibility
+  }
+
+  // Getters and setters ...
+}
+</code></pre>
+<ul>
+<li>
+<p>High cohesion:</p>
+<ul>
+<li>Order class no longer directly references the Customer class.</li>
+<li>Customer information (name and email) referred as parameters with methods get() and set().</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-java">// Class representing a customer
+class Cutomer {
+  private String name;
+  private String email;
+
+  public Customer(String name, String email) {
+    this.name = name;
+    this.email = email;
+  }
+
+  // Getters and setters ...
+}
+
+// Class representing an order
+class Order {
+  private String details;
+  private String customerName;
+  private String customerEmail;
+
+  public Order(String details, String customerName, String customerEmail) {
+    this.details = details;
+    this.customerName = customerName;
+    this.customerEmail = customerEmail;
+  }
+
+  public void displayOrder() {
+    System.out.println(&quot;Order details: &quot; + this.details);
+    System.out.println(&quot;Customer name: &quot; + this.customerName);
+    System.out.println(&quot;Customer email: &quot; + this.customerEmail);
+  }
+
+  // Getters and setters ...
+}
+</code></pre>
+<h3 id="agile-driven"><a class="header" href="#agile-driven">Agile-Driven</a></h3>
+<p>Architectural approach aligns with the principles and values of agile methodologies. Agile approach emphasizes flexibility, collaboration and responsiveness to change.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="machine_learning.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
+                            <a rel="next prefetch" href="machine_learning.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
 
                         <div style="clear: both"></div>
                     </nav>
@@ -204,10 +419,13 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="machine_learning.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
+                    <a rel="next prefetch" href="machine_learning.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
             </nav>
 
         </div>
