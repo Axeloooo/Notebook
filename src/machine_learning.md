@@ -5,6 +5,7 @@
 - [Numpy](#numpy)
 - [Pandas](#pandas)
 - [Matplotlib](#matplotlib)
+- [Data Processing](#data-processing)
 
 ## Numpy
 
@@ -214,3 +215,79 @@ matplotlib.pyplot.bar()
 
 plt.bar()
 ```
+
+## Data Processing
+
+If your dataset is based on real-life data, it might not be perfect.
+
+Your dataset might include:
+
+- Missing values
+- Erroneous measurements
+- Noise
+
+### Missing Values
+
+#### How to Find Missing Values in a Pandas DataFrame
+
+- Check the data type for each column using `df.dtypes`. If a column has invalid data points, such as empty strings or non-numeric values, the data type will be object.
+- You can either manually change the data type for all the columns using `df.astype()` or replace the invalid points with NaN using `df.replace()`.
+- Once all the columns are the proper data type, you can count the number of NaN values using one of these methods:
+
+Other usefull functions are:
+
+```python
+df.isnull().sum()
+
+# or
+
+df.isna().sum()
+
+# or
+
+df.info()
+```
+
+#### What to Do with Missing Values?
+
+Pandas offers several built-in functions to deal with missing values in different ways.
+
+- You can choose to remove the rows or columns that contain NaN values.
+- Yu can replace them with a specific value or a calculated value based on the rest of the data.
+
+#### Dropping NaN Values
+
+Dropping values is easy with a Series, as you can drop the values individually. For DataFrame, it is a bit more complicated as you can not have an uneven number of rows.
+
+- You can drop any row or drop any column that has at least one NaN value (based on the specified axis).
+- You can use the `how` or `thresh` keywords to specify the number of NaN values that must exist before you drop the row or column.
+
+#### Filling NaN Values
+
+- Forward-fill: Use the previous valid value to fill the missing value, which
+  can be useful for time series data.
+
+```python
+df.ffill()
+```
+
+- Back-fill: Use the next valid value to fill the missing value, which can be
+  useful for reverse time series data.
+
+```python
+df.bfill()
+```
+
+- Custom code: Write your own logic to fill the missing values, which can
+  be useful for complex or specific cases.
+
+```python
+df.interpolate(method='linear')
+```
+
+### Errors and Noise
+
+#### Detecting Errors in Real Measurements
+
+- To identify potential outliers, you can use different methods depending on the data's characteristics and shape, such as visualizing or analyzing them statistically.
+- After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to `np.nan` and then use your preferred method to replace the missing values.
