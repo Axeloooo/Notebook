@@ -12,21 +12,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../../favicon.svg">
+        <link rel="shortcut icon" href="../../favicon.png">
+        <link rel="stylesheet" href="../../css/variables.css">
+        <link rel="stylesheet" href="../../css/general.css">
+        <link rel="stylesheet" href="../../css/chrome.css">
+        <link rel="stylesheet" href="../../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../../highlight.css">
+        <link rel="stylesheet" href="../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
@@ -35,7 +35,7 @@
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="introduction.html">Introduction</a></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="architecture.html"><strong aria-hidden="true">1.</strong> Architecture</a></li><li class="chapter-item expanded "><a href="machine_learning.html" class="active"><strong aria-hidden="true">2.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="terraform.html"><strong aria-hidden="true">3.</strong> Terraform</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="../../chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="../../chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="../../chapters/Machine_Learning/index.html" class="active"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="../../chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -144,7 +144,7 @@
                     <h1 class="menu-title">Software Engineering</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
 
@@ -176,10 +176,36 @@
                         <h1 id="machine-learning"><a class="header" href="#machine-learning">Machine Learning</a></h1>
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <ul>
-<li><a href="#numpy">Numpy</a></li>
-<li><a href="#pandas">Pandas</a></li>
-<li><a href="#matplotlib">Matplotlib</a></li>
-<li><a href="#data-processing">Data Processing</a></li>
+<li><a href="#numpy">Numpy</a>
+<ul>
+<li><a href="#what-is-numpy-array">What Is Numpy Array?</a></li>
+<li><a href="#list-to-numpy">List To Numpy</a></li>
+<li><a href="#numpy-indexing-and-slicing">NumPy Indexing and Slicing</a></li>
+<li><a href="#filtering">Filtering</a></li>
+</ul>
+</li>
+<li><a href="#pandas">Pandas</a>
+<ul>
+<li><a href="#data-types">Data Types</a></li>
+<li><a href="#loc---label-based-indexing">‘loc’ - Label-Based Indexing</a></li>
+<li><a href="#identifying-missing-data">Identifying Missing Data</a></li>
+<li><a href="#filling-missing-data">Filling Missing Data</a></li>
+<li><a href="#groupby">GroupBy</a></li>
+</ul>
+</li>
+<li><a href="#matplotlib">Matplotlib</a>
+<ul>
+<li><a href="#line-plot">Line Plot</a></li>
+<li><a href="#scatter-plot">Scatter Plot</a></li>
+<li><a href="#bar-plot">Bar Plot</a></li>
+</ul>
+</li>
+<li><a href="#data-processing">Data Processing</a>
+<ul>
+<li><a href="#missing-values">Missing Values</a></li>
+<li><a href="#errors-and-noise">Errors and Noise</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
 <p>Python includes a module named numpy that can be used to store data in a matrix-like object.</p>
@@ -190,7 +216,13 @@
 <ul>
 <li>A multi-dimensional array (data type = ndarray) can be created from a multi-dimensional list using the NumPy module.</li>
 <li>A one-dimensional array is an array that has only one dimension and contains elements of the same type and size.</li>
+</ul>
+<p><img src="./images/image8.png" alt="Numpy Array" /></p>
+<ul>
 <li>A two-dimensional array is an array that has two dimensions and contains elements of the same type and size.</li>
+</ul>
+<p><img src="./images/image9.png" alt="Numpy Array" /></p>
+<ul>
 <li>An array has “axis/axes” to indicate its dimensions.</li>
 <li>The first axis (axis = 0) of a 2-D array shows the number of rows and the second axis (axis = 1) shows the number of columns.</li>
 <li>Indexing or slicing the array can be used to get or change its elements, similar to lists.</li>
@@ -266,6 +298,7 @@ df.loc[['ID1', 'ID3'], :]
 # Selecting multiple rows and columns where age is greater than 30 and then selecting the 'Name' and 'Age' columns
 df.loc[df['Age'] &gt; 30, ['Name', 'Age']]
 </code></pre>
+<p><img src="./images/image7.png" alt="loc" /></p>
 <h3 id="identifying-missing-data"><a class="header" href="#identifying-missing-data">Identifying Missing Data</a></h3>
 <p>The <code>isna()</code> and <code>isnull()</code> methods are used interchangeably to check for missing values within a DataFrame or Series.</p>
 <pre><code class="language-python">df.isna()
@@ -274,6 +307,7 @@ df.loc[df['Age'] &gt; 30, ['Name', 'Age']]
 
 df.isnull()
 </code></pre>
+<p><img src="./images/image1.png" alt="isna() vs isnull()" /></p>
 <h3 id="filling-missing-data"><a class="header" href="#filling-missing-data">Filling Missing Data</a></h3>
 <p>The <code>fillna()</code> function is a versatile tool for replacing missing or NaN (Not a Number) values within a DataFrame or Series. Available methods are <code>ffill</code> for forward filling (propagating the last valid value forward) and <code>bfill</code> for backward filling (propagating the next valid value backward).</p>
 <pre><code class="language-python"># Backward fill
@@ -284,6 +318,7 @@ df.bfill()
 
 df.ffill()
 </code></pre>
+<p><img src="./images/image2.png" alt="bfill() vs ffill()" /></p>
 <h3 id="groupby"><a class="header" href="#groupby">GroupBy</a></h3>
 <p>Pandas groupby is a method that splits the dataframe into groups based on one or more columns, applies a function to each group, and combines the results into a new DataFrame.</p>
 <p>Example:</p>
@@ -291,6 +326,7 @@ df.ffill()
 
 Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 </code></pre>
+<p><img src="./images/image3.png" alt="GroupBy" /></p>
 <h2 id="matplotlib"><a class="header" href="#matplotlib">Matplotlib</a></h2>
 <p>Matplotlib is a built-in module in Python used for plotting.</p>
 <p>Import statement:</p>
@@ -309,6 +345,7 @@ series or continuous functions.</p>
 
 plt.plot()
 </code></pre>
+<p><img src="./images/image4.png" alt="Line Plot" /></p>
 <h3 id="scatter-plot"><a class="header" href="#scatter-plot">Scatter Plot</a></h3>
 <p>Scatter plots are used to visualize the relationship between two numerical variables, allowing you to <code>identify patterns, trends, clusters, correlations, and outliers</code>.</p>
 <pre><code class="language-python">matplotlib.pyplot.scatter()
@@ -317,6 +354,7 @@ plt.plot()
 
 plt.scatter()
 </code></pre>
+<p><img src="./images/image5.png" alt="Scatter Plot" /></p>
 <h3 id="bar-plot"><a class="header" href="#bar-plot">Bar Plot</a></h3>
 <p>Bar plots are used to compare the values of different categories, display frequencies or counts of categorical variables, and visualize the relationship between categorical and numerical variables. <code>Useful for comparing discrete data</code>.</p>
 <pre><code class="language-python">matplotlib.pyplot.bar()
@@ -325,6 +363,7 @@ plt.scatter()
 
 plt.bar()
 </code></pre>
+<p><img src="./images/image6.png" alt="Bar Plot" /></p>
 <h2 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h2>
 <p>If your dataset is based on real-life data, it might not be perfect.</p>
 <p>Your dataset might include:</p>
@@ -357,6 +396,7 @@ df.info()
 <li>You can choose to remove the rows or columns that contain NaN values.</li>
 <li>Yu can replace them with a specific value or a calculated value based on the rest of the data.</li>
 </ul>
+<p><img src="./images/image13.png" alt="Missing Values" /></p>
 <h4 id="dropping-nan-values"><a class="header" href="#dropping-nan-values">Dropping NaN Values</a></h4>
 <p>Dropping values is easy with a Series, as you can drop the values individually. For DataFrame, it is a bit more complicated as you can not have an uneven number of rows.</p>
 <ul>
@@ -370,18 +410,21 @@ can be useful for time series data.</li>
 </ul>
 <pre><code class="language-python">df.ffill()
 </code></pre>
+<p><img src="./images/image10.png" alt="ffill()" /></p>
 <ul>
 <li>Back-fill: Use the next valid value to fill the missing value, which can be
 useful for reverse time series data.</li>
 </ul>
 <pre><code class="language-python">df.bfill()
 </code></pre>
+<p><img src="./images/image11.png" alt="bfill()" /></p>
 <ul>
 <li>Custom code: Write your own logic to fill the missing values, which can
 be useful for complex or specific cases.</li>
 </ul>
 <pre><code class="language-python">df.interpolate(method='linear')
 </code></pre>
+<p><img src="./images/image12.png" alt="interpolate()" /></p>
 <h3 id="errors-and-noise"><a class="header" href="#errors-and-noise">Errors and Noise</a></h3>
 <h4 id="detecting-errors-in-real-measurements"><a class="header" href="#detecting-errors-in-real-measurements">Detecting Errors in Real Measurements</a></h4>
 <ul>
@@ -393,11 +436,11 @@ be useful for complex or specific cases.</li>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="architecture.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../chapters/Infrastructure_As_Code/index.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="terraform.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../chapters/Software_Architecture/index.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -407,11 +450,11 @@ be useful for complex or specific cases.</li>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="architecture.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../chapters/Infrastructure_As_Code/index.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="terraform.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../chapters/Software_Architecture/index.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -426,13 +469,13 @@ be useful for complex or specific cases.</li>
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../../elasticlunr.min.js"></script>
+        <script src="../../mark.min.js"></script>
+        <script src="../../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../../clipboard.min.js"></script>
+        <script src="../../highlight.js"></script>
+        <script src="../../book.js"></script>
 
         <!-- Custom JS scripts -->
 
