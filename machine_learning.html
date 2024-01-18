@@ -179,6 +179,7 @@
 <li><a href="#numpy">Numpy</a></li>
 <li><a href="#pandas">Pandas</a></li>
 <li><a href="#matplotlib">Matplotlib</a></li>
+<li><a href="#data-processing">Data Processing</a></li>
 </ul>
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
 <p>Python includes a module named numpy that can be used to store data in a matrix-like object.</p>
@@ -324,6 +325,69 @@ plt.scatter()
 
 plt.bar()
 </code></pre>
+<h2 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h2>
+<p>If your dataset is based on real-life data, it might not be perfect.</p>
+<p>Your dataset might include:</p>
+<ul>
+<li>Missing values</li>
+<li>Erroneous measurements</li>
+<li>Noise</li>
+</ul>
+<h3 id="missing-values"><a class="header" href="#missing-values">Missing Values</a></h3>
+<h4 id="how-to-find-missing-values-in-a-pandas-dataframe"><a class="header" href="#how-to-find-missing-values-in-a-pandas-dataframe">How to Find Missing Values in a Pandas DataFrame</a></h4>
+<ul>
+<li>Check the data type for each column using <code>df.dtypes</code>. If a column has invalid data points, such as empty strings or non-numeric values, the data type will be object.</li>
+<li>You can either manually change the data type for all the columns using <code>df.astype()</code> or replace the invalid points with NaN using <code>df.replace()</code>.</li>
+<li>Once all the columns are the proper data type, you can count the number of NaN values using one of these methods:</li>
+</ul>
+<p>Other usefull functions are:</p>
+<pre><code class="language-python">df.isnull().sum()
+
+# or
+
+df.isna().sum()
+
+# or
+
+df.info()
+</code></pre>
+<h4 id="what-to-do-with-missing-values"><a class="header" href="#what-to-do-with-missing-values">What to Do with Missing Values?</a></h4>
+<p>Pandas offers several built-in functions to deal with missing values in different ways.</p>
+<ul>
+<li>You can choose to remove the rows or columns that contain NaN values.</li>
+<li>Yu can replace them with a specific value or a calculated value based on the rest of the data.</li>
+</ul>
+<h4 id="dropping-nan-values"><a class="header" href="#dropping-nan-values">Dropping NaN Values</a></h4>
+<p>Dropping values is easy with a Series, as you can drop the values individually. For DataFrame, it is a bit more complicated as you can not have an uneven number of rows.</p>
+<ul>
+<li>You can drop any row or drop any column that has at least one NaN value (based on the specified axis).</li>
+<li>You can use the <code>how</code> or <code>thresh</code> keywords to specify the number of NaN values that must exist before you drop the row or column.</li>
+</ul>
+<h4 id="filling-nan-values"><a class="header" href="#filling-nan-values">Filling NaN Values</a></h4>
+<ul>
+<li>Forward-fill: Use the previous valid value to fill the missing value, which
+can be useful for time series data.</li>
+</ul>
+<pre><code class="language-python">df.ffill()
+</code></pre>
+<ul>
+<li>Back-fill: Use the next valid value to fill the missing value, which can be
+useful for reverse time series data.</li>
+</ul>
+<pre><code class="language-python">df.bfill()
+</code></pre>
+<ul>
+<li>Custom code: Write your own logic to fill the missing values, which can
+be useful for complex or specific cases.</li>
+</ul>
+<pre><code class="language-python">df.interpolate(method='linear')
+</code></pre>
+<h3 id="errors-and-noise"><a class="header" href="#errors-and-noise">Errors and Noise</a></h3>
+<h4 id="detecting-errors-in-real-measurements"><a class="header" href="#detecting-errors-in-real-measurements">Detecting Errors in Real Measurements</a></h4>
+<ul>
+<li>To identify potential outliers, you can use different methods depending on the data's characteristics and shape, such as visualizing or analyzing them statistically.</li>
+<li>After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to <code>np.nan</code> and then use your preferred method to replace the missing values.</li>
+</ul>
 
                     </main>
 
