@@ -1,11 +1,12 @@
 # Summary
 
-[Introduction](./introduction.md)
+[Software Engineering](./README.md)
+
+---
 
 # Chapters
 
-- [Architecture](./architecture.md)
-
-- [Machine Learning](./machine_learning.md)
-
-- [Terraform](./terraform.md)
+- [DevOps](./chapters/DevOps/README.md)
+- [Infrastructure As Code](./chapters/Infrastructure_As_Code/README.md)
+- [Machine Learning](./chapters/Machine_Learning/README.md)
+- [Software Architecture](./chapters/Software_Architecture/README.md)

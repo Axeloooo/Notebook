@@ -3,9 +3,23 @@
 ## Table of Contents
 
 - [Numpy](#numpy)
+  - [What Is Numpy Array?](#what-is-numpy-array)
+  - [List To Numpy](#list-to-numpy)
+  - [NumPy Indexing and Slicing](#numpy-indexing-and-slicing)
+  - [Filtering](#filtering)
 - [Pandas](#pandas)
+  - [Data Types](#data-types)
+  - [‘loc’ - Label-Based Indexing](#loc---label-based-indexing)
+  - [Identifying Missing Data](#identifying-missing-data)
+  - [Filling Missing Data](#filling-missing-data)
+  - [GroupBy](#groupby)
 - [Matplotlib](#matplotlib)
+  - [Line Plot](#line-plot)
+  - [Scatter Plot](#scatter-plot)
+  - [Bar Plot](#bar-plot)
 - [Data Processing](#data-processing)
+  - [Missing Values](#missing-values)
+  - [Errors and Noise](#errors-and-noise)
 
 ## Numpy
 
@@ -21,7 +35,13 @@ import numpy as np
 
 - A multi-dimensional array (data type = ndarray) can be created from a multi-dimensional list using the NumPy module.
 - A one-dimensional array is an array that has only one dimension and contains elements of the same type and size.
+
+![Numpy Array](./images/image8.png)
+
 - A two-dimensional array is an array that has two dimensions and contains elements of the same type and size.
+
+![Numpy Array](./images/image9.png)
+
 - An array has “axis/axes” to indicate its dimensions.
 - The first axis (axis = 0) of a 2-D array shows the number of rows and the second axis (axis = 1) shows the number of columns.
 - Indexing or slicing the array can be used to get or change its elements, similar to lists.
@@ -127,6 +147,8 @@ df.loc[['ID1', 'ID3'], :]
 df.loc[df['Age'] > 30, ['Name', 'Age']]
 ```
 
+![loc](./images/image7.png)
+
 ### Identifying Missing Data
 
 The `isna()` and `isnull()` methods are used interchangeably to check for missing values within a DataFrame or Series.
@@ -138,6 +160,8 @@ df.isna()
 
 df.isnull()
 ```
+
+![isna() vs isnull()](./images/image1.png)
 
 ### Filling Missing Data
 
@@ -153,6 +177,8 @@ df.bfill()
 df.ffill()
 ```
 
+![bfill() vs ffill()](./images/image2.png)
+
 ### GroupBy
 
 Pandas groupby is a method that splits the dataframe into groups based on one or more columns, applies a function to each group, and combines the results into a new DataFrame.
@@ -164,6 +190,8 @@ Grouped = df.groupby('Category')
 
 Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 ```
+
+![GroupBy](./images/image3.png)
 
 ## Matplotlib
 
@@ -192,6 +220,8 @@ matplotlib.pyplot.plot()
 plt.plot()
 ```
 
+![Line Plot](./images/image4.png)
+
 ### Scatter Plot
 
 Scatter plots are used to visualize the relationship between two numerical variables, allowing you to `identify patterns, trends, clusters, correlations, and outliers`.
@@ -204,6 +234,8 @@ matplotlib.pyplot.scatter()
 plt.scatter()
 ```
 
+![Scatter Plot](./images/image5.png)
+
 ### Bar Plot
 
 Bar plots are used to compare the values of different categories, display frequencies or counts of categorical variables, and visualize the relationship between categorical and numerical variables. `Useful for comparing discrete data`.
@@ -215,6 +247,8 @@ matplotlib.pyplot.bar()
 
 plt.bar()
 ```
+
+![Bar Plot](./images/image6.png)
 
 ## Data Processing
 
@@ -255,6 +289,8 @@ Pandas offers several built-in functions to deal with missing values in differen
 - You can choose to remove the rows or columns that contain NaN values.
 - Yu can replace them with a specific value or a calculated value based on the rest of the data.
 
+![Missing Values](./images/image13.png)
+
 #### Dropping NaN Values
 
 Dropping values is easy with a Series, as you can drop the values individually. For DataFrame, it is a bit more complicated as you can not have an uneven number of rows.
@@ -271,6 +307,8 @@ Dropping values is easy with a Series, as you can drop the values individually. 
 df.ffill()
 ```
 
+![ffill()](./images/image10.png)
+
 - Back-fill: Use the next valid value to fill the missing value, which can be
   useful for reverse time series data.
 
@@ -278,12 +316,16 @@ df.ffill()
 df.bfill()
 ```
 
+![bfill()](./images/image11.png)
+
 - Custom code: Write your own logic to fill the missing values, which can
   be useful for complex or specific cases.
 
 ```python
 df.interpolate(method='linear')
 ```
+
+![interpolate()](./images/image12.png)
 
 ### Errors and Noise
 
