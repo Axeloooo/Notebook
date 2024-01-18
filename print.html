@@ -177,11 +177,121 @@
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>This online book serves as a useful resource for professionals in the software and technology fields. You'll find concise, yet comprehensive coverage of the latest trends, tools, and techniques shaping our digital world.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="devops"><a class="header" href="#devops">DevOps</a></h1>
-<p>Coming soon...</p>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<ul>
+<li><a href="chapters/DevOps/index.html#data-formats">Data Formats</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#xml">XML</a></li>
+<li><a href="chapters/DevOps/index.html#json">JSON</a></li>
+<li><a href="chapters/DevOps/index.html#yaml">YAML</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="data-formats"><a class="header" href="#data-formats">Data Formats</a></h2>
+<p>We need a standard format to allow a diverse set of software to communicate with each other, and for humans to interface with it. All of the data formats that we’ll discuss in this chapter have broad support over a multitude of languages and operating systems.</p>
+<ul>
+<li>XML - machine to machine</li>
+<li>JSON - machine to machine</li>
+<li>YAML – human to machine</li>
+</ul>
+<h3 id="xml"><a class="header" href="#xml">XML</a></h3>
+<p>XML is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. The design goals of XML emphasize simplicity, generality, and usability across the Internet.</p>
+<h4 id="features"><a class="header" href="#features">Features</a></h4>
+<ul>
+<li>XML files end in <code>.xml</code></li>
+<li>Root, children nodes, attributes</li>
+<li>Namespaces (Used to resolve naming conflicts)</li>
+</ul>
+<p><img src="chapters/DevOps/./images/image1.png" alt="XML" /></p>
+<h4 id="benefits"><a class="header" href="#benefits">Benefits</a></h4>
+<ul>
+<li>Support inter-business transactions</li>
+<li>Maintain data integrity
+<ul>
+<li>Verify data accuracy</li>
+<li>Automatically customize data presentation for different users</li>
+<li>Store data consistently across multiple platforms</li>
+</ul>
+</li>
+<li>Improve search efficiency</li>
+<li>Design flexible applications</li>
+</ul>
+<h3 id="json"><a class="header" href="#json">JSON</a></h3>
+<p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>
+<h4 id="features-1"><a class="header" href="#features-1">Features</a></h4>
+<ul>
+<li>JSON files end in <code>.json</code></li>
+<li>The whole thing is wrapped in curly braces {}. This is very common, and it indicates that JSON objects are contained inside</li>
+<li>Think of “objects” as key-value pairs, or dictionaries</li>
+<li>JSON objects always use string values when describing the keys</li>
+<li>JSON list indicated by the square brackets []</li>
+<li>Data Types:
+<ul>
+<li>Number</li>
+<li>String</li>
+<li>Boolean</li>
+<li>Array</li>
+<li>Object</li>
+<li>Null</li>
+</ul>
+</li>
+</ul>
+<p><img src="chapters/DevOps/./images/image2.png" alt="JSON" /></p>
+<h4 id="working-with-json-in-python"><a class="header" href="#working-with-json-in-python">Working with JSON in Python</a></h4>
+<ul>
+<li>JSON enjoys wide support across a myriad of languages</li>
+<li>You will often be able to simply import a JSON data structure into constructs of a given language, simply with a one-line command</li>
+</ul>
+<pre><code class="language-python">import json
+
+item = {
+    &quot;name&quot;: &quot;egg&quot;,
+    &quot;price&quot;: 0.99,
+}
+
+with open('data.json', 'w') as f:
+    json.dump(item, f) # write python object to json file
+
+with open('data.json', 'r') as f:
+    data = json.load(f) # load json data into python object
+
+print(data) # {'name': 'egg', 'price': 0.99}
+</code></pre>
+<h3 id="yaml"><a class="header" href="#yaml">YAML</a></h3>
+<p>YAML (YAML Ain't Markup Language) is a human-readable data serialization language. It is commonly used for configuration files, automation workflow, or providing a data set
+to work with.</p>
+<h4 id="features-2"><a class="header" href="#features-2">Features</a></h4>
+<ul>
+<li>YAML files end in <code>.yaml</code> or <code>.yml</code></li>
+<li>YAML is a superset of JSON</li>
+<li>YAML is a human-readable data serialization language</li>
+<li>YAML is a strict indentation language</li>
+<li>YAML is case sensitive</li>
+</ul>
+<p><img src="chapters/DevOps/./images/image3.png" alt="YAML" /></p>
+<h4 id="working-with-yaml-in-python"><a class="header" href="#working-with-yaml-in-python">Working with YAML in Python</a></h4>
+<pre><code class="language-python">import yaml
+
+item = {
+    &quot;name&quot;: &quot;egg&quot;,
+    &quot;price&quot;: 0.99,
+}
+
+with open('data.yaml', 'w') as f:
+    yaml.dump(item, f) # write python object to yaml file
+
+with open('data.yaml', 'r') as f:
+    data = yaml.load(f, Loader=yaml.FullLoader) # load yaml data into python object
+
+print(data) # {'name': 'egg', 'price': 0.99}
+</code></pre>
+<p>Note: The yaml module is not part of the standard library, so you’ll need to install it first. You can do so with pip:</p>
+<pre><code class="language-bash">pip install pyyaml
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure-as-code-iac"><a class="header" href="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a></h1>
 <p>Coming soon...</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="machine-learning"><a class="header" href="#machine-learning">Machine Learning</a></h1>
-<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<h2 id="table-of-contents-1"><a class="header" href="#table-of-contents-1">Table of Contents</a></h2>
 <ul>
 <li><a href="chapters/Machine_Learning/index.html#numpy">Numpy</a>
 <ul>
@@ -439,7 +549,7 @@ be useful for complex or specific cases.</li>
 <li>After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to <code>np.nan</code> and then use your preferred method to replace the missing values.</li>
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software-architecture"><a class="header" href="#software-architecture">Software Architecture</a></h1>
-<h2 id="table-of-contents-1"><a class="header" href="#table-of-contents-1">Table of Contents</a></h2>
+<h2 id="table-of-contents-2"><a class="header" href="#table-of-contents-2">Table of Contents</a></h2>
 <ul>
 <li><a href="chapters/Software_Architecture/index.html#abstraction">Abstraction</a>
 <ul>
