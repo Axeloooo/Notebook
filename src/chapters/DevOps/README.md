@@ -1,11 +1,15 @@
 # DevOps
 
+---
+
 ## Table of Contents
 
 - [Data Formats](#data-formats)
   - [XML](#xml)
   - [JSON](#json)
   - [YAML](#yaml)
+
+---
 
 ## Data Formats
 
@@ -119,3 +123,5 @@ Note: The yaml module is not part of the standard library, so you’ll need to i
 ```bash
 pip install pyyaml
 ```
+
+---

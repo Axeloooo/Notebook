@@ -1,5 +1,7 @@
 # Machine Learning
 
+---
+
 ## Table of Contents
 
 - [Numpy](#numpy)
@@ -20,6 +22,13 @@
 - [Data Processing](#data-processing)
   - [Missing Values](#missing-values)
   - [Errors and Noise](#errors-and-noise)
+- [Model Validation](#model-validation)
+  - [Training and Test Sets](#training-and-test-sets)
+  - [Cross-Validation](#cross-validation)
+- [Model Selection](#model-selection)
+  - [Bias and Variance](#bias-and-variance)
+
+---
 
 ## Numpy
 
@@ -113,6 +122,8 @@ indices = np.where(arr > 0)
 selected_elements = arr[indices]
 ```
 
+---
+
 ## Pandas
 
 Pandas is a Python module used to import, export, and manipulate data.
@@ -193,6 +204,8 @@ Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 
 ![GroupBy](./images/image3.png)
 
+---
+
 ## Matplotlib
 
 Matplotlib is a built-in module in Python used for plotting.
@@ -249,6 +262,8 @@ plt.bar()
 ```
 
 ![Bar Plot](./images/image6.png)
+
+---
 
 ## Data Processing
 
@@ -333,3 +348,58 @@ df.interpolate(method='linear')
 
 - To identify potential outliers, you can use different methods depending on the data's characteristics and shape, such as visualizing or analyzing them statistically.
 - After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to `np.nan` and then use your preferred method to replace the missing values.
+
+---
+
+## Model Validation
+
+### Training and Test Sets
+
+- Training Set: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.
+
+- Test Set: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.
+
+Example:
+
+```python
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+
+![Train and test](./images/image14.png)
+
+### Cross-Validation
+
+Cross-validation is a technique to evaluate the performance of a machine learning model on `unseen data`.
+
+Example:
+
+If 𝒌 = 𝟑, then the data set `{𝑥1, 𝑥2, 𝑥3, 𝑥4, 𝑥5, 𝑥6}` is divided into
+three subsets:
+
+- `{𝑥1, 𝑥2}`
+- `{𝑥3, 𝑥4}`
+- `{𝑥5, 𝑥6}`
+
+```python
+from sklearn.cross_validation import cross_val_score
+
+cross_val_score(model, X, y, cv=3)
+```
+
+![Cross-Validation](./images/image15.png)
+
+Compute the mean (average) test error across the three folds.
+
+---
+
+## Model Selection
+
+### Bias and Variance
+
+- Bias: The difference between the model's predicted value and the actual value. `High bias` model tend to `underfit` the data, meaning they cannot capture the complexity or patterns in the data.
+
+- Variance: The sensitivity of the model to changes in the training data. `High variance` models tend to `overfit` the data, meaning they cannot generalize well to new or unseen data.
+
+![Bias and Variance](./images/image16.png)

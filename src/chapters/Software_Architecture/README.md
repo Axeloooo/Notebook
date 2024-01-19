@@ -1,5 +1,7 @@
 # Software Architecture
 
+---
+
 ## Table of Contents
 
 - [Abstraction](#abstraction)
@@ -15,6 +17,8 @@
   - [Service-Based](#service-based)
   - [Event-Driven](#event-driven)
   - [Other Architectures](#other-architectures)
+
+---
 
 ## Abstraction
 
@@ -81,6 +85,8 @@ Cohesion is the degree of unity or closeness among the elements within a class. 
 Architectural approach aligns with the principles and values of agile methodologies. Agile approach emphasizes flexibility, collaboration and responsiveness to change.
 
 ![Agile-Driven](./images/image8.png)
+
+---
 
 ## Styles
 
@@ -183,3 +189,5 @@ Key characteristics:
 - Microservices
 
 ![Others](./images/image15.png)
+
+---
