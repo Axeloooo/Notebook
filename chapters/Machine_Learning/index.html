@@ -88,7 +88,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="../../chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="../../chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="../../chapters/Machine_Learning/index.html" class="active"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="../../chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="../../index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="../../chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="../../chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="../../chapters/Machine_Learning/index.html" class="active"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="../../chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li><li class="chapter-item expanded "><a href="../../chapters/Testing/index.html"><strong aria-hidden="true">5.</strong> Testing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -174,6 +174,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="machine-learning"><a class="header" href="#machine-learning">Machine Learning</a></h1>
+<hr />
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <ul>
 <li><a href="#numpy">Numpy</a>
@@ -206,7 +207,19 @@
 <li><a href="#errors-and-noise">Errors and Noise</a></li>
 </ul>
 </li>
+<li><a href="#model-validation">Model Validation</a>
+<ul>
+<li><a href="#training-and-test-sets">Training and Test Sets</a></li>
+<li><a href="#cross-validation">Cross-Validation</a></li>
 </ul>
+</li>
+<li><a href="#model-selection">Model Selection</a>
+<ul>
+<li><a href="#bias-and-variance">Bias and Variance</a></li>
+</ul>
+</li>
+</ul>
+<hr />
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
 <p>Python includes a module named numpy that can be used to store data in a matrix-like object.</p>
 <p>Import statement:</p>
@@ -275,6 +288,7 @@ indices = np.where(arr &gt; 0)
 # Selecting and displaying the elements that satisfy the condition using the obtained indices
 selected_elements = arr[indices]
 </code></pre>
+<hr />
 <h2 id="pandas"><a class="header" href="#pandas">Pandas</a></h2>
 <p>Pandas is a Python module used to import, export, and manipulate data.</p>
 <p>import statement:</p>
@@ -327,6 +341,7 @@ df.ffill()
 Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 </code></pre>
 <p><img src="./images/image3.png" alt="GroupBy" /></p>
+<hr />
 <h2 id="matplotlib"><a class="header" href="#matplotlib">Matplotlib</a></h2>
 <p>Matplotlib is a built-in module in Python used for plotting.</p>
 <p>Import statement:</p>
@@ -364,6 +379,7 @@ plt.scatter()
 plt.bar()
 </code></pre>
 <p><img src="./images/image6.png" alt="Bar Plot" /></p>
+<hr />
 <h2 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h2>
 <p>If your dataset is based on real-life data, it might not be perfect.</p>
 <p>Your dataset might include:</p>
@@ -431,6 +447,51 @@ be useful for complex or specific cases.</li>
 <li>To identify potential outliers, you can use different methods depending on the data's characteristics and shape, such as visualizing or analyzing them statistically.</li>
 <li>After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to <code>np.nan</code> and then use your preferred method to replace the missing values.</li>
 </ul>
+<hr />
+<h2 id="model-validation"><a class="header" href="#model-validation">Model Validation</a></h2>
+<h3 id="training-and-test-sets"><a class="header" href="#training-and-test-sets">Training and Test Sets</a></h3>
+<ul>
+<li>
+<p>Training Set: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.</p>
+</li>
+<li>
+<p>Test Set: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+</code></pre>
+<p><img src="./images/image14.png" alt="Train and test" /></p>
+<h3 id="cross-validation"><a class="header" href="#cross-validation">Cross-Validation</a></h3>
+<p>Cross-validation is a technique to evaluate the performance of a machine learning model on <code>unseen data</code>.</p>
+<p>Example:</p>
+<p>If 𝒌 = 𝟑, then the data set <code>{𝑥1, 𝑥2, 𝑥3, 𝑥4, 𝑥5, 𝑥6}</code> is divided into
+three subsets:</p>
+<ul>
+<li><code>{𝑥1, 𝑥2}</code></li>
+<li><code>{𝑥3, 𝑥4}</code></li>
+<li><code>{𝑥5, 𝑥6}</code></li>
+</ul>
+<pre><code class="language-python">from sklearn.cross_validation import cross_val_score
+
+cross_val_score(model, X, y, cv=3)
+</code></pre>
+<p><img src="./images/image15.png" alt="Cross-Validation" /></p>
+<p>Compute the mean (average) test error across the three folds.</p>
+<hr />
+<h2 id="model-selection"><a class="header" href="#model-selection">Model Selection</a></h2>
+<h3 id="bias-and-variance"><a class="header" href="#bias-and-variance">Bias and Variance</a></h3>
+<ul>
+<li>
+<p>Bias: The difference between the model's predicted value and the actual value. <code>High bias</code> model tend to <code>underfit</code> the data, meaning they cannot capture the complexity or patterns in the data.</p>
+</li>
+<li>
+<p>Variance: The sensitivity of the model to changes in the training data. <code>High variance</code> models tend to <code>overfit</code> the data, meaning they cannot generalize well to new or unseen data.</p>
+</li>
+</ul>
+<p><img src="./images/image16.png" alt="Bias and Variance" /></p>
 
                     </main>
 

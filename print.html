@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="chapters/Machine_Learning/index.html"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="chapters/Machine_Learning/index.html"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li><li class="chapter-item expanded "><a href="chapters/Testing/index.html"><strong aria-hidden="true">5.</strong> Testing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -177,6 +177,7 @@
                         <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
 <p>This online book serves as a useful resource for professionals in the software and technology fields. You'll find concise, yet comprehensive coverage of the latest trends, tools, and techniques shaping our digital world.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="devops"><a class="header" href="#devops">DevOps</a></h1>
+<hr />
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <ul>
 <li><a href="chapters/DevOps/index.html#data-formats">Data Formats</a>
@@ -187,6 +188,7 @@
 </ul>
 </li>
 </ul>
+<hr />
 <h2 id="data-formats"><a class="header" href="#data-formats">Data Formats</a></h2>
 <p>We need a standard format to allow a diverse set of software to communicate with each other, and for humans to interface with it. All of the data formats that we’ll discuss in this chapter have broad support over a multitude of languages and operating systems.</p>
 <ul>
@@ -288,9 +290,12 @@ print(data) # {'name': 'egg', 'price': 0.99}
 <p>Note: The yaml module is not part of the standard library, so you’ll need to install it first. You can do so with pip:</p>
 <pre><code class="language-bash">pip install pyyaml
 </code></pre>
+<hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure-as-code-iac"><a class="header" href="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a></h1>
+<hr />
 <p>Coming soon...</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="machine-learning"><a class="header" href="#machine-learning">Machine Learning</a></h1>
+<hr />
 <h2 id="table-of-contents-1"><a class="header" href="#table-of-contents-1">Table of Contents</a></h2>
 <ul>
 <li><a href="chapters/Machine_Learning/index.html#numpy">Numpy</a>
@@ -323,7 +328,19 @@ print(data) # {'name': 'egg', 'price': 0.99}
 <li><a href="chapters/Machine_Learning/index.html#errors-and-noise">Errors and Noise</a></li>
 </ul>
 </li>
+<li><a href="chapters/Machine_Learning/index.html#model-validation">Model Validation</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#training-and-test-sets">Training and Test Sets</a></li>
+<li><a href="chapters/Machine_Learning/index.html#cross-validation">Cross-Validation</a></li>
 </ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#model-selection">Model Selection</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#bias-and-variance">Bias and Variance</a></li>
+</ul>
+</li>
+</ul>
+<hr />
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
 <p>Python includes a module named numpy that can be used to store data in a matrix-like object.</p>
 <p>Import statement:</p>
@@ -392,6 +409,7 @@ indices = np.where(arr &gt; 0)
 # Selecting and displaying the elements that satisfy the condition using the obtained indices
 selected_elements = arr[indices]
 </code></pre>
+<hr />
 <h2 id="pandas"><a class="header" href="#pandas">Pandas</a></h2>
 <p>Pandas is a Python module used to import, export, and manipulate data.</p>
 <p>import statement:</p>
@@ -444,6 +462,7 @@ df.ffill()
 Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 </code></pre>
 <p><img src="chapters/Machine_Learning/./images/image3.png" alt="GroupBy" /></p>
+<hr />
 <h2 id="matplotlib"><a class="header" href="#matplotlib">Matplotlib</a></h2>
 <p>Matplotlib is a built-in module in Python used for plotting.</p>
 <p>Import statement:</p>
@@ -481,6 +500,7 @@ plt.scatter()
 plt.bar()
 </code></pre>
 <p><img src="chapters/Machine_Learning/./images/image6.png" alt="Bar Plot" /></p>
+<hr />
 <h2 id="data-processing"><a class="header" href="#data-processing">Data Processing</a></h2>
 <p>If your dataset is based on real-life data, it might not be perfect.</p>
 <p>Your dataset might include:</p>
@@ -548,7 +568,53 @@ be useful for complex or specific cases.</li>
 <li>To identify potential outliers, you can use different methods depending on the data's characteristics and shape, such as visualizing or analyzing them statistically.</li>
 <li>After finding the errors, you can handle them in the same way as you handled the NaN values. A simple way to code this is to change all the incorrect values to <code>np.nan</code> and then use your preferred method to replace the missing values.</li>
 </ul>
+<hr />
+<h2 id="model-validation"><a class="header" href="#model-validation">Model Validation</a></h2>
+<h3 id="training-and-test-sets"><a class="header" href="#training-and-test-sets">Training and Test Sets</a></h3>
+<ul>
+<li>
+<p>Training Set: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.</p>
+</li>
+<li>
+<p>Test Set: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+</code></pre>
+<p><img src="chapters/Machine_Learning/./images/image14.png" alt="Train and test" /></p>
+<h3 id="cross-validation"><a class="header" href="#cross-validation">Cross-Validation</a></h3>
+<p>Cross-validation is a technique to evaluate the performance of a machine learning model on <code>unseen data</code>.</p>
+<p>Example:</p>
+<p>If 𝒌 = 𝟑, then the data set <code>{𝑥1, 𝑥2, 𝑥3, 𝑥4, 𝑥5, 𝑥6}</code> is divided into
+three subsets:</p>
+<ul>
+<li><code>{𝑥1, 𝑥2}</code></li>
+<li><code>{𝑥3, 𝑥4}</code></li>
+<li><code>{𝑥5, 𝑥6}</code></li>
+</ul>
+<pre><code class="language-python">from sklearn.cross_validation import cross_val_score
+
+cross_val_score(model, X, y, cv=3)
+</code></pre>
+<p><img src="chapters/Machine_Learning/./images/image15.png" alt="Cross-Validation" /></p>
+<p>Compute the mean (average) test error across the three folds.</p>
+<hr />
+<h2 id="model-selection"><a class="header" href="#model-selection">Model Selection</a></h2>
+<h3 id="bias-and-variance"><a class="header" href="#bias-and-variance">Bias and Variance</a></h3>
+<ul>
+<li>
+<p>Bias: The difference between the model's predicted value and the actual value. <code>High bias</code> model tend to <code>underfit</code> the data, meaning they cannot capture the complexity or patterns in the data.</p>
+</li>
+<li>
+<p>Variance: The sensitivity of the model to changes in the training data. <code>High variance</code> models tend to <code>overfit</code> the data, meaning they cannot generalize well to new or unseen data.</p>
+</li>
+</ul>
+<p><img src="chapters/Machine_Learning/./images/image16.png" alt="Bias and Variance" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software-architecture"><a class="header" href="#software-architecture">Software Architecture</a></h1>
+<hr />
 <h2 id="table-of-contents-2"><a class="header" href="#table-of-contents-2">Table of Contents</a></h2>
 <ul>
 <li><a href="chapters/Software_Architecture/index.html#abstraction">Abstraction</a>
@@ -571,6 +637,7 @@ be useful for complex or specific cases.</li>
 </ul>
 </li>
 </ul>
+<hr />
 <h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
 <p>High-level representation or simplification of complex systems, design or structures.</p>
 <p><img src="chapters/Software_Architecture/./images/image1.png" alt="Abstraction" /></p>
@@ -619,6 +686,7 @@ be useful for complex or specific cases.</li>
 <h3 id="agile-driven"><a class="header" href="#agile-driven">Agile-Driven</a></h3>
 <p>Architectural approach aligns with the principles and values of agile methodologies. Agile approach emphasizes flexibility, collaboration and responsiveness to change.</p>
 <p><img src="chapters/Software_Architecture/./images/image8.png" alt="Agile-Driven" /></p>
+<hr />
 <h2 id="styles"><a class="header" href="#styles">Styles</a></h2>
 <p>Recurring patterns used in organizing the structure and components of a software system. Choosing the right architecture style is a critical decision that influences various aspects of software development.</p>
 <h3 id="layered"><a class="header" href="#layered">Layered</a></h3>
@@ -694,6 +762,24 @@ be useful for complex or specific cases.</li>
 <li>Microservices</li>
 </ul>
 <p><img src="chapters/Software_Architecture/./images/image15.png" alt="Others" /></p>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="testing"><a class="header" href="#testing">Testing</a></h1>
+<hr />
+<h2 id="table-of-contents-3"><a class="header" href="#table-of-contents-3">Table of Contents</a></h2>
+<ul>
+<li><a href="chapters/Testing/index.html#unit-testing">Unit Testing</a></li>
+</ul>
+<hr />
+<h2 id="unit-testing"><a class="header" href="#unit-testing">Unit Testing</a></h2>
+<ul>
+<li>A unit testing must only test one specific unit of functionality</li>
+<li>It is fast (Less than 10 minutes to build)</li>
+<li>It does not access a database or the file system</li>
+<li>It does not communicate through a network</li>
+<li>It does not require any special setup to the system environment such as modifying a configuration file</li>
+<li>It leaves the system and the system environment in the same state that it had prior to the test</li>
+<li>Focus on developed components only</li>
+</ul>
 
                     </main>
 
