@@ -218,6 +218,16 @@
 <li><a href="#bias-and-variance">Bias and Variance</a></li>
 </ul>
 </li>
+<li><a href="#linear-models">Linear Models</a></li>
+<li><a href="#validation-models">Validation Models</a>
+<ul>
+<li><a href="#confusion-matrix">Confusion Matrix</a></li>
+<li><a href="#accuracy">Accuracy</a></li>
+<li><a href="#precision">Precision</a></li>
+<li><a href="#recall">Recall</a></li>
+<li><a href="#f1-score">F1 Score</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
@@ -492,6 +502,37 @@ cross_val_score(model, X, y, cv=3)
 </li>
 </ul>
 <p><img src="./images/image16.png" alt="Bias and Variance" /></p>
+<hr />
+<h2 id="linear-models"><a class="header" href="#linear-models">Linear Models</a></h2>
+<p>Cooming soon...</p>
+<hr />
+<h2 id="validation-models"><a class="header" href="#validation-models">Validation Models</a></h2>
+<h3 id="confusion-matrix"><a class="header" href="#confusion-matrix">Confusion Matrix</a></h3>
+<p>A confusion matrix is a table that is often used to describe the performance of a classification model on a set of test data for which the true values are known.</p>
+<ul>
+<li><strong>True Positives (TP)</strong>: The number of instances that are actually positive (P) and are correctly predicted as positive by the classification algorithm.</li>
+<li><strong>False Positives (FP)</strong>: The number of instances that are actually negative (N) but are incorrectly predicted as positive (P) by the algorithm.</li>
+<li><strong>True Negatives (TN)</strong>: The number of instances that are actually negative (N) and are correctly predicted as negative by the algorithm.</li>
+<li><strong>False Negatives (FN)</strong>: The number of instances that are actually positive (P) but are incorrectly predicted as negative (N) by the algorithm.</li>
+</ul>
+<p><img src="./images/image17.png" alt="Confusion Matrix" /></p>
+<h3 id="accuracy"><a class="header" href="#accuracy">Accuracy</a></h3>
+<p>Accuracy is a metric that quantifies the ratio of correctly classified instances to
+the total predictions made by a model.</p>
+<p><img src="./images/image18.png" alt="Accuracy" /></p>
+<h3 id="precision"><a class="header" href="#precision">Precision</a></h3>
+<p>Precision is a metric that measures the accuracy of <code>positive predictions</code> generated
+by a model, taking <code>false positives</code> into account.</p>
+<p><img src="./images/image19.png" alt="Precision" /></p>
+<h3 id="recall"><a class="header" href="#recall">Recall</a></h3>
+<p>Recall, also known as sensitivity or the true positive rate, quantifies a model’s
+capacity to identify all positive instances, even when considering false negatives.</p>
+<p><img src="./images/image20.png" alt="Recall" /></p>
+<h3 id="f1-score"><a class="header" href="#f1-score">F1 Score</a></h3>
+<p>The F1-Score presents a harmonious equilibrium between precision and recall,
+while accounting for both false positives and false negatives.</p>
+<p><img src="./images/image21.png" alt="F1 Score" /></p>
+<hr />
 
                     </main>
 
