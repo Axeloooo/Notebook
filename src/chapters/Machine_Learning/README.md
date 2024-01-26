@@ -27,6 +27,13 @@
   - [Cross-Validation](#cross-validation)
 - [Model Selection](#model-selection)
   - [Bias and Variance](#bias-and-variance)
+- [Linear Models](#linear-models)
+- [Validation Models](#validation-models)
+  - [Confusion Matrix](#confusion-matrix)
+  - [Accuracy](#accuracy)
+  - [Precision](#precision)
+  - [Recall](#recall)
+  - [F1 Score](#f1-score)
 
 ---
 
@@ -403,3 +410,54 @@ Compute the mean (average) test error across the three folds.
 - Variance: The sensitivity of the model to changes in the training data. `High variance` models tend to `overfit` the data, meaning they cannot generalize well to new or unseen data.
 
 ![Bias and Variance](./images/image16.png)
+
+---
+
+## Linear Models
+
+Cooming soon...
+
+---
+
+## Validation Models
+
+### Confusion Matrix
+
+A confusion matrix is a table that is often used to describe the performance of a classification model on a set of test data for which the true values are known.
+
+- **True Positives (TP)**: The number of instances that are actually positive (P) and are correctly predicted as positive by the classification algorithm.
+- **False Positives (FP)**: The number of instances that are actually negative (N) but are incorrectly predicted as positive (P) by the algorithm.
+- **True Negatives (TN)**: The number of instances that are actually negative (N) and are correctly predicted as negative by the algorithm.
+- **False Negatives (FN)**: The number of instances that are actually positive (P) but are incorrectly predicted as negative (N) by the algorithm.
+
+![Confusion Matrix](./images/image17.png)
+
+### Accuracy
+
+Accuracy is a metric that quantifies the ratio of correctly classified instances to
+the total predictions made by a model.
+
+![Accuracy](./images/image18.png)
+
+### Precision
+
+Precision is a metric that measures the accuracy of `positive predictions` generated
+by a model, taking `false positives` into account.
+
+![Precision](./images/image19.png)
+
+### Recall
+
+Recall, also known as sensitivity or the true positive rate, quantifies a model’s
+capacity to identify all positive instances, even when considering false negatives.
+
+![Recall](./images/image20.png)
+
+### F1 Score
+
+The F1-Score presents a harmonious equilibrium between precision and recall,
+while accounting for both false positives and false negatives.
+
+![F1 Score](./images/image21.png)
+
+---
