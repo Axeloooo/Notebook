@@ -307,7 +307,7 @@ selected_elements = arr[indices]
 <h3 id="data-types"><a class="header" href="#data-types">Data Types</a></h3>
 <p>When data is imported using pandas, there are two different data types depending on the dimensions:</p>
 <ul>
-<li>1-D data is stored in a Seriess</li>
+<li>1-D data is stored in a Series</li>
 <li>2-D data is stored in a DataFrame</li>
 <li>Each column in a DataFrame represents a Series</li>
 <li>The values in each Series (data frame columns) must be the same type.</li>
@@ -431,21 +431,21 @@ df.info()
 </ul>
 <h4 id="filling-nan-values"><a class="header" href="#filling-nan-values">Filling NaN Values</a></h4>
 <ul>
-<li>Forward-fill: Use the previous valid value to fill the missing value, which
+<li><strong>Forward-fill</strong>: Use the previous valid value to fill the missing value, which
 can be useful for time series data.</li>
 </ul>
 <pre><code class="language-python">df.ffill()
 </code></pre>
 <p><img src="./images/image10.png" alt="ffill()" /></p>
 <ul>
-<li>Back-fill: Use the next valid value to fill the missing value, which can be
+<li><strong>Back-fill**</strong>: Use the next valid value to fill the missing value, which can be
 useful for reverse time series data.</li>
 </ul>
 <pre><code class="language-python">df.bfill()
 </code></pre>
 <p><img src="./images/image11.png" alt="bfill()" /></p>
 <ul>
-<li>Custom code: Write your own logic to fill the missing values, which can
+<li><strong>Custom code</strong>: Write your own logic to fill the missing values, which can
 be useful for complex or specific cases.</li>
 </ul>
 <pre><code class="language-python">df.interpolate(method='linear')
@@ -462,10 +462,10 @@ be useful for complex or specific cases.</li>
 <h3 id="training-and-test-sets"><a class="header" href="#training-and-test-sets">Training and Test Sets</a></h3>
 <ul>
 <li>
-<p>Training Set: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.</p>
+<p><strong>Training Set</strong>: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.</p>
 </li>
 <li>
-<p>Test Set: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.</p>
+<p><strong>Test Set</strong>: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.</p>
 </li>
 </ul>
 <p>Example:</p>
@@ -495,10 +495,10 @@ cross_val_score(model, X, y, cv=3)
 <h3 id="bias-and-variance"><a class="header" href="#bias-and-variance">Bias and Variance</a></h3>
 <ul>
 <li>
-<p>Bias: The difference between the model's predicted value and the actual value. <code>High bias</code> model tend to <code>underfit</code> the data, meaning they cannot capture the complexity or patterns in the data.</p>
+<p><strong>Bias</strong>: The difference between the model's predicted value and the actual value. <code>High bias</code> model tend to <code>underfit</code> the data, meaning they cannot capture the complexity or patterns in the data.</p>
 </li>
 <li>
-<p>Variance: The sensitivity of the model to changes in the training data. <code>High variance</code> models tend to <code>overfit</code> the data, meaning they cannot generalize well to new or unseen data.</p>
+<p><strong>Variance</strong>: The sensitivity of the model to changes in the training data. <code>High variance</code> models tend to <code>overfit</code> the data, meaning they cannot generalize well to new or unseen data.</p>
 </li>
 </ul>
 <p><img src="./images/image16.png" alt="Bias and Variance" /></p>
