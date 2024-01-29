@@ -145,7 +145,7 @@ import pandas as pd
 
 When data is imported using pandas, there are two different data types depending on the dimensions:
 
-- 1-D data is stored in a Seriess
+- 1-D data is stored in a Series
 - 2-D data is stored in a DataFrame
 - Each column in a DataFrame represents a Series
 - The values in each Series (data frame columns) must be the same type.
@@ -322,7 +322,7 @@ Dropping values is easy with a Series, as you can drop the values individually. 
 
 #### Filling NaN Values
 
-- Forward-fill: Use the previous valid value to fill the missing value, which
+- **Forward-fill**: Use the previous valid value to fill the missing value, which
   can be useful for time series data.
 
 ```python
@@ -331,7 +331,7 @@ df.ffill()
 
 ![ffill()](./images/image10.png)
 
-- Back-fill: Use the next valid value to fill the missing value, which can be
+- **Back-fill\*\***: Use the next valid value to fill the missing value, which can be
   useful for reverse time series data.
 
 ```python
@@ -340,7 +340,7 @@ df.bfill()
 
 ![bfill()](./images/image11.png)
 
-- Custom code: Write your own logic to fill the missing values, which can
+- **Custom code**: Write your own logic to fill the missing values, which can
   be useful for complex or specific cases.
 
 ```python
@@ -362,9 +362,9 @@ df.interpolate(method='linear')
 
 ### Training and Test Sets
 
-- Training Set: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.
+- **Training Set**: The training set is the largest part of the dataset and the foundation for model building. Machine learning algorithms use this segment to learn from the data’s patterns.
 
-- Test Set: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.
+- **Test Set**: Different from the training set, the test set serves as an unbiased measure for evaluating the model’s performance on completely new and unseen data.
 
 Example:
 
@@ -405,9 +405,9 @@ Compute the mean (average) test error across the three folds.
 
 ### Bias and Variance
 
-- Bias: The difference between the model's predicted value and the actual value. `High bias` model tend to `underfit` the data, meaning they cannot capture the complexity or patterns in the data.
+- **Bias**: The difference between the model's predicted value and the actual value. `High bias` model tend to `underfit` the data, meaning they cannot capture the complexity or patterns in the data.
 
-- Variance: The sensitivity of the model to changes in the training data. `High variance` models tend to `overfit` the data, meaning they cannot generalize well to new or unseen data.
+- **Variance**: The sensitivity of the model to changes in the training data. `High variance` models tend to `overfit` the data, meaning they cannot generalize well to new or unseen data.
 
 ![Bias and Variance](./images/image16.png)
 
