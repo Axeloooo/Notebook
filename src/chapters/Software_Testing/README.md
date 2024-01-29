@@ -1,4 +1,4 @@
-# Testing
+# Software Testing
 
 ---
 
@@ -488,3 +488,5 @@ public class GradesServiceTest {
 - `mock()` method takes a class or an interface as an argument and creates a mock object of given class or interface.
 - `when()` method takes a method call on mock object as an argument and defines return value for that method call.
 - `thenReturn()` method defines return value for the method call. If you specify more than one value, they will be returned in sequence until the last one is used.
+
+---
