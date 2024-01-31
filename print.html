@@ -89,7 +89,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">2.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="chapters/Machine_Learning/index.html"><strong aria-hidden="true">3.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="chapters/Software_Architecture/index.html"><strong aria-hidden="true">4.</strong> Software Architecture</a></li><li class="chapter-item expanded "><a href="chapters/Software_Testing/index.html"><strong aria-hidden="true">5.</strong> Software Testing</a></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="index.html">Software Engineering</a></li><li class="spacer"></li><li class="chapter-item expanded affix "><li class="part-title">Chapters</li><li class="chapter-item expanded "><a href="chapters/DevOps/index.html"><strong aria-hidden="true">1.</strong> DevOps</a></li><li class="chapter-item expanded "><a href="chapters/Flutter/index.html"><strong aria-hidden="true">2.</strong> Flutter</a></li><li class="chapter-item expanded "><a href="chapters/Infrastructure_As_Code/index.html"><strong aria-hidden="true">3.</strong> Infrastructure As Code</a></li><li class="chapter-item expanded "><a href="chapters/Machine_Learning/index.html"><strong aria-hidden="true">4.</strong> Machine Learning</a></li><li class="chapter-item expanded "><a href="chapters/Software_Architecture/index.html"><strong aria-hidden="true">5.</strong> Software Architecture</a></li><li class="chapter-item expanded "><a href="chapters/Software_Testing/index.html"><strong aria-hidden="true">6.</strong> Software Testing</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -185,6 +185,29 @@
 <li><a href="chapters/DevOps/index.html#xml">XML</a></li>
 <li><a href="chapters/DevOps/index.html#json">JSON</a></li>
 <li><a href="chapters/DevOps/index.html#yaml">YAML</a></li>
+</ul>
+</li>
+<li><a href="chapters/DevOps/index.html#git">Git</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#setting-up-git">Setting Up Git</a></li>
+<li><a href="chapters/DevOps/index.html#commit">Commit</a></li>
+<li><a href="chapters/DevOps/index.html#tag">Tag</a></li>
+<li><a href="chapters/DevOps/index.html#branch">Branch</a></li>
+<li><a href="chapters/DevOps/index.html#terminology">Terminology</a></li>
+<li><a href="chapters/DevOps/index.html#distributed-version-control-system">Distributed Version Control System</a></li>
+<li><a href="chapters/DevOps/index.html#setting-up-a-repository">Setting Up A Repository</a></li>
+<li><a href="chapters/DevOps/index.html#inspecting-a-repository">Inspecting A Repository</a></li>
+<li><a href="chapters/DevOps/index.html#undoing-commits-and-changes">Undoing Commits And Changes</a></li>
+<li><a href="chapters/DevOps/index.html#pull-requests">Pull Requests</a></li>
+<li><a href="chapters/DevOps/index.html#merge">Merge</a></li>
+<li><a href="chapters/DevOps/index.html#branch-workflow">Branch Workflow</a></li>
+</ul>
+</li>
+<li><a href="chapters/DevOps/index.html#virtualization">Virtualization</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#hardware-virtualization">Hardware Virtualization</a></li>
+<li><a href="chapters/DevOps/index.html#terminology">Terminology</a></li>
+<li><a href="chapters/DevOps/index.html#advantages">Advantages</a></li>
 </ul>
 </li>
 </ul>
@@ -291,6 +314,157 @@ print(data) # {'name': 'egg', 'price': 0.99}
 <pre><code class="language-bash">pip install pyyaml
 </code></pre>
 <hr />
+<h2 id="git"><a class="header" href="#git">Git</a></h2>
+<p><img src="chapters/DevOps/./images/image10.png" alt="Git" /></p>
+<p>Source code management systems are essential for any software development project. They allow you to keep track of your software at the source level. You can track changes, revert to previous stages, and work on different branches at the same time. Code is organized within a repository.</p>
+<h3 id="setting-up-git"><a class="header" href="#setting-up-git">Setting Up Git</a></h3>
+<pre><code class="language-bash">git config --global user.name &lt;name&gt;    # Set user name
+
+git config --global user.email &lt;email&gt;  # Set user email
+</code></pre>
+<h3 id="commit"><a class="header" href="#commit">Commit</a></h3>
+<ul>
+<li>Specific snapshot within the development tree.</li>
+<li>Collection of changes applied to a project's files.</li>
+<li>Metadata about the change.</li>
+<li>Identified by a unique <code>SHA-1 Hash</code>.</li>
+</ul>
+<pre><code class="language-bash">git commit -m &quot;Add new feature&quot;   # Commit changes
+
+git show 5b8e4f                   # Show commit details
+</code></pre>
+<h3 id="tag"><a class="header" href="#tag">Tag</a></h3>
+<ul>
+<li>Represents a single commit.</li>
+<li>Often human-friendly.</li>
+<li>Version number.</li>
+</ul>
+<pre><code class="language-bash">git tag v1.0.0    # Create a tag
+
+git tag           # List all tags
+
+git show v1.0.0   # Show tag details
+</code></pre>
+<h3 id="branch"><a class="header" href="#branch">Branch</a></h3>
+<ul>
+<li>A history of successive changes to code.</li>
+<li>A new branch may be created at any time, from any existing commit.</li>
+<li>May represent versions of code.</li>
+</ul>
+<pre><code class="language-bash">git branch                        # List all branches
+
+git branch feature/add-btn        # Create a new branch
+
+git checkout feature/add-btn      # Switch to a branch
+
+git checkout -b feature/add-btn   # Create and switch to a branch
+</code></pre>
+<p><img src="chapters/DevOps/./images/image4.png" alt="Git Branch" /></p>
+<h3 id="terminology"><a class="header" href="#terminology">Terminology</a></h3>
+<ul>
+<li><strong>Working Files</strong>: Files that are currently on your file system.</li>
+<li><strong>Staging Area</strong>: Files that are ready to be committed. Only files that have been staged will be committed.</li>
+<li><strong>Checkout</strong>: Replace the current directory files with those from a specific branch or commit.</li>
+</ul>
+<p><img src="chapters/DevOps/./images/image5.png" alt="Git Model" /></p>
+<h3 id="distributed-version-control-system"><a class="header" href="#distributed-version-control-system">Distributed Version Control System</a></h3>
+<ul>
+<li><strong>Clone</strong>: Creates a full copy of repository on your local machine.</li>
+<li><strong>Fetch</strong>: Update your local repository with changes from non-local repositories (i.e. GitHub).</li>
+<li><strong>Fork</strong>: Create a copy of a repository in a remote location (i.e. GitHub).</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/username/repo.git   # Clone a repository
+
+git fetch origin                                # Fetch changes from remote repository
+</code></pre>
+<h3 id="setting-up-a-repository"><a class="header" href="#setting-up-a-repository">Setting Up A Repository</a></h3>
+<ul>
+<li>Create a new repository from cero on the command line</li>
+</ul>
+<pre><code class="language-bash">git init                                                    # Initialize a new repository
+
+git remote add origin https://github.com/username/repo.git  # Add a remote repository
+</code></pre>
+<ul>
+<li>Clone an existing repository</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/username/repo.git    # Clone a repository
+
+cd repo                                           # Change directory to the repository
+</code></pre>
+<h3 id="inspecting-a-repository"><a class="header" href="#inspecting-a-repository">Inspecting A Repository</a></h3>
+<ul>
+<li><strong>git diff</strong>: Show changes between commits, commit and working tree, etc.</li>
+<li><strong>git status</strong>: Display the state of the working directory and the staging area.</li>
+<li><strong>git blame</strong>: Examine the history of a file and get context as to who made changes and when.</li>
+<li><strong>git log</strong>: Show commit logs.</li>
+</ul>
+<pre><code class="language-bash">git diff ./file.txt    # Show changes between commits, commit and working tree, etc.
+
+git status            # Display the state of the working directory and the staging area
+
+git blame ./file.txt  # Examine the history of a file
+
+git log               # Show commit logs
+</code></pre>
+<p><img src="chapters/DevOps/./images/image6.png" alt="Git diff" /></p>
+<h3 id="undoing-commits-and-changes"><a class="header" href="#undoing-commits-and-changes">Undoing Commits And Changes</a></h3>
+<ul>
+<li><strong>git revert</strong>: Create a new commit that undoes the changes from a previous commit.</li>
+<li><strong>git commit --amend</strong>: Change the last commit.</li>
+<li><strong>git reset --soft</strong>: Only resets the HEAD to the commit you specified.</li>
+<li><strong>git reset --mixed</strong>: Resets the HEAD to the commit you specified and resets the staging area.</li>
+<li><strong>git reset --hard</strong>: Resets the HEAD to the commit you specified and resets the staging area and working directory.</li>
+</ul>
+<pre><code class="language-bash">git revert 5b8e4f    # Create a new commit that undoes the changes from a previous commit
+
+git commit --amend   # Change the last commit
+
+git reset --soft 5b8e4f    # Only resets the HEAD to the commit you specified
+
+git reset --mixed 5b8e4f   # Resets the HEAD to the commit you specified and resets the staging area
+
+git reset --hard 5b8e4f    # Resets the HEAD to the commit you specified and resets the staging area and working directory
+</code></pre>
+<h3 id="pull-requests"><a class="header" href="#pull-requests">Pull Requests</a></h3>
+<p>Pull requests are a mechanism for a developer to notify team members that they have completed a feature. Once their feature branch is ready, the developer files a pull request via their SCM (Source Control Management) system. This allows team members to review the changes and discuss any potential modifications.</p>
+<p><img src="chapters/DevOps/./images/image7.png" alt="Pull Request" /></p>
+<h3 id="merge"><a class="header" href="#merge">Merge</a></h3>
+<p>A merge is the act of integrating the changes from one branch or commit into a second branch. The result is a new commit that is a combination of the two. If a merge fails, git will notify you with a merge conflict. Merge conflixts must be fixed manually, and then added and committed.</p>
+<p><strong>NOTE</strong>: Merge conflicts occur when two branches have changed the same part of the same file, and then those branches are merged together. Git will not be able to automatically determine what the correct content should be or if both changes should be included, so you must inspect and resolve the conflict manually.</p>
+<pre><code class="language-bash">git merge feature/add-btn    # Merge a branch into the current branch
+</code></pre>
+<h3 id="branch-workflow"><a class="header" href="#branch-workflow">Branch Workflow</a></h3>
+<p>Feature branching is a git workflow that allows multiple developers to work on a particular feature in isolation. Each feature is developed in a dedicated branch, and once it is ready, it is merged into the main branch.</p>
+<p><img src="chapters/DevOps/./images/image9.png" alt="Branch Workflow" /></p>
+<hr />
+<h2 id="virtualization"><a class="header" href="#virtualization">Virtualization</a></h2>
+<p><img src="chapters/DevOps/./images/image8.png" alt="Virtualization" /></p>
+<h3 id="hardware-virtualization"><a class="header" href="#hardware-virtualization">Hardware Virtualization</a></h3>
+<ul>
+<li>Abstract underlying physical hardware from operating systems and applications.</li>
+<li>Allows multiple guest operating systems to run in parallel.</li>
+<li>Physical resources are shared among all guest OS and virtualization software.</li>
+</ul>
+<h3 id="terminology-1"><a class="header" href="#terminology-1">Terminology</a></h3>
+<ul>
+<li><strong>Host OS/Host Machine</strong>: Physical hardware/server.</li>
+<li><strong>Hypervisor</strong>: The virtualization software, acts as the true OS for the server.</li>
+<li><strong>Guest OS/Virtual Machines</strong>: Instances of the virtualized OS, running in emulated environments. Guest thinks it’s running on real hardware.</li>
+</ul>
+<h3 id="advantages"><a class="header" href="#advantages">Advantages</a></h3>
+<ul>
+<li><strong>Sandbox</strong>: Isolated from the host OS.</li>
+<li><strong>Networked</strong>: Access over the network.</li>
+<li><strong>Portable</strong>: Run on any host OS.</li>
+<li><strong>Snapshots</strong>: Saved and restored to previous states.</li>
+</ul>
+<hr />
+<h2 id="docker"><a class="header" href="#docker">Docker</a></h2>
+<hr />
+<div style="break-before: page; page-break-before: always;"></div><h1 id="flutter"><a class="header" href="#flutter">Flutter</a></h1>
+<hr />
+<p>Coming soon...</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="infrastructure-as-code-iac"><a class="header" href="#infrastructure-as-code-iac">Infrastructure as Code (IaC)</a></h1>
 <hr />
 <p>Coming soon...</p>
@@ -339,6 +513,7 @@ print(data) # {'name': 'egg', 'price': 0.99}
 <li><a href="chapters/Machine_Learning/index.html#bias-and-variance">Bias and Variance</a></li>
 </ul>
 </li>
+<li><a href="chapters/Machine_Learning/index.html#supervised-learning">Supervised Learning</a></li>
 <li><a href="chapters/Machine_Learning/index.html#linear-models">Linear Models</a></li>
 <li><a href="chapters/Machine_Learning/index.html#validation-models">Validation Models</a>
 <ul>
@@ -624,8 +799,11 @@ cross_val_score(model, X, y, cv=3)
 </ul>
 <p><img src="chapters/Machine_Learning/./images/image16.png" alt="Bias and Variance" /></p>
 <hr />
+<h2 id="supervised-learning"><a class="header" href="#supervised-learning">Supervised Learning</a></h2>
+<p>Coming soon...</p>
+<hr />
 <h2 id="linear-models"><a class="header" href="#linear-models">Linear Models</a></h2>
-<p>Cooming soon...</p>
+<p>Coming soon...</p>
 <hr />
 <h2 id="validation-models"><a class="header" href="#validation-models">Validation Models</a></h2>
 <h3 id="confusion-matrix"><a class="header" href="#confusion-matrix">Confusion Matrix</a></h3>
@@ -942,7 +1120,7 @@ while accounting for both false positives and false negatives.</p>
 <li>Open source</li>
 <li>Helps test execution automation</li>
 </ul>
-<h3 id="terminology"><a class="header" href="#terminology">Terminology</a></h3>
+<h3 id="terminology-2"><a class="header" href="#terminology-2">Terminology</a></h3>
 <ul>
 <li><strong>Test Drivers</strong>: Modules that act as temporary replacement for a calling module and give the same output as that of the actual product.</li>
 <li><strong>Test Execution</strong>: The execution of an individual unit test procedure.</li>
