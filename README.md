@@ -6,7 +6,6 @@
 ![GitHub contributors](https://img.shields.io/github/contributors/Axeloooo/Notebook?logo=github&color=yellow)
 ![Github pull requests](https://img.shields.io/github/issues-pr/Axeloooo/Notebook?logo=github)
 ![Github license](https://img.shields.io/github/license/Axeloooo/Notebook?logo=github&color=orange)
-![](https://tinyurl.com/bloc-library?style=for-the-badge&logo=mdbook&logoColor=white)
 
 ## 📖 Table of Contents
 

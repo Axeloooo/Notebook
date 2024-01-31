@@ -27,6 +27,7 @@
   - [Cross-Validation](#cross-validation)
 - [Model Selection](#model-selection)
   - [Bias and Variance](#bias-and-variance)
+- [Supervised Learning](#supervised-learning)
 - [Linear Models](#linear-models)
 - [Validation Models](#validation-models)
   - [Confusion Matrix](#confusion-matrix)
@@ -413,9 +414,15 @@ Compute the mean (average) test error across the three folds.
 
 ---
 
+## Supervised Learning
+
+Coming soon...
+
+---
+
 ## Linear Models
 
-Cooming soon...
+Coming soon...
 
 ---
 
