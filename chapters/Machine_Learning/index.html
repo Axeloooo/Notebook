@@ -229,6 +229,16 @@
 <li><a href="#f1-score">F1 Score</a></li>
 </ul>
 </li>
+<li><a href="#decision-trees">Decision Trees</a>
+<ul>
+<li><a href="#key-concepts">Key Concepts</a></li>
+<li><a href="#gini-impurity">Gini Impurity</a></li>
+<li><a href="#decision-tree-classification-uses-gini-impurity">Decision Tree Classification Uses Gini Impurity</a></li>
+<li><a href="#predicting-new-values">Predicting New Values</a></li>
+<li><a href="#difference-between-hyperparameter-and-parameter">Difference Between Hyperparameter and Parameter</a></li>
+<li><a href="#decision-tree-hyperparameter">Decision Tree Hyperparameter</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
@@ -536,6 +546,100 @@ capacity to identify all positive instances, even when considering false negativ
 <p>The F1-Score presents a harmonious equilibrium between precision and recall,
 while accounting for both false positives and false negatives.</p>
 <p><img src="./images/image21.png" alt="F1 Score" /></p>
+<hr />
+<h2 id="decision-trees"><a class="header" href="#decision-trees">Decision Trees</a></h2>
+<p><img src="./images/image22.png" alt="Decision Trees" /></p>
+<p>Decision trees are widely used models for classification and regression tasks. They learn a hierarchy of if/else questions, leading to a decision.</p>
+<h3 id="key-concepts"><a class="header" href="#key-concepts">Key Concepts</a></h3>
+<ul>
+<li>
+<p>The top of the decision tree is referred to as the root node.</p>
+</li>
+<li>
+<p>A leaf node is a node that has no children. A node that does have children is known as an internal node.</p>
+</li>
+<li>
+<p>Nodes in a tree are leveled by their distance from the root (level 0). The tree’s height is the maximum level of any node.</p>
+</li>
+</ul>
+<h3 id="gini-impurity"><a class="header" href="#gini-impurity">Gini Impurity</a></h3>
+<p>The Gini impurity is a measure of how likely a randomly chosen element from a set would be incorreclty labeled if it was randomly labeled according to the distribution of labels in the set.</p>
+<p><img src="./images/image23.png" alt="Gini Impurity" /></p>
+<p>Where <strong><em>k</em></strong> is the number of classes in <strong><em>pi</em></strong> is the probability of choosing an element of class <strong><em>i</em></strong>. The Gini impurity ranges from <code>0</code> to <code>0.5</code>.</p>
+<ul>
+<li>
+<p><code>0</code> means the set is <strong>perfectly pure</strong> (all the elements belong to the same class).</p>
+</li>
+<li>
+<p><code>0.5</code> means the set is <strong>completely impure</strong> (equal probability of choosing any class).</p>
+</li>
+</ul>
+<h3 id="decision-tree-classification-uses-gini-impurity"><a class="header" href="#decision-tree-classification-uses-gini-impurity">Decision Tree Classification Uses Gini Impurity</a></h3>
+<ul>
+<li>
+<p>To use Gini in decision tree classification, the algorithm compares the Gini values of different possible splits and chooses the one that minimizes the Gini value.</p>
+</li>
+<li>
+<p>This means that the algorithm tries to find the best feature and the best threshold to divide the data into two subsets, such that the subsets are more pure than the original node.</p>
+</li>
+<li>
+<p>The algorithm repeats this process recursively until all the nodes are pure or some stopping criteria are met.</p>
+</li>
+</ul>
+<h3 id="predicting-new-values"><a class="header" href="#predicting-new-values">Predicting New Values</a></h3>
+<ul>
+<li>
+<p>A prediction on a new data point is made by checking which region of the partition the point lies in and then assigning the majority target (or the single target in the case of pure leaves) in that region to the predicted value.</p>
+</li>
+<li>
+<p>The region can be found by traversing the tree from the root and going left or right, depending on whether the test is fulfilled or not.</p>
+</li>
+</ul>
+<pre><code class="language-python">from sklearn.tree import DecisionTreeClassifier
+
+dtc = DecisionTreeClassifier(max_depth=2, random_state=0)
+
+# Fit the classifier to the data
+dtc.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = dtc.predict(X_test)
+</code></pre>
+<h3 id="difference-between-hyperparameter-and-parameter"><a class="header" href="#difference-between-hyperparameter-and-parameter">Difference Between Hyperparameter and Parameter</a></h3>
+<ul>
+<li>
+<p><strong>Hyperparameter</strong>: It’s a configuration setting for the model. Its value is set prior to the commencement of the learning process and is not learned from the data.</p>
+</li>
+<li>
+<p><strong>Parameters</strong>: It’s an internal variable of a model. Its value is learned from the
+data during the training process.</p>
+</li>
+</ul>
+<h3 id="decision-tree-hyperparameter"><a class="header" href="#decision-tree-hyperparameter">Decision Tree Hyperparameter</a></h3>
+<ul>
+<li>
+<p><strong>max_depth</strong>: This hyperparameter controls the maximum depth of the three.</p>
+</li>
+<li>
+<p><strong>min_samples_split</strong>: This hyperparameter dictates the minimum number of sample required to split an internal node. By increasing this value, the tree becomes more constrained as it has to consider more samples at each node, making it harder for the model to fit to noise in the training data.</p>
+</li>
+<li>
+<p><strong>min_samples_leaf</strong>: This is the minimum number of samples required to be at a leaf node. This hyperparameter prevents the model from learning very specific patterns from the training data.</p>
+</li>
+<li>
+<p><strong>max_features</strong>: The number of features to consider when looking for the best split. By reducing the number of features considered at each split, we can add randomness to the model making it more robust to noise.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.tree import DecisionTreeClassifier
+
+dtc = DecisionTreeClassifier(max_depth=None, max_leaf_nodes=5, random_state=0)
+
+# Fit the classifier to the data
+dtc.fit(X_train, y_train)
+
+</code></pre>
+<p><img src="./images/image24.png" alt="Decision Tree" /></p>
 <hr />
 
                     </main>
