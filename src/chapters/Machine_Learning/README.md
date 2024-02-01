@@ -35,6 +35,13 @@
   - [Precision](#precision)
   - [Recall](#recall)
   - [F1 Score](#f1-score)
+- [Decision Trees](#decision-trees)
+  - [Key Concepts](#key-concepts)
+  - [Gini Impurity](#gini-impurity)
+  - [Decision Tree Classification Uses Gini Impurity](#decision-tree-classification-uses-gini-impurity)
+  - [Predicting New Values](#predicting-new-values)
+  - [Difference Between Hyperparameter and Parameter](#difference-between-hyperparameter-and-parameter)
+  - [Decision Tree Hyperparameter](#decision-tree-hyperparameter)
 
 ---
 
@@ -466,5 +473,90 @@ The F1-Score presents a harmonious equilibrium between precision and recall,
 while accounting for both false positives and false negatives.
 
 ![F1 Score](./images/image21.png)
+
+---
+
+## Decision Trees
+
+![Decision Trees](./images/image22.png)
+
+Decision trees are widely used models for classification and regression tasks. They learn a hierarchy of if/else questions, leading to a decision.
+
+### Key Concepts
+
+- The top of the decision tree is referred to as the root node.
+
+- A leaf node is a node that has no children. A node that does have children is known as an internal node.
+
+- Nodes in a tree are leveled by their distance from the root (level 0). The tree’s height is the maximum level of any node.
+
+### Gini Impurity
+
+The Gini impurity is a measure of how likely a randomly chosen element from a set would be incorreclty labeled if it was randomly labeled according to the distribution of labels in the set.
+
+![Gini Impurity](./images/image23.png)
+
+Where **_k_** is the number of classes in **_pi_** is the probability of choosing an element of class **_i_**. The Gini impurity ranges from `0` to `0.5`.
+
+- `0` means the set is **perfectly pure** (all the elements belong to the same class).
+
+- `0.5` means the set is **completely impure** (equal probability of choosing any class).
+
+### Decision Tree Classification Uses Gini Impurity
+
+- To use Gini in decision tree classification, the algorithm compares the Gini values of different possible splits and chooses the one that minimizes the Gini value.
+
+- This means that the algorithm tries to find the best feature and the best threshold to divide the data into two subsets, such that the subsets are more pure than the original node.
+
+- The algorithm repeats this process recursively until all the nodes are pure or some stopping criteria are met.
+
+### Predicting New Values
+
+- A prediction on a new data point is made by checking which region of the partition the point lies in and then assigning the majority target (or the single target in the case of pure leaves) in that region to the predicted value.
+
+- The region can be found by traversing the tree from the root and going left or right, depending on whether the test is fulfilled or not.
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+dtc = DecisionTreeClassifier(max_depth=2, random_state=0)
+
+# Fit the classifier to the data
+dtc.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = dtc.predict(X_test)
+```
+
+### Difference Between Hyperparameter and Parameter
+
+- **Hyperparameter**: It’s a configuration setting for the model. Its value is set prior to the commencement of the learning process and is not learned from the data.
+
+- **Parameters**: It’s an internal variable of a model. Its value is learned from the
+  data during the training process.
+
+### Decision Tree Hyperparameter
+
+- **max_depth**: This hyperparameter controls the maximum depth of the three.
+
+- **min_samples_split**: This hyperparameter dictates the minimum number of sample required to split an internal node. By increasing this value, the tree becomes more constrained as it has to consider more samples at each node, making it harder for the model to fit to noise in the training data.
+
+- **min_samples_leaf**: This is the minimum number of samples required to be at a leaf node. This hyperparameter prevents the model from learning very specific patterns from the training data.
+
+- **max_features**: The number of features to consider when looking for the best split. By reducing the number of features considered at each split, we can add randomness to the model making it more robust to noise.
+
+Example:
+
+```python
+from sklearn.tree import DecisionTreeClassifier
+
+dtc = DecisionTreeClassifier(max_depth=None, max_leaf_nodes=5, random_state=0)
+
+# Fit the classifier to the data
+dtc.fit(X_train, y_train)
+
+```
+
+![Decision Tree](./images/image24.png)
 
 ---
