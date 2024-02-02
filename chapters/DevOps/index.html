@@ -207,47 +207,91 @@
 <li><a href="#advantages">Advantages</a></li>
 </ul>
 </li>
+<li><a href="#docker">Docker</a>
+<ul>
+<li><a href="#benefits">Benefits</a></li>
+<li><a href="#containers-vs-vms">Containers vs VMs</a></li>
+<li><a href="#basic-docker-workflow">Basic Docker Workflow</a></li>
+<li><a href="#image">Image</a></li>
+<li><a href="#container">Container</a></li>
+<li><a href="#image-vs-container">Image vs Container</a></li>
+<li><a href="#dockerfile">Dockerfile</a></li>
+<li><a href="#mount-volumes">Mount Volumes</a></li>
+<li><a href="#publish-port">Publish Port</a></li>
+<li><a href="#docker-compose">Docker Compose</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="data-formats"><a class="header" href="#data-formats">Data Formats</a></h2>
 <p>We need a standard format to allow a diverse set of software to communicate with each other, and for humans to interface with it. All of the data formats that we’ll discuss in this chapter have broad support over a multitude of languages and operating systems.</p>
 <ul>
-<li>XML - machine to machine</li>
-<li>JSON - machine to machine</li>
-<li>YAML – human to machine</li>
+<li>
+<p><strong>XML</strong> - machine to machine</p>
+</li>
+<li>
+<p><strong>JSON</strong> - machine to machine</p>
+</li>
+<li>
+<p><strong>YAML</strong> – human to machine</p>
+</li>
 </ul>
 <h3 id="xml"><a class="header" href="#xml">XML</a></h3>
 <p>XML is a markup language that defines a set of rules for encoding documents in a format that is both human-readable and machine-readable. The design goals of XML emphasize simplicity, generality, and usability across the Internet.</p>
 <h4 id="features"><a class="header" href="#features">Features</a></h4>
 <ul>
-<li>XML files end in <code>.xml</code></li>
-<li>Root, children nodes, attributes</li>
-<li>Namespaces (Used to resolve naming conflicts)</li>
+<li>
+<p>XML files end in <code>.xml</code>.</p>
+</li>
+<li>
+<p>Root, children nodes, attributes.</p>
+</li>
+<li>
+<p>Namespaces (Used to resolve naming conflicts).</p>
+</li>
 </ul>
 <p><img src="./images/image1.png" alt="XML" /></p>
 <h4 id="benefits"><a class="header" href="#benefits">Benefits</a></h4>
 <ul>
-<li>Support inter-business transactions</li>
-<li>Maintain data integrity
+<li>
+<p>Support inter-business transactions.</p>
+</li>
+<li>
+<p>Maintain data integrity.</p>
 <ul>
-<li>Verify data accuracy</li>
-<li>Automatically customize data presentation for different users</li>
-<li>Store data consistently across multiple platforms</li>
+<li>Verify data accuracy.</li>
+<li>Automatically customize data presentation for different users.</li>
+<li>Store data consistently across multiple platforms.</li>
 </ul>
 </li>
-<li>Improve search efficiency</li>
-<li>Design flexible applications</li>
+<li>
+<p>Improve search efficiency.</p>
+</li>
+<li>
+<p>Design flexible applications.</p>
+</li>
 </ul>
 <h3 id="json"><a class="header" href="#json">JSON</a></h3>
 <p>JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate.</p>
 <h4 id="features-1"><a class="header" href="#features-1">Features</a></h4>
 <ul>
-<li>JSON files end in <code>.json</code></li>
-<li>The whole thing is wrapped in curly braces {}. This is very common, and it indicates that JSON objects are contained inside</li>
-<li>Think of “objects” as key-value pairs, or dictionaries</li>
-<li>JSON objects always use string values when describing the keys</li>
-<li>JSON list indicated by the square brackets []</li>
-<li>Data Types:
+<li>
+<p>JSON files end in <code>.json</code>.</p>
+</li>
+<li>
+<p>The whole thing is wrapped in curly braces {}. This is very common, and it indicates that JSON objects are contained inside.</p>
+</li>
+<li>
+<p>Think of “objects” as key-value pairs, or dictionaries.</p>
+</li>
+<li>
+<p>JSON objects always use string values when describing the keys.</p>
+</li>
+<li>
+<p>JSON list indicated by the square brackets [].</p>
+</li>
+<li>
+<p>Data Types:</p>
 <ul>
 <li>Number</li>
 <li>String</li>
@@ -284,11 +328,21 @@ print(data) # {'name': 'egg', 'price': 0.99}
 to work with.</p>
 <h4 id="features-2"><a class="header" href="#features-2">Features</a></h4>
 <ul>
-<li>YAML files end in <code>.yaml</code> or <code>.yml</code></li>
-<li>YAML is a superset of JSON</li>
-<li>YAML is a human-readable data serialization language</li>
-<li>YAML is a strict indentation language</li>
-<li>YAML is case sensitive</li>
+<li>
+<p>YAML files end in <code>.yaml</code> or <code>.yml</code>.</p>
+</li>
+<li>
+<p>YAML is a superset of JSON.</p>
+</li>
+<li>
+<p>YAML is a human-readable data serialization language.</p>
+</li>
+<li>
+<p>YAML is a strict indentation language.</p>
+</li>
+<li>
+<p>YAML is case sensitive.</p>
+</li>
 </ul>
 <p><img src="./images/image3.png" alt="YAML" /></p>
 <h4 id="working-with-yaml-in-python"><a class="header" href="#working-with-yaml-in-python">Working with YAML in Python</a></h4>
@@ -321,10 +375,18 @@ git config --global user.email &lt;email&gt;  # Set user email
 </code></pre>
 <h3 id="commit"><a class="header" href="#commit">Commit</a></h3>
 <ul>
-<li>Specific snapshot within the development tree.</li>
-<li>Collection of changes applied to a project's files.</li>
-<li>Metadata about the change.</li>
-<li>Identified by a unique <code>SHA-1 Hash</code>.</li>
+<li>
+<p>Specific snapshot within the development tree.</p>
+</li>
+<li>
+<p>Collection of changes applied to a project's files.</p>
+</li>
+<li>
+<p>Metadata about the change.</p>
+</li>
+<li>
+<p>Identified by a unique <code>SHA-1 Hash</code>.</p>
+</li>
 </ul>
 <pre><code class="language-bash">git commit -m &quot;Add new feature&quot;   # Commit changes
 
@@ -332,9 +394,15 @@ git show 5b8e4f                   # Show commit details
 </code></pre>
 <h3 id="tag"><a class="header" href="#tag">Tag</a></h3>
 <ul>
-<li>Represents a single commit.</li>
-<li>Often human-friendly.</li>
-<li>Version number.</li>
+<li>
+<p>Represents a single commit.</p>
+</li>
+<li>
+<p>Often human-friendly.</p>
+</li>
+<li>
+<p>Version number.</p>
+</li>
 </ul>
 <pre><code class="language-bash">git tag v1.0.0    # Create a tag
 
@@ -344,9 +412,15 @@ git show v1.0.0   # Show tag details
 </code></pre>
 <h3 id="branch"><a class="header" href="#branch">Branch</a></h3>
 <ul>
-<li>A history of successive changes to code.</li>
-<li>A new branch may be created at any time, from any existing commit.</li>
-<li>May represent versions of code.</li>
+<li>
+<p>A history of successive changes to code.</p>
+</li>
+<li>
+<p>A new branch may be created at any time, from any existing commit.</p>
+</li>
+<li>
+<p>May represent versions of code.</p>
+</li>
 </ul>
 <pre><code class="language-bash">git branch                        # List all branches
 
@@ -359,16 +433,28 @@ git checkout -b feature/add-btn   # Create and switch to a branch
 <p><img src="./images/image4.png" alt="Git Branch" /></p>
 <h3 id="terminology"><a class="header" href="#terminology">Terminology</a></h3>
 <ul>
-<li><strong>Working Files</strong>: Files that are currently on your file system.</li>
-<li><strong>Staging Area</strong>: Files that are ready to be committed. Only files that have been staged will be committed.</li>
-<li><strong>Checkout</strong>: Replace the current directory files with those from a specific branch or commit.</li>
+<li>
+<p><strong>Working Files</strong>: Files that are currently on your file system.</p>
+</li>
+<li>
+<p><strong>Staging Area</strong>: Files that are ready to be committed. Only files that have been staged will be committed.</p>
+</li>
+<li>
+<p><strong>Checkout</strong>: Replace the current directory files with those from a specific branch or commit.</p>
+</li>
 </ul>
 <p><img src="./images/image5.png" alt="Git Model" /></p>
 <h3 id="distributed-version-control-system"><a class="header" href="#distributed-version-control-system">Distributed Version Control System</a></h3>
 <ul>
-<li><strong>Clone</strong>: Creates a full copy of repository on your local machine.</li>
-<li><strong>Fetch</strong>: Update your local repository with changes from non-local repositories (i.e. GitHub).</li>
-<li><strong>Fork</strong>: Create a copy of a repository in a remote location (i.e. GitHub).</li>
+<li>
+<p><strong>Clone</strong>: Creates a full copy of repository on your local machine.</p>
+</li>
+<li>
+<p><strong>Fetch</strong>: Update your local repository with changes from non-local repositories (i.e. GitHub).</p>
+</li>
+<li>
+<p><strong>Fork</strong>: Create a copy of a repository in a remote location (i.e. GitHub).</p>
+</li>
 </ul>
 <pre><code class="language-bash">git clone https://github.com/username/repo.git   # Clone a repository
 
@@ -391,10 +477,18 @@ cd repo                                           # Change directory to the repo
 </code></pre>
 <h3 id="inspecting-a-repository"><a class="header" href="#inspecting-a-repository">Inspecting A Repository</a></h3>
 <ul>
-<li><strong>git diff</strong>: Show changes between commits, commit and working tree, etc.</li>
-<li><strong>git status</strong>: Display the state of the working directory and the staging area.</li>
-<li><strong>git blame</strong>: Examine the history of a file and get context as to who made changes and when.</li>
-<li><strong>git log</strong>: Show commit logs.</li>
+<li>
+<p><strong>git diff</strong>: Show changes between commits, commit and working tree, etc.</p>
+</li>
+<li>
+<p><strong>git status</strong>: Display the state of the working directory and the staging area.</p>
+</li>
+<li>
+<p><strong>git blame</strong>: Examine the history of a file and get context as to who made changes and when.</p>
+</li>
+<li>
+<p><strong>git log</strong>: Show commit logs.</p>
+</li>
 </ul>
 <pre><code class="language-bash">git diff ./file.txt    # Show changes between commits, commit and working tree, etc.
 
@@ -407,11 +501,21 @@ git log               # Show commit logs
 <p><img src="./images/image6.png" alt="Git diff" /></p>
 <h3 id="undoing-commits-and-changes"><a class="header" href="#undoing-commits-and-changes">Undoing Commits And Changes</a></h3>
 <ul>
-<li><strong>git revert</strong>: Create a new commit that undoes the changes from a previous commit.</li>
-<li><strong>git commit --amend</strong>: Change the last commit.</li>
-<li><strong>git reset --soft</strong>: Only resets the HEAD to the commit you specified.</li>
-<li><strong>git reset --mixed</strong>: Resets the HEAD to the commit you specified and resets the staging area.</li>
-<li><strong>git reset --hard</strong>: Resets the HEAD to the commit you specified and resets the staging area and working directory.</li>
+<li>
+<p><strong>git revert</strong>: Create a new commit that undoes the changes from a previous commit.</p>
+</li>
+<li>
+<p><strong>git commit --amend</strong>: Change the last commit.</p>
+</li>
+<li>
+<p><strong>git reset --soft</strong>: Only resets the HEAD to the commit you specified.</p>
+</li>
+<li>
+<p><strong>git reset --mixed</strong>: Resets the HEAD to the commit you specified and resets the staging area.</p>
+</li>
+<li>
+<p><strong>git reset --hard</strong>: Resets the HEAD to the commit you specified and resets the staging area and working directory.</p>
+</li>
 </ul>
 <pre><code class="language-bash">git revert 5b8e4f    # Create a new commit that undoes the changes from a previous commit
 
@@ -439,25 +543,236 @@ git reset --hard 5b8e4f    # Resets the HEAD to the commit you specified and res
 <p><img src="./images/image8.png" alt="Virtualization" /></p>
 <h3 id="hardware-virtualization"><a class="header" href="#hardware-virtualization">Hardware Virtualization</a></h3>
 <ul>
-<li>Abstract underlying physical hardware from operating systems and applications.</li>
-<li>Allows multiple guest operating systems to run in parallel.</li>
-<li>Physical resources are shared among all guest OS and virtualization software.</li>
+<li>
+<p>Abstract underlying physical hardware from operating systems and applications.</p>
+</li>
+<li>
+<p>Allows multiple guest operating systems to run in parallel.</p>
+</li>
+<li>
+<p>Physical resources are shared among all guest OS and virtualization software.</p>
+</li>
 </ul>
 <h3 id="terminology-1"><a class="header" href="#terminology-1">Terminology</a></h3>
 <ul>
-<li><strong>Host OS/Host Machine</strong>: Physical hardware/server.</li>
-<li><strong>Hypervisor</strong>: The virtualization software, acts as the true OS for the server.</li>
-<li><strong>Guest OS/Virtual Machines</strong>: Instances of the virtualized OS, running in emulated environments. Guest thinks it’s running on real hardware.</li>
+<li>
+<p><strong>Host OS/Host Machine</strong>: Physical hardware/server.</p>
+</li>
+<li>
+<p><strong>Hypervisor</strong>: The virtualization software, acts as the true OS for the server.</p>
+</li>
+<li>
+<p><strong>Guest OS/Virtual Machines</strong>: Instances of the virtualized OS, running in emulated environments. Guest thinks it’s running on real hardware.</p>
+</li>
 </ul>
 <h3 id="advantages"><a class="header" href="#advantages">Advantages</a></h3>
 <ul>
-<li><strong>Sandbox</strong>: Isolated from the host OS.</li>
-<li><strong>Networked</strong>: Access over the network.</li>
-<li><strong>Portable</strong>: Run on any host OS.</li>
-<li><strong>Snapshots</strong>: Saved and restored to previous states.</li>
+<li>
+<p><strong>Sandbox</strong>: Isolated from the host OS.</p>
+</li>
+<li>
+<p><strong>Networked</strong>: Access over the network.</p>
+</li>
+<li>
+<p><strong>Portable</strong>: Run on any host OS.</p>
+</li>
+<li>
+<p><strong>Snapshots</strong>: Saved and restored to previous states.</p>
+</li>
 </ul>
 <hr />
 <h2 id="docker"><a class="header" href="#docker">Docker</a></h2>
+<p><img src="./images/image11.png" alt="Docker" /></p>
+<p>Docker is a platform for developers and sysadmins to develop, deploy, and run applications with containers. The use of Linux containers to deploy applications is called containerization.</p>
+<h3 id="benefits-1"><a class="header" href="#benefits-1">Benefits</a></h3>
+<ul>
+<li>
+<p><strong>Flexible</strong>: Even the most complex applications can be containerized.</p>
+</li>
+<li>
+<p><strong>Lightweight</strong>: Containers leverage and share the host kernel.</p>
+</li>
+<li>
+<p><strong>Interchangeable</strong>: You can deploy updates and upgrades on-the-fly.</p>
+</li>
+<li>
+<p><strong>Portable</strong>: You can build locally, deploy to the cloud, and run anywhere.</p>
+</li>
+<li>
+<p><strong>Scalable</strong>: You can increase and automatically distribute container replicas.</p>
+</li>
+<li>
+<p><strong>Stackable</strong>: You can stack services vertically and on-the-fly.</p>
+</li>
+</ul>
+<h3 id="containers-vs-vms"><a class="header" href="#containers-vs-vms">Containers vs VMs</a></h3>
+<p>Container are isolated, but share OS and, where appropriate, bins/libraries. VMs are isolated, but each has its own OS, bins, and libraries. This results in significantly faster deployment, much less overhead, easier migration and faster restart.</p>
+<p><img src="./images/image12.png" alt="Containers vs VMs" /></p>
+<h3 id="basic-docker-workflow"><a class="header" href="#basic-docker-workflow">Basic Docker Workflow</a></h3>
+<p><img src="./images/image13.png" alt="Workflow" /></p>
+<h3 id="image"><a class="header" href="#image">Image</a></h3>
+<p>Persisted snapshot that can be run as a container.</p>
+<ul>
+<li>
+<p><strong>images</strong>: List all local images.</p>
+</li>
+<li>
+<p><strong>run</strong>: Create a container from an image and execute a command in it.</p>
+</li>
+<li>
+<p><strong>tag</strong>: Tag an image.</p>
+</li>
+<li>
+<p><strong>pull</strong>: Download an image from a registry.</p>
+</li>
+<li>
+<p><strong>rmi</strong>: Delete a local image.</p>
+</li>
+</ul>
+<pre><code class="language-bash">docker images                     # List all local images
+
+docker run -it ubuntu /bin/bash   # Create a container from an image and execute a command in it
+
+docker tag ubuntu my-ubuntu       # Tag an image
+
+docker pull ubuntu                # Download an image from a registry
+
+docker rmi ubuntu                 # Delete a local image
+</code></pre>
+<h3 id="container"><a class="header" href="#container">Container</a></h3>
+<p>Runnable instance of an image.</p>
+<ul>
+<li>
+<p><strong>ps</strong>: List all running containers.</p>
+</li>
+<li>
+<p><strong>ps -a</strong>: List all containers (running and stopped).</p>
+</li>
+<li>
+<p><strong>top</strong>: Display processes of a container.</p>
+</li>
+<li>
+<p><strong>start</strong>: Start a stopped container.</p>
+</li>
+<li>
+<p><strong>stop</strong>: Stop a running container.</p>
+</li>
+<li>
+<p><strong>pause</strong>: Pause all processes within a container.</p>
+</li>
+<li>
+<p><strong>rm</strong>: Delete a container.</p>
+</li>
+<li>
+<p><strong>commit</strong>: Create an image from a container.</p>
+</li>
+</ul>
+<pre><code class="language-bash">docker ps                      # List all running containers
+
+docker ps -a                   # List all containers (running and stopped)
+
+docker top &lt;container_id&gt;      # Display processes of a container
+
+docker start &lt;container_id&gt;    # Start a stopped container
+
+docker stop &lt;container_id&gt;     # Stop a running container
+
+docker pause &lt;container_id&gt;    # Pause all processes within a container
+
+docker rm &lt;container_id&gt;       # Delete a container
+</code></pre>
+<h3 id="image-vs-container"><a class="header" href="#image-vs-container">Image vs Container</a></h3>
+<p><img src="./images/image14.png" alt="Image vs Container" /></p>
+<h3 id="dockerfile"><a class="header" href="#dockerfile">Dockerfile</a></h3>
+<p>Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. Can be versioned in a version control system like Git or
+SVN, along with all dependencies. Docker Hub can automatically build images based on
+dockerfiles on Github WorkFlows.</p>
+<ul>
+<li>Configuration is done in a <code>Dockerfile</code>.</li>
+</ul>
+<pre><code class="language-Dockerfile">FROM ubuntu
+ENV DOCK_MESSAGE Hello My World
+ADD dir /files
+CMD [&quot;bash&quot;, &quot;echo $DOCK_MESSAGE&quot;]
+</code></pre>
+<p>The above <code>Dockerfile</code> will create an image from the <code>ubuntu</code> image, set an environment variable, add a directory to the image, and run a command.</p>
+<ul>
+<li>Run the following commands to build and run the image:</li>
+</ul>
+<pre><code class="language-bash">docker build .              # Build an image from a Dockerfile
+
+docker inspect &lt;image_id&gt;   # Return low-level information on Docker objects
+</code></pre>
+<h3 id="mount-volumes"><a class="header" href="#mount-volumes">Mount Volumes</a></h3>
+<p>Volumes allow data to persist beyond the lifetime of a container.</p>
+<pre><code class="language-bash">docker run -it -v /hostLog:/log ubuntu  # Mount a volume to a container
+</code></pre>
+<p>Run a second container, volume can be shared between containers.</p>
+<pre><code class="language-bash">docker run -it --volumes-from &lt;container_id&gt; ubuntu  # Mount a volume from another container
+</code></pre>
+<h3 id="publish-port"><a class="header" href="#publish-port">Publish Port</a></h3>
+<p>Port mapping allows a container to expose a port to the host.</p>
+<pre><code class="language-bash">docker run -p 8080:80 nginx  # Publish a container's port to the host
+</code></pre>
+<p>This will allow you to access the container's port 80 from the host's port 8080.</p>
+<ul>
+<li>
+<p><code>8080</code> Host Port (computer running the container)</p>
+</li>
+<li>
+<p><code>80</code> Container Port (inside the container)</p>
+</li>
+</ul>
+<p>You can link containers together, so that they can communicate with each other.</p>
+<pre><code class="language-bash">docker run --link &lt;container_id&gt;:&lt;alias&gt; &lt;image&gt;  # Link a container to another container
+</code></pre>
+<h3 id="docker-compose"><a class="header" href="#docker-compose">Docker Compose</a></h3>
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
+<ul>
+<li>Configuration is done in a <code>docker-compose.yml</code> file.</li>
+</ul>
+<pre><code class="language-yaml">version: &quot;3&quot;
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: root
+    ports:
+      - &quot;5432:5432&quot;
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - postgres
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - &quot;5050:80&quot;
+    networks:
+      - postgres
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+  db:
+  pgadmin:
+</code></pre>
+<p>The above <code>docker-compose.yml</code> file will create two services, <code>postgres</code> and <code>pgadmin4</code>. The <code>postgres</code> service will use the <code>postgres</code> image, and the <code>pgadmin4</code> service will use the <code>dpage/pgadmin4</code> image. The volume is used to persist the data of each service. The network is used to connect both services with each other.</p>
+<ul>
+<li>Run the following commands to start and stop the services:</li>
+</ul>
+<pre><code class="language-bash">docker-compose up    # Create and start all the services from your configuration
+
+docker-compose down  # Stop and remove containers, networks, images, and volumes
+</code></pre>
 <hr />
 
                     </main>
