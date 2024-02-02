@@ -559,4 +559,77 @@ dtc.fit(X_train, y_train)
 
 ![Decision Tree](./images/image24.png)
 
+### Decision Tree Regression
+
+- Decision trees can also be used for regression.
+
+- Splits are evaluated based on Mean Squared Error (MSE) instead of Gini impurity.
+
+- Subsequent levels result in reduced mean squared error.
+
+```python
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.metrics import mean_squared_error
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Instantiate the regressor
+dtr = DecisionTreeRegressor(criterion='squared_error', splitter='best', max_leaf_nodes= 2)
+
+# Fit the regressor to the data
+_ = dtr.fit(X, y)
+
+# Predict the labels of the test set
+y_hat = dtr.predict(X[X[:, 1] <= 1.067])
+
+# Compute the mean squared error of the regressor
+mse = metrics.mean_squared_error(y_hat, y[X[:, 1] <= 1.067])
+```
+
+The code snippet above shows how to use a decision tree regressor to predict the labels of the test set and compute the mean squared error of the regressor.
+
+### Decision Tree Strengths
+
+- As each feature is processed separately, no pre-processing like normalization or standardization of features is needed.
+
+- Decision trees work well when you have features that are on
+  completely different scales, or a mix of binary and continuous
+  features.
+
+- The resulting model can easily be visualized and understood by
+  non-experts (at least for smaller trees).
+
+### Decision Tree Weakness
+
+- Even with the use of pre-pruning, decision tree models tend to over-fit and provide poor generalization performance.
+
 ---
+
+## Random Forest
+
+![Random Forest](./images/image25.png)
+
+A Random Forest is essentially a collection of Decision Trees, where every tree is slightly different from the others. The idea behind random forests is that each tree might do a relatively good job of predicting, but might over-fit on part of the data.
+
+### Steps to Create a Random Forest
+
+1. Select the number of trees to use (hyperparameter is **_n_estimators_**).
+
+2. Random forests get their name from injecting randomness into the tree building to ensure each tree is different. There are two ways in which the trees in a random forest are randomized:
+
+- By selecting the data points used to build a tree.
+
+  - For each tree, a bootstrap sample is created.
+
+  - A bootstrap sample is the same size as the original data, but contains a random assortment of the data, where some of the data samples are missing (approx. 1/3) and some data samples are repeated.
+
+  - A decision tree is then made using the bootstrap sample.
+
+- By selecting the features in each split test.
+
+  - the algorithm randomly selects a subset of the features, and it looks for the best possible test involving one of these features.
+
+  - The number of features that are selected is controlled by the max_features parameter
+
+  - This selection of a subset of features is repeated separately in each node, so that each node in the tree splits the dataset using a different subset of the features.
