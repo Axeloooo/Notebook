@@ -2321,6 +2321,65 @@ public class GradesServiceTest {
 <li><code>thenReturn()</code> method defines return value for the method call. If you specify more than one value, they will be returned in sequence until the last one is used.</li>
 </ul>
 <hr />
+<h2 id="black-box-testing"><a class="header" href="#black-box-testing">Black Box Testing</a></h2>
+<p><img src="chapters/Software_Testing/./images/image6.png" alt="Black Box Testing" /></p>
+<p>Black Box testing applies at all granularity levels of testing.</p>
+<ul>
+<li>
+<p><strong>Unit Testing</strong>: From module interface specification.</p>
+</li>
+<li>
+<p><strong>Integration Testing</strong>: From the API or subsystem specification.</p>
+</li>
+<li>
+<p><strong>System Testing</strong>: From the system specification.</p>
+</li>
+<li>
+<p><strong>Regression Testing</strong>: From system requirements + bug history.</p>
+</li>
+</ul>
+<h3 id="equivalent-class-testing-ect"><a class="header" href="#equivalent-class-testing-ect">Equivalent Class Testing (ECT)</a></h3>
+<ul>
+<li>
+<p>You divide the set into partition that can be considered the same.</p>
+</li>
+<li>
+<p>Partitions of input space in such a way that input data have the same effect on the system.</p>
+</li>
+<li>
+<p>They all test the same unit (method, class, etc).</p>
+</li>
+<li>
+<p>Entire input set is covered by the test cases.</p>
+</li>
+<li>
+<p>They entire set of inputs can be divided into <code>Expected (E)</code> and <code>Unexpected (U)</code> inputs.</p>
+</li>
+</ul>
+<h3 id="weak--strong-ect"><a class="header" href="#weak--strong-ect">Weak / Strong ECT</a></h3>
+<ul>
+<li><strong>Weak Equivalence Class Testing (one-dimensional)</strong>: Choosing one variable value form each equivalence class (one A, B, and C) such that all classes are covered.</li>
+</ul>
+<p><code>max(|A|, |B|, |C|)</code></p>
+<p>Example:</p>
+<ul>
+<li>A = {1, 2, 3, 4}</li>
+<li>B = {5, 6}</li>
+<li>C = {7, 8, 9}</li>
+</ul>
+<p>max(4, 2, 3) = 4</p>
+<ul>
+<li><strong>Strong Equivalence Class Testing (multi-dimensional)</strong>: Based on the Cartesian product of the partition subsets (A x B x C). Testing all interactions of all equivalence classes.</li>
+</ul>
+<p><code>|A| x |B| x |C|</code></p>
+<p>Example:</p>
+<ul>
+<li>A = {1, 2, 3, 4}</li>
+<li>B = {5, 6}</li>
+<li>C = {7, 8, 9}</li>
+</ul>
+<p>4 x 2 x 3 = 24</p>
+<h3 id="boundary-value-testing-bvt"><a class="header" href="#boundary-value-testing-bvt">Boundary Value Testing (BVT)</a></h3>
 
                     </main>
 
