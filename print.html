@@ -828,9 +828,31 @@ docker-compose down  # Stop and remove containers, networks, images, and volumes
 <li><a href="chapters/Machine_Learning/index.html#bias-and-variance">Bias and Variance</a></li>
 </ul>
 </li>
-<li><a href="chapters/Machine_Learning/index.html#supervised-learning">Supervised Learning</a></li>
+<li><a href="chapters/Machine_Learning/index.html#supervised-learning">Supervised Learning</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#regression-and-classification-models">Regression and Classification Models</a></li>
+</ul>
+</li>
 <li><a href="chapters/Machine_Learning/index.html#linear-models">Linear Models</a></li>
-<li><a href="chapters/Machine_Learning/index.html#validation-models">Validation Models</a>
+<li><a href="chapters/Machine_Learning/index.html#linear-models-for-regression">Linear Models For Regression</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#linear-regression">Linear Regression</a></li>
+<li><a href="chapters/Machine_Learning/index.html#ridge-regression">Ridge Regression</a></li>
+<li><a href="chapters/Machine_Learning/index.html#lasso-regression">Lasso Regression</a></li>
+</ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#linear-regression-accuracy-metrics">Linear Regression Accuracy Metrics</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#mean-squared-error-mse">Mean Squared Error (MSE)</a></li>
+<li><a href="chapters/Machine_Learning/index.html#r%C2%B2-score-coefficient-of-determination">R² Score (Coefficient of Determination)</a></li>
+</ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#linear-models-for-classification">Linear Models For Classification</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#logistic-regression">Logistic Regression</a></li>
+</ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#linear-classification-accuracy-metrics">Linear Classification Accuracy Metrics</a>
 <ul>
 <li><a href="chapters/Machine_Learning/index.html#confusion-matrix">Confusion Matrix</a></li>
 <li><a href="chapters/Machine_Learning/index.html#accuracy">Accuracy</a></li>
@@ -847,11 +869,20 @@ docker-compose down  # Stop and remove containers, networks, images, and volumes
 <li><a href="chapters/Machine_Learning/index.html#predicting-new-values">Predicting New Values</a></li>
 <li><a href="chapters/Machine_Learning/index.html#difference-between-hyperparameter-and-parameter">Difference Between Hyperparameter and Parameter</a></li>
 <li><a href="chapters/Machine_Learning/index.html#decision-tree-hyperparameter">Decision Tree Hyperparameter</a></li>
+<li><a href="chapters/Machine_Learning/index.html#decision-tree-regression">Decision Tree Regression</a></li>
+<li><a href="chapters/Machine_Learning/index.html#decision-tree-strengths">Decision Tree Strengths</a></li>
+<li><a href="chapters/Machine_Learning/index.html#decision-tree-weakness">Decision Tree Weakness</a></li>
+</ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#random-forest">Random Forest</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#steps-to-create-a-random-forest">Steps to Create a Random Forest</a></li>
 </ul>
 </li>
 </ul>
 <hr />
 <h2 id="numpy"><a class="header" href="#numpy">Numpy</a></h2>
+<p><img src="chapters/Machine_Learning/./images/image36.png" alt="Numpy" /></p>
 <p>Python includes a module named numpy that can be used to store data in a matrix-like object.</p>
 <p>Import statement:</p>
 <pre><code class="language-python">import numpy as np
@@ -921,6 +952,7 @@ selected_elements = arr[indices]
 </code></pre>
 <hr />
 <h2 id="pandas"><a class="header" href="#pandas">Pandas</a></h2>
+<p><img src="chapters/Machine_Learning/./images/image37.png" alt="Pandas" /></p>
 <p>Pandas is a Python module used to import, export, and manipulate data.</p>
 <p>import statement:</p>
 <pre><code class="language-python">import pandas as pd
@@ -974,6 +1006,7 @@ Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 <p><img src="chapters/Machine_Learning/./images/image3.png" alt="GroupBy" /></p>
 <hr />
 <h2 id="matplotlib"><a class="header" href="#matplotlib">Matplotlib</a></h2>
+<p><img src="chapters/Machine_Learning/./images/image38.png" alt="Matplotlib" /></p>
 <p>Matplotlib is a built-in module in Python used for plotting.</p>
 <p>Import statement:</p>
 <pre><code class="language-python">import matplotlib.pyplot
@@ -1125,12 +1158,322 @@ cross_val_score(model, X, y, cv=3)
 <p><img src="chapters/Machine_Learning/./images/image16.png" alt="Bias and Variance" /></p>
 <hr />
 <h2 id="supervised-learning"><a class="header" href="#supervised-learning">Supervised Learning</a></h2>
-<p>Coming soon...</p>
+<p>Supervised learning is a type of machine learning that learns labeled data, which consists of input/output pairs. The input can be either a <code>numerical value (regression)</code> or a <code>class (classification)</code>. Supervised learning aims to make accurate predictions for new data that has not been seen before.</p>
+<h3 id="regression-and-classification-models"><a class="header" href="#regression-and-classification-models">Regression and Classification Models</a></h3>
+<p>Classification and regression are two types of supervised machine learning
+problems, where the goal is to learn a mapping function from input variables
+to output variables.</p>
+<ul>
+<li>
+<p>In <strong>classification</strong>, we want to assign a discrete label to an input, such as
+&quot;spam&quot; or &quot;not spam&quot; for an email.</p>
+</li>
+<li>
+<p>In <strong>regression</strong>, we want to estimate a continuous value for an input, such as
+the price of a house based on its features.</p>
+</li>
+</ul>
 <hr />
 <h2 id="linear-models"><a class="header" href="#linear-models">Linear Models</a></h2>
-<p>Coming soon...</p>
+<p>Linear models are supervised learning algorithms that predict an output variable based on a <code>linear combination of input features</code>. They can be used for both regression and classification tasks, depending on whether the output variable is continuous or binary.</p>
 <hr />
-<h2 id="validation-models"><a class="header" href="#validation-models">Validation Models</a></h2>
+<h2 id="linear-models-for-regression"><a class="header" href="#linear-models-for-regression">Linear Models For Regression</a></h2>
+<p>For regression, the general prediction formula for a linear model looks like this:</p>
+<p><img src="chapters/Machine_Learning/./images/image26.png" alt="Linear Model" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>y^</code> is the predicted value.</p>
+</li>
+<li>
+<p><code>b</code> is the bias term.</p>
+</li>
+<li>
+<p><code>w</code> is the weight vector.</p>
+</li>
+<li>
+<p><code>x</code> is the input feature vector.</p>
+</li>
+</ul>
+<p>Popular linear models used for regression include:</p>
+<ul>
+<li>
+<p><strong><em>Linear Regression</em></strong></p>
+</li>
+<li>
+<p><strong><em>Ridge Regression</em></strong></p>
+</li>
+<li>
+<p><strong><em>Lasso Regression</em></strong></p>
+</li>
+</ul>
+<h3 id="linear-regression"><a class="header" href="#linear-regression">Linear Regression</a></h3>
+<ul>
+<li>
+<p>Also known as <code>Ordinary Least Squares (OLS)</code>.</p>
+</li>
+<li>
+<p>This is the simplest linear method for regression.</p>
+</li>
+<li>
+<p>Linear regression finds the parameters <code>w</code> and <code>b</code> the mean squared error between predictions, <code>y^</code>, and the true values, <code>y</code>, for the training set.</p>
+</li>
+<li>
+<p>The <code>mean squared error</code> is the sum of the squared differences between the
+predictions and the true values, divided by the number of samples.</p>
+</li>
+</ul>
+<p><img src="chapters/Machine_Learning/./images/image27.png" alt="Mean Squared Error" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>N</code> is the number of samples.</p>
+</li>
+<li>
+<p><code>y^[i] = w[0] * x[i][0] + b</code></p>
+</li>
+<li>
+<p><code>y[i]</code> is the true value.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.linear_model import LinearRegression
+
+# Instantiate the regressor
+lr = LinearRegression()
+
+# Fit the regressor to the data
+lr.fit(X, y)
+
+# Predict the labels of the test set
+y_pred = lr.predict(X_test)
+</code></pre>
+<p>The code snippet above shows how to use a <code>linear regression model</code> to predict the labels of the test set.</p>
+<p><img src="chapters/Machine_Learning/./images/image28.png" alt="Linear Regression" /></p>
+<h3 id="ridge-regression"><a class="header" href="#ridge-regression">Ridge Regression</a></h3>
+<ul>
+<li>
+<p>It is also a linear model for regression, so it uses the same formula as linear regression.</p>
+</li>
+<li>
+<p>For ridge regression, the coefficients <code>w</code> are chosen not only so that they predict well on the training data, but also to fit an additional constraint.</p>
+</li>
+<li>
+<p>The additional constraint is that the magnitude of the coefficients must be as small as possible; all entries of <code>w</code> should be close to zero, called <code>L2 regularization</code>.</p>
+</li>
+<li>
+<p>The square of the <code>L2 norm</code> of the <code>w</code> is defined as:</p>
+</li>
+</ul>
+<p><img src="chapters/Machine_Learning/./images/image29.png" alt="L2 Norm" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>α</code> is a hyperparameter that controls the amount of regularization applied to the coefficients of a linear model. The larger the value, the more aggressive the penalization is. It can be any real value between o and infinity.</p>
+</li>
+<li>
+<p>Regularization means explicitly restricting a model to avoid over-fitting.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.linear_model import Ridge
+
+# Instantiate the regressor
+ridge = Ridge(alpha=0.1, normalize=True)
+
+# Fit the regressor to the data
+ridge.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = ridge.predict(X_test)
+</code></pre>
+<p>The code snippet above shows how to use a <code>ridge regression model</code> to predict the labels of the test set.</p>
+<p><img src="chapters/Machine_Learning/./images/image30.png" alt="Ridge Regression" /></p>
+<h3 id="lasso-regression"><a class="header" href="#lasso-regression">Lasso Regression</a></h3>
+<ul>
+<li>
+<p>Alternative to ridge regression for regularizing linear regression.</p>
+</li>
+<li>
+<p>The lasso regression restricts the coefficients to be close to zero, but in a slightly different way, called <code>L1 regularization</code>.</p>
+</li>
+<li>
+<p>The <code>L1 norm</code> of the <code>w</code> is defined as:</p>
+</li>
+</ul>
+<p><img src="chapters/Machine_Learning/./images/image31.png" alt="L1 Norm" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>α</code> is the regularization parameter.</p>
+</li>
+<li>
+<p>The consequence of L1 regularization is that when using the lasso, some
+coefficients are exactly zero.</p>
+</li>
+<li>
+<p>This means some features are entirely ignored by the model.</p>
+</li>
+<li>
+<p>This can be seen as a form of automatic feature selection.</p>
+</li>
+<li>
+<p>Can reveal the most important features in the model.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.linear_model import Lasso
+
+# Instantiate the regressor
+lasso = Lasso(alpha=0.1, normalize=True)
+
+# Fit the regressor to the data
+lasso.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = lasso.predict(X_test)
+</code></pre>
+<p>The code snippet above shows how to use a <code>lasso regression model</code> to predict the labels of the test set.</p>
+<p><img src="chapters/Machine_Learning/./images/image32.png" alt="Lasso Regression" /></p>
+<hr />
+<h2 id="linear-regression-accuracy-metrics"><a class="header" href="#linear-regression-accuracy-metrics">Linear Regression Accuracy Metrics</a></h2>
+<ul>
+<li>
+<p><strong><em>Mean Squared Error (MSE)</em></strong></p>
+</li>
+<li>
+<p><strong><em>R² score (Coefficient of Determination)</em></strong></p>
+</li>
+</ul>
+<h3 id="mean-squared-error-mse"><a class="header" href="#mean-squared-error-mse">Mean Squared Error (MSE)</a></h3>
+<p>The Mean Squared Error (MSE) is a fundamental metric used to quantify the goodness of fit of a regression model by measuring the average squared difference between the predicted values, <code>y^</code>, and the actual values, <code>y</code>, of the dependent variable.</p>
+<p><img src="chapters/Machine_Learning/./images/image35.png" alt="Mean Squared Error" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>N</code> is the number of datapoints in the dataset.</p>
+</li>
+<li>
+<p><code>y[i]</code> signifies the actual value of the dependent variable for the i-th data point.</p>
+</li>
+<li>
+<p><code>y^[i]</code> corresponds to the predicted value of the dependent variable for the i-th data point based on the regression model.</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import mean_squared_error
+
+# Compute the mean squared error of the regressor
+mse = mean_squared_error(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>mean squared error</code> to evaluate the performance of a regression model.</p>
+<h3 id="r²-score-coefficient-of-determination"><a class="header" href="#r²-score-coefficient-of-determination">R² Score (Coefficient of Determination)</a></h3>
+<ol>
+<li>R-squared is the ration of the explained variation to the total variation in the dependent variable.</li>
+</ol>
+<p><img src="chapters/Machine_Learning/./images/image33.png" alt="R² Score" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>RSS</code> is the residual sum of squares.</p>
+</li>
+<li>
+<p><code>TSS</code> is the total sum of squares.</p>
+</li>
+</ul>
+<ol start="2">
+<li>R-squared can also be expressed as the square of the correlation coefficient, which measures the strength and direction of the linear relationship between two variables.</li>
+</ol>
+<p><img src="chapters/Machine_Learning/./images/image34.png" alt="R² Score" /></p>
+<p>Where:</p>
+<ul>
+<li><code>r</code> is the correlation coefficient.</li>
+</ul>
+<ol start="3">
+<li>R-squared can be negative if the model fits worse than a horizontal line, which is the simplest model that uses the mean of the dependent variable as a constant prediction.</li>
+</ol>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import r2_score
+
+# Compute the R² score of the regressor
+r2 = r2_score(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>R² score</code> to evaluate the performance of a regression model.</p>
+<hr />
+<h2 id="linear-models-for-classification"><a class="header" href="#linear-models-for-classification">Linear Models For Classification</a></h2>
+<p>For classification, the general prediction formula for a linear model looks like this:</p>
+<p><img src="chapters/Machine_Learning/./images/image39.png" alt="Linear Model" /></p>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>x</code> is the input feature vector.</p>
+</li>
+<li>
+<p><code>w</code> is the weight vector.</p>
+</li>
+<li>
+<p><code>b</code> is the bias term.</p>
+</li>
+<li>
+<p><code>p(x)</code> is the probability that the input <code>x</code> belongs to the positive class.</p>
+</li>
+</ul>
+<p>Some popular linear models used for classification include:</p>
+<ul>
+<li>
+<p><strong><em>Logistic Regression</em></strong></p>
+</li>
+<li>
+<p><strong><em>Support Vector Machines (SVM)</em></strong></p>
+</li>
+</ul>
+<h3 id="logistic-regression"><a class="header" href="#logistic-regression">Logistic Regression</a></h3>
+<ul>
+<li>
+<p>Primarily used for <strong>classification</strong>, not regression, despite its name.</p>
+</li>
+<li>
+<p>It’s a statistical model used to predict the probability of a binary outcome, typically denoted as class 0 and class 1.</p>
+</li>
+<li>
+<p>The logistic regression model estimates the probability that a given input
+belongs to one of these two classes.</p>
+</li>
+</ul>
+<p><img src="chapters/Machine_Learning/./images/image40.png" alt="Logistic Regression" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.linear_model import LogisticRegression
+
+# Instantiate the classifier
+logreg = LogisticRegression()
+
+# Fit the classifier to the data
+logreg.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = logreg.predict(X_test)
+</code></pre>
+<p>The code snippet above shows how to use a <code>logistic regression model</code> to predict the labels of the test set.</p>
+<p><img src="chapters/Machine_Learning/./images/image41.png" alt="Logistic Regression" /></p>
+<hr />
+<h2 id="linear-classification-accuracy-metrics"><a class="header" href="#linear-classification-accuracy-metrics">Linear Classification Accuracy Metrics</a></h2>
+<ul>
+<li>
+<p><strong><em>Confusion Matrix</em></strong></p>
+</li>
+<li>
+<p><strong><em>Accuracy</em></strong></p>
+</li>
+<li>
+<p><strong><em>Precision</em></strong></p>
+</li>
+<li>
+<p><strong><em>Recall</em></strong></p>
+</li>
+<li>
+<p><strong><em>F1 Score</em></strong></p>
+</li>
+</ul>
 <h3 id="confusion-matrix"><a class="header" href="#confusion-matrix">Confusion Matrix</a></h3>
 <p>A confusion matrix is a table that is often used to describe the performance of a classification model on a set of test data for which the true values are known.</p>
 <ul>
@@ -1140,22 +1483,57 @@ cross_val_score(model, X, y, cv=3)
 <li><strong>False Negatives (FN)</strong>: The number of instances that are actually positive (P) but are incorrectly predicted as negative (N) by the algorithm.</li>
 </ul>
 <p><img src="chapters/Machine_Learning/./images/image17.png" alt="Confusion Matrix" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import confusion_matrix
+
+# Compute the confusion matrix of the classifier
+cm = confusion_matrix(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use a <code>confusion matrix</code> to evaluate the performance of a classification model.</p>
 <h3 id="accuracy"><a class="header" href="#accuracy">Accuracy</a></h3>
 <p>Accuracy is a metric that quantifies the ratio of correctly classified instances to
 the total predictions made by a model.</p>
 <p><img src="chapters/Machine_Learning/./images/image18.png" alt="Accuracy" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import accuracy_score
+
+# Compute the accuracy of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>accuracy</code> metric to evaluate the performance of a classification model.</p>
 <h3 id="precision"><a class="header" href="#precision">Precision</a></h3>
 <p>Precision is a metric that measures the accuracy of <code>positive predictions</code> generated
 by a model, taking <code>false positives</code> into account.</p>
 <p><img src="chapters/Machine_Learning/./images/image19.png" alt="Precision" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import precision_score
+
+# Compute the precision of the classifier
+precision = precision_score(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>precision</code> metric to evaluate the performance of a classification model.</p>
 <h3 id="recall"><a class="header" href="#recall">Recall</a></h3>
 <p>Recall, also known as sensitivity or the true positive rate, quantifies a model’s
 capacity to identify all positive instances, even when considering false negatives.</p>
 <p><img src="chapters/Machine_Learning/./images/image20.png" alt="Recall" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import recall_score
+
+# Compute the recall of the classifier
+recall = recall_score(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>recall</code> metric to evaluate the performance of a classification model.</p>
 <h3 id="f1-score"><a class="header" href="#f1-score">F1 Score</a></h3>
 <p>The F1-Score presents a harmonious equilibrium between precision and recall,
 while accounting for both false positives and false negatives.</p>
 <p><img src="chapters/Machine_Learning/./images/image21.png" alt="F1 Score" /></p>
+<p>Example:</p>
+<pre><code class="language-python">from sklearn.metrics import f1_score
+
+# Compute the F1 score of the classifier
+f1 = f1_score(y_test, y_pred)
+</code></pre>
+<p>The code snippet above shows how to use the <code>F1 score</code> to evaluate the performance of a classification model.</p>
 <hr />
 <h2 id="decision-trees"><a class="header" href="#decision-trees">Decision Trees</a></h2>
 <p><img src="chapters/Machine_Learning/./images/image22.png" alt="Decision Trees" /></p>
@@ -1215,6 +1593,7 @@ dtc.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = dtc.predict(X_test)
 </code></pre>
+<p>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</p>
 <h3 id="difference-between-hyperparameter-and-parameter"><a class="header" href="#difference-between-hyperparameter-and-parameter">Difference Between Hyperparameter and Parameter</a></h3>
 <ul>
 <li>
@@ -1246,9 +1625,12 @@ data during the training process.</p>
 dtc = DecisionTreeClassifier(max_depth=None, max_leaf_nodes=5, random_state=0)
 
 # Fit the classifier to the data
-dtc.fit(X_train, y_train)
+y_pred = dtc.fit(X_train, y_train)
 
+# Predict the labels of the test set
+y_pred = dtc.predict(X_test)
 </code></pre>
+<p>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</p>
 <p><img src="chapters/Machine_Learning/./images/image24.png" alt="Decision Tree" /></p>
 <h3 id="decision-tree-regression"><a class="header" href="#decision-tree-regression">Decision Tree Regression</a></h3>
 <ul>
@@ -1280,7 +1662,7 @@ y_hat = dtr.predict(X[X[:, 1] &lt;= 1.067])
 # Compute the mean squared error of the regressor
 mse = metrics.mean_squared_error(y_hat, y[X[:, 1] &lt;= 1.067])
 </code></pre>
-<p>The code snippet above shows how to use a decision tree regressor to predict the labels of the test set and compute the mean squared error of the regressor.</p>
+<p>The code snippet above shows how to use a <code>decision tree regressor</code> to predict the labels of the test set and compute the <code>mean squared error</code> of the regressor.</p>
 <h3 id="decision-tree-strengths"><a class="header" href="#decision-tree-strengths">Decision Tree Strengths</a></h3>
 <ul>
 <li>
