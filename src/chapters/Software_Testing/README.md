@@ -490,3 +490,57 @@ public class GradesServiceTest {
 - `thenReturn()` method defines return value for the method call. If you specify more than one value, they will be returned in sequence until the last one is used.
 
 ---
+
+## Black Box Testing
+
+![Black Box Testing](./images/image6.png)
+
+Black Box testing applies at all granularity levels of testing.
+
+- **Unit Testing**: From module interface specification.
+
+- **Integration Testing**: From the API or subsystem specification.
+
+- **System Testing**: From the system specification.
+
+- **Regression Testing**: From system requirements + bug history.
+
+### Equivalent Class Testing (ECT)
+
+- You divide the set into partition that can be considered the same.
+
+- Partitions of input space in such a way that input data have the same effect on the system.
+
+- They all test the same unit (method, class, etc).
+
+- Entire input set is covered by the test cases.
+
+- They entire set of inputs can be divided into `Expected (E)` and `Unexpected (U)` inputs.
+
+### Weak / Strong ECT
+
+- **Weak Equivalence Class Testing (one-dimensional)**: Choosing one variable value form each equivalence class (one A, B, and C) such that all classes are covered.
+
+`max(|A|, |B|, |C|)`
+
+Example:
+
+- A = {1, 2, 3, 4}
+- B = {5, 6}
+- C = {7, 8, 9}
+
+max(4, 2, 3) = 4
+
+- **Strong Equivalence Class Testing (multi-dimensional)**: Based on the Cartesian product of the partition subsets (A x B x C). Testing all interactions of all equivalence classes.
+
+`|A| x |B| x |C|`
+
+Example:
+
+- A = {1, 2, 3, 4}
+- B = {5, 6}
+- C = {7, 8, 9}
+
+4 x 2 x 3 = 24
+
+### Boundary Value Testing (BVT)
