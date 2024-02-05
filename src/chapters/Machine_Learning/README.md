@@ -28,8 +28,18 @@
 - [Model Selection](#model-selection)
   - [Bias and Variance](#bias-and-variance)
 - [Supervised Learning](#supervised-learning)
+  - [Regression and Classification Models](#regression-and-classification-models)
 - [Linear Models](#linear-models)
-- [Validation Models](#validation-models)
+- [Linear Models For Regression](#linear-models-for-regression)
+  - [Linear Regression](#linear-regression)
+  - [Ridge Regression](#ridge-regression)
+  - [Lasso Regression](#lasso-regression)
+- [Linear Regression Accuracy Metrics](#linear-regression-accuracy-metrics)
+  - [Mean Squared Error (MSE)](#mean-squared-error-mse)
+  - [R² Score (Coefficient of Determination)](#r²-score-coefficient-of-determination)
+- [Linear Models For Classification](#linear-models-for-classification)
+  - [Logistic Regression](#logistic-regression)
+- [Linear Classification Accuracy Metrics](#linear-classification-accuracy-metrics)
   - [Confusion Matrix](#confusion-matrix)
   - [Accuracy](#accuracy)
   - [Precision](#precision)
@@ -42,10 +52,17 @@
   - [Predicting New Values](#predicting-new-values)
   - [Difference Between Hyperparameter and Parameter](#difference-between-hyperparameter-and-parameter)
   - [Decision Tree Hyperparameter](#decision-tree-hyperparameter)
+  - [Decision Tree Regression](#decision-tree-regression)
+  - [Decision Tree Strengths](#decision-tree-strengths)
+  - [Decision Tree Weakness](#decision-tree-weakness)
+- [Random Forest](#random-forest)
+  - [Steps to Create a Random Forest](#steps-to-create-a-random-forest)
 
 ---
 
 ## Numpy
+
+![Numpy](./images/image36.png)
 
 Python includes a module named numpy that can be used to store data in a matrix-like object.
 
@@ -141,6 +158,8 @@ selected_elements = arr[indices]
 
 ## Pandas
 
+![Pandas](./images/image37.png)
+
 Pandas is a Python module used to import, export, and manipulate data.
 
 import statement:
@@ -222,6 +241,8 @@ Result = Grouped.agg({'Value': ['mean', 'sum', 'count', 'max', 'min']})
 ---
 
 ## Matplotlib
+
+![Matplotlib](./images/image38.png)
 
 Matplotlib is a built-in module in Python used for plotting.
 
@@ -423,17 +444,304 @@ Compute the mean (average) test error across the three folds.
 
 ## Supervised Learning
 
-Coming soon...
+Supervised learning is a type of machine learning that learns labeled data, which consists of input/output pairs. The input can be either a `numerical value (regression)` or a `class (classification)`. Supervised learning aims to make accurate predictions for new data that has not been seen before.
+
+### Regression and Classification Models
+
+Classification and regression are two types of supervised machine learning
+problems, where the goal is to learn a mapping function from input variables
+to output variables.
+
+- In **classification**, we want to assign a discrete label to an input, such as
+  "spam" or "not spam" for an email.
+
+- In **regression**, we want to estimate a continuous value for an input, such as
+  the price of a house based on its features.
 
 ---
 
 ## Linear Models
 
-Coming soon...
+Linear models are supervised learning algorithms that predict an output variable based on a `linear combination of input features`. They can be used for both regression and classification tasks, depending on whether the output variable is continuous or binary.
 
 ---
 
-## Validation Models
+## Linear Models For Regression
+
+For regression, the general prediction formula for a linear model looks like this:
+
+![Linear Model](./images/image26.png)
+
+Where:
+
+- `y^` is the predicted value.
+
+- `b` is the bias term.
+
+- `w` is the weight vector.
+
+- `x` is the input feature vector.
+
+Popular linear models used for regression include:
+
+- **_Linear Regression_**
+
+- **_Ridge Regression_**
+
+- **_Lasso Regression_**
+
+### Linear Regression
+
+- Also known as `Ordinary Least Squares (OLS)`.
+
+- This is the simplest linear method for regression.
+
+- Linear regression finds the parameters `w` and `b` the mean squared error between predictions, `y^`, and the true values, `y`, for the training set.
+
+- The `mean squared error` is the sum of the squared differences between the
+  predictions and the true values, divided by the number of samples.
+
+![Mean Squared Error](./images/image27.png)
+
+Where:
+
+- `N` is the number of samples.
+
+- `y^[i] = w[0] * x[i][0] + b`
+
+- `y[i]` is the true value.
+
+Example:
+
+```python
+from sklearn.linear_model import LinearRegression
+
+# Instantiate the regressor
+lr = LinearRegression()
+
+# Fit the regressor to the data
+lr.fit(X, y)
+
+# Predict the labels of the test set
+y_pred = lr.predict(X_test)
+```
+
+The code snippet above shows how to use a `linear regression model` to predict the labels of the test set.
+
+![Linear Regression](./images/image28.png)
+
+### Ridge Regression
+
+- It is also a linear model for regression, so it uses the same formula as linear regression.
+
+- For ridge regression, the coefficients `w` are chosen not only so that they predict well on the training data, but also to fit an additional constraint.
+
+- The additional constraint is that the magnitude of the coefficients must be as small as possible; all entries of `w` should be close to zero, called `L2 regularization`.
+
+- The square of the `L2 norm` of the `w` is defined as:
+
+![L2 Norm](./images/image29.png)
+
+Where:
+
+- `α` is a hyperparameter that controls the amount of regularization applied to the coefficients of a linear model. The larger the value, the more aggressive the penalization is. It can be any real value between o and infinity.
+
+- Regularization means explicitly restricting a model to avoid over-fitting.
+
+Example:
+
+```python
+from sklearn.linear_model import Ridge
+
+# Instantiate the regressor
+ridge = Ridge(alpha=0.1, normalize=True)
+
+# Fit the regressor to the data
+ridge.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = ridge.predict(X_test)
+```
+
+The code snippet above shows how to use a `ridge regression model` to predict the labels of the test set.
+
+![Ridge Regression](./images/image30.png)
+
+### Lasso Regression
+
+- Alternative to ridge regression for regularizing linear regression.
+
+- The lasso regression restricts the coefficients to be close to zero, but in a slightly different way, called `L1 regularization`.
+
+- The `L1 norm` of the `w` is defined as:
+
+![L1 Norm](./images/image31.png)
+
+Where:
+
+- `α` is the regularization parameter.
+
+- The consequence of L1 regularization is that when using the lasso, some
+  coefficients are exactly zero.
+
+- This means some features are entirely ignored by the model.
+
+- This can be seen as a form of automatic feature selection.
+
+- Can reveal the most important features in the model.
+
+Example:
+
+```python
+from sklearn.linear_model import Lasso
+
+# Instantiate the regressor
+lasso = Lasso(alpha=0.1, normalize=True)
+
+# Fit the regressor to the data
+lasso.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = lasso.predict(X_test)
+```
+
+The code snippet above shows how to use a `lasso regression model` to predict the labels of the test set.
+
+![Lasso Regression](./images/image32.png)
+
+---
+
+## Linear Regression Accuracy Metrics
+
+- **_Mean Squared Error (MSE)_**
+
+- **_R² score (Coefficient of Determination)_**
+
+### Mean Squared Error (MSE)
+
+The Mean Squared Error (MSE) is a fundamental metric used to quantify the goodness of fit of a regression model by measuring the average squared difference between the predicted values, `y^`, and the actual values, `y`, of the dependent variable.
+
+![Mean Squared Error](./images/image35.png)
+
+Where:
+
+- `N` is the number of datapoints in the dataset.
+
+- `y[i]` signifies the actual value of the dependent variable for the i-th data point.
+
+- `y^[i]` corresponds to the predicted value of the dependent variable for the i-th data point based on the regression model.
+
+Example:
+
+```python
+from sklearn.metrics import mean_squared_error
+
+# Compute the mean squared error of the regressor
+mse = mean_squared_error(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `mean squared error` to evaluate the performance of a regression model.
+
+### R² Score (Coefficient of Determination)
+
+1. R-squared is the ration of the explained variation to the total variation in the dependent variable.
+
+![R² Score](./images/image33.png)
+
+Where:
+
+- `RSS` is the residual sum of squares.
+
+- `TSS` is the total sum of squares.
+
+2. R-squared can also be expressed as the square of the correlation coefficient, which measures the strength and direction of the linear relationship between two variables.
+
+![R² Score](./images/image34.png)
+
+Where:
+
+- `r` is the correlation coefficient.
+
+3. R-squared can be negative if the model fits worse than a horizontal line, which is the simplest model that uses the mean of the dependent variable as a constant prediction.
+
+Example:
+
+```python
+from sklearn.metrics import r2_score
+
+# Compute the R² score of the regressor
+r2 = r2_score(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `R² score` to evaluate the performance of a regression model.
+
+---
+
+## Linear Models For Classification
+
+For classification, the general prediction formula for a linear model looks like this:
+
+![Linear Model](./images/image39.png)
+
+Where:
+
+- `x` is the input feature vector.
+
+- `w` is the weight vector.
+
+- `b` is the bias term.
+
+- `p(x)` is the probability that the input `x` belongs to the positive class.
+
+Some popular linear models used for classification include:
+
+- **_Logistic Regression_**
+
+- **_Support Vector Machines (SVM)_**
+
+### Logistic Regression
+
+- Primarily used for **classification**, not regression, despite its name.
+
+- It’s a statistical model used to predict the probability of a binary outcome, typically denoted as class 0 and class 1.
+
+- The logistic regression model estimates the probability that a given input
+  belongs to one of these two classes.
+
+![Logistic Regression](./images/image40.png)
+
+Example:
+
+```python
+from sklearn.linear_model import LogisticRegression
+
+# Instantiate the classifier
+logreg = LogisticRegression()
+
+# Fit the classifier to the data
+logreg.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = logreg.predict(X_test)
+```
+
+The code snippet above shows how to use a `logistic regression model` to predict the labels of the test set.
+
+![Logistic Regression](./images/image41.png)
+
+---
+
+## Linear Classification Accuracy Metrics
+
+- **_Confusion Matrix_**
+
+- **_Accuracy_**
+
+- **_Precision_**
+
+- **_Recall_**
+
+- **_F1 Score_**
 
 ### Confusion Matrix
 
@@ -446,12 +754,34 @@ A confusion matrix is a table that is often used to describe the performance of 
 
 ![Confusion Matrix](./images/image17.png)
 
+Example:
+
+```python
+from sklearn.metrics import confusion_matrix
+
+# Compute the confusion matrix of the classifier
+cm = confusion_matrix(y_test, y_pred)
+```
+
+The code snippet above shows how to use a `confusion matrix` to evaluate the performance of a classification model.
+
 ### Accuracy
 
 Accuracy is a metric that quantifies the ratio of correctly classified instances to
 the total predictions made by a model.
 
 ![Accuracy](./images/image18.png)
+
+Example:
+
+```python
+from sklearn.metrics import accuracy_score
+
+# Compute the accuracy of the classifier
+accuracy = accuracy_score(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `accuracy` metric to evaluate the performance of a classification model.
 
 ### Precision
 
@@ -460,6 +790,17 @@ by a model, taking `false positives` into account.
 
 ![Precision](./images/image19.png)
 
+Example:
+
+```python
+from sklearn.metrics import precision_score
+
+# Compute the precision of the classifier
+precision = precision_score(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `precision` metric to evaluate the performance of a classification model.
+
 ### Recall
 
 Recall, also known as sensitivity or the true positive rate, quantifies a model’s
@@ -467,12 +808,34 @@ capacity to identify all positive instances, even when considering false negativ
 
 ![Recall](./images/image20.png)
 
+Example:
+
+```python
+from sklearn.metrics import recall_score
+
+# Compute the recall of the classifier
+recall = recall_score(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `recall` metric to evaluate the performance of a classification model.
+
 ### F1 Score
 
 The F1-Score presents a harmonious equilibrium between precision and recall,
 while accounting for both false positives and false negatives.
 
 ![F1 Score](./images/image21.png)
+
+Example:
+
+```python
+from sklearn.metrics import f1_score
+
+# Compute the F1 score of the classifier
+f1 = f1_score(y_test, y_pred)
+```
+
+The code snippet above shows how to use the `F1 score` to evaluate the performance of a classification model.
 
 ---
 
@@ -528,6 +891,8 @@ dtc.fit(X_train, y_train)
 y_pred = dtc.predict(X_test)
 ```
 
+The code snippet above shows how to use a `decision tree classifier` to predict the labels of the test set.
+
 ### Difference Between Hyperparameter and Parameter
 
 - **Hyperparameter**: It’s a configuration setting for the model. Its value is set prior to the commencement of the learning process and is not learned from the data.
@@ -553,9 +918,13 @@ from sklearn.tree import DecisionTreeClassifier
 dtc = DecisionTreeClassifier(max_depth=None, max_leaf_nodes=5, random_state=0)
 
 # Fit the classifier to the data
-dtc.fit(X_train, y_train)
+y_pred = dtc.fit(X_train, y_train)
 
+# Predict the labels of the test set
+y_pred = dtc.predict(X_test)
 ```
+
+The code snippet above shows how to use a `decision tree classifier` to predict the labels of the test set.
 
 ![Decision Tree](./images/image24.png)
 
@@ -587,7 +956,7 @@ y_hat = dtr.predict(X[X[:, 1] <= 1.067])
 mse = metrics.mean_squared_error(y_hat, y[X[:, 1] <= 1.067])
 ```
 
-The code snippet above shows how to use a decision tree regressor to predict the labels of the test set and compute the mean squared error of the regressor.
+The code snippet above shows how to use a `decision tree regressor` to predict the labels of the test set and compute the `mean squared error` of the regressor.
 
 ### Decision Tree Strengths
 
