@@ -877,6 +877,18 @@ docker-compose down  # Stop and remove containers, networks, images, and volumes
 <li><a href="chapters/Machine_Learning/index.html#random-forest">Random Forest</a>
 <ul>
 <li><a href="chapters/Machine_Learning/index.html#steps-to-create-a-random-forest">Steps to Create a Random Forest</a></li>
+<li><a href="chapters/Machine_Learning/index.html#random-forest-regressor">Random Forest Regressor</a></li>
+<li><a href="chapters/Machine_Learning/index.html#random-forest-classifier">Random Forest Classifier</a></li>
+<li><a href="chapters/Machine_Learning/index.html#parameters">Parameters</a></li>
+<li><a href="chapters/Machine_Learning/index.html#strengths">Strengths</a></li>
+<li><a href="chapters/Machine_Learning/index.html#weaknesses">Weaknesses</a></li>
+</ul>
+</li>
+<li><a href="chapters/Machine_Learning/index.html#gradient-boosted-trees">Gradient Boosted Trees</a>
+<ul>
+<li><a href="chapters/Machine_Learning/index.html#control-parameters">Control Parameters</a></li>
+<li><a href="chapters/Machine_Learning/index.html#gradient-boosting-regressor">Gradient Boosting Regressor</a></li>
+<li><a href="chapters/Machine_Learning/index.html#gradient-boosting-classifier">Gradient Boosting Classifier</a></li>
 </ul>
 </li>
 </ul>
@@ -1127,6 +1139,7 @@ be useful for complex or specific cases.</li>
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 </code></pre>
+<p><em>The code snippet above shows how to use the <code>train_test_split</code> function to split the dataset into training and test sets.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image14.png" alt="Train and test" /></p>
 <h3 id="cross-validation"><a class="header" href="#cross-validation">Cross-Validation</a></h3>
 <p>Cross-validation is a technique to evaluate the performance of a machine learning model on <code>unseen data</code>.</p>
@@ -1142,6 +1155,7 @@ three subsets:</p>
 
 cross_val_score(model, X, y, cv=3)
 </code></pre>
+<p><em>The code snippet above shows how to use the <code>cross_val_score</code> function to evaluate the performance of a model.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image15.png" alt="Cross-Validation" /></p>
 <p>Compute the mean (average) test error across the three folds.</p>
 <hr />
@@ -1248,7 +1262,7 @@ lr.fit(X, y)
 # Predict the labels of the test set
 y_pred = lr.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>linear regression model</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>linear regression model</code> to predict the labels of the test set.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image28.png" alt="Linear Regression" /></p>
 <h3 id="ridge-regression"><a class="header" href="#ridge-regression">Ridge Regression</a></h3>
 <ul>
@@ -1287,7 +1301,7 @@ ridge.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = ridge.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>ridge regression model</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>ridge regression model</code> to predict the labels of the test set.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image30.png" alt="Ridge Regression" /></p>
 <h3 id="lasso-regression"><a class="header" href="#lasso-regression">Lasso Regression</a></h3>
 <ul>
@@ -1333,7 +1347,7 @@ lasso.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = lasso.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>lasso regression model</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>lasso regression model</code> to predict the labels of the test set.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image32.png" alt="Lasso Regression" /></p>
 <hr />
 <h2 id="linear-regression-accuracy-metrics"><a class="header" href="#linear-regression-accuracy-metrics">Linear Regression Accuracy Metrics</a></h2>
@@ -1366,7 +1380,7 @@ y_pred = lasso.predict(X_test)
 # Compute the mean squared error of the regressor
 mse = mean_squared_error(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>mean squared error</code> to evaluate the performance of a regression model.</p>
+<p><em>The code snippet above shows how to use the <code>mean squared error</code> to evaluate the performance of a regression model.</em></p>
 <h3 id="r²-score-coefficient-of-determination"><a class="header" href="#r²-score-coefficient-of-determination">R² Score (Coefficient of Determination)</a></h3>
 <ol>
 <li>R-squared is the ration of the explained variation to the total variation in the dependent variable.</li>
@@ -1398,7 +1412,7 @@ mse = mean_squared_error(y_test, y_pred)
 # Compute the R² score of the regressor
 r2 = r2_score(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>R² score</code> to evaluate the performance of a regression model.</p>
+<p><em>The code snippet above shows how to use the <code>R² score</code> to evaluate the performance of a regression model.</em></p>
 <hr />
 <h2 id="linear-models-for-classification"><a class="header" href="#linear-models-for-classification">Linear Models For Classification</a></h2>
 <p>For classification, the general prediction formula for a linear model looks like this:</p>
@@ -1453,7 +1467,7 @@ logreg.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = logreg.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>logistic regression model</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>logistic regression model</code> to predict the labels of the test set.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image41.png" alt="Logistic Regression" /></p>
 <hr />
 <h2 id="linear-classification-accuracy-metrics"><a class="header" href="#linear-classification-accuracy-metrics">Linear Classification Accuracy Metrics</a></h2>
@@ -1489,7 +1503,7 @@ y_pred = logreg.predict(X_test)
 # Compute the confusion matrix of the classifier
 cm = confusion_matrix(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use a <code>confusion matrix</code> to evaluate the performance of a classification model.</p>
+<p><em>The code snippet above shows how to use a <code>confusion matrix</code> to evaluate the performance of a classification model.</em></p>
 <h3 id="accuracy"><a class="header" href="#accuracy">Accuracy</a></h3>
 <p>Accuracy is a metric that quantifies the ratio of correctly classified instances to
 the total predictions made by a model.</p>
@@ -1500,7 +1514,7 @@ the total predictions made by a model.</p>
 # Compute the accuracy of the classifier
 accuracy = accuracy_score(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>accuracy</code> metric to evaluate the performance of a classification model.</p>
+<p><em>The code snippet above shows how to use the <code>accuracy</code> metric to evaluate the performance of a classification model.</em></p>
 <h3 id="precision"><a class="header" href="#precision">Precision</a></h3>
 <p>Precision is a metric that measures the accuracy of <code>positive predictions</code> generated
 by a model, taking <code>false positives</code> into account.</p>
@@ -1511,7 +1525,7 @@ by a model, taking <code>false positives</code> into account.</p>
 # Compute the precision of the classifier
 precision = precision_score(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>precision</code> metric to evaluate the performance of a classification model.</p>
+<p><em>The code snippet above shows how to use the <code>precision</code> metric to evaluate the performance of a classification model.</em></p>
 <h3 id="recall"><a class="header" href="#recall">Recall</a></h3>
 <p>Recall, also known as sensitivity or the true positive rate, quantifies a model’s
 capacity to identify all positive instances, even when considering false negatives.</p>
@@ -1522,7 +1536,7 @@ capacity to identify all positive instances, even when considering false negativ
 # Compute the recall of the classifier
 recall = recall_score(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>recall</code> metric to evaluate the performance of a classification model.</p>
+<p><em>The code snippet above shows how to use the <code>recall</code> metric to evaluate the performance of a classification model.</em></p>
 <h3 id="f1-score"><a class="header" href="#f1-score">F1 Score</a></h3>
 <p>The F1-Score presents a harmonious equilibrium between precision and recall,
 while accounting for both false positives and false negatives.</p>
@@ -1533,7 +1547,7 @@ while accounting for both false positives and false negatives.</p>
 # Compute the F1 score of the classifier
 f1 = f1_score(y_test, y_pred)
 </code></pre>
-<p>The code snippet above shows how to use the <code>F1 score</code> to evaluate the performance of a classification model.</p>
+<p><em>The code snippet above shows how to use the <code>F1 score</code> to evaluate the performance of a classification model.</em></p>
 <hr />
 <h2 id="decision-trees"><a class="header" href="#decision-trees">Decision Trees</a></h2>
 <p><img src="chapters/Machine_Learning/./images/image22.png" alt="Decision Trees" /></p>
@@ -1593,7 +1607,7 @@ dtc.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = dtc.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</em></p>
 <h3 id="difference-between-hyperparameter-and-parameter"><a class="header" href="#difference-between-hyperparameter-and-parameter">Difference Between Hyperparameter and Parameter</a></h3>
 <ul>
 <li>
@@ -1630,7 +1644,7 @@ y_pred = dtc.fit(X_train, y_train)
 # Predict the labels of the test set
 y_pred = dtc.predict(X_test)
 </code></pre>
-<p>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</p>
+<p><em>The code snippet above shows how to use a <code>decision tree classifier</code> to predict the labels of the test set.</em></p>
 <p><img src="chapters/Machine_Learning/./images/image24.png" alt="Decision Tree" /></p>
 <h3 id="decision-tree-regression"><a class="header" href="#decision-tree-regression">Decision Tree Regression</a></h3>
 <ul>
@@ -1662,7 +1676,7 @@ y_hat = dtr.predict(X[X[:, 1] &lt;= 1.067])
 # Compute the mean squared error of the regressor
 mse = metrics.mean_squared_error(y_hat, y[X[:, 1] &lt;= 1.067])
 </code></pre>
-<p>The code snippet above shows how to use a <code>decision tree regressor</code> to predict the labels of the test set and compute the <code>mean squared error</code> of the regressor.</p>
+<p><em>The code snippet above shows how to use a <code>decision tree regressor</code> to predict the labels of the test set and compute the <code>mean squared error</code> of the regressor.</em></p>
 <h3 id="decision-tree-strengths"><a class="header" href="#decision-tree-strengths">Decision Tree Strengths</a></h3>
 <ul>
 <li>
@@ -1697,10 +1711,10 @@ non-experts (at least for smaller trees).</p>
 </ol>
 <ul>
 <li>
-<p>By selecting the data points used to build a tree.</p>
+<p><strong>Select Random Data Points</strong>:</p>
 <ul>
 <li>
-<p>For each tree, a bootstrap sample is created.</p>
+<p>For each tree, a <strong>bootstrap sample</strong> is created.</p>
 </li>
 <li>
 <p>A bootstrap sample is the same size as the original data, but contains a random assortment of the data, where some of the data samples are missing (approx. 1/3) and some data samples are repeated.</p>
@@ -1710,21 +1724,149 @@ non-experts (at least for smaller trees).</p>
 </li>
 </ul>
 </li>
-<li>
-<p>By selecting the features in each split test.</p>
+</ul>
+<pre><code class="language-python">from sklearn.utils import resample
+
+# Create a bootstrap sample
+bootstrap_sample = resample(X_train, y_train, replace=True, random_state=0)
+</code></pre>
+<p><em>The code snippet above shows how to create a <code>bootstrap sample</code> using the <code>resample</code> function.</em></p>
 <ul>
 <li>
-<p>the algorithm randomly selects a subset of the features, and it looks for the best possible test involving one of these features.</p>
+<p><strong>Select Random Features</strong>:</p>
+<ul>
+<li>
+<p>the algorithm randomly selects a <strong>subset of the features</strong>, and it looks for the best possible test involving one of these features.</p>
 </li>
 <li>
-<p>The number of features that are selected is controlled by the max_features parameter</p>
+<p>The number of features that are selected is controlled by the <strong><em>max_features</em></strong> parameter.</p>
 </li>
 <li>
 <p>This selection of a subset of features is repeated separately in each node, so that each node in the tree splits the dataset using a different subset of the features.</p>
 </li>
+<li>
+<p>A <strong>high <em>max_features</em></strong> value means that the trees in the random forest will be very similar, but they will be able to fit the data easily, using the most distinctive features.</p>
+</li>
+<li>
+<p>A <strong>low <em>max_features</em></strong> value means that the trees in the random forest will be quite different, but that each tree might need to be very deep to fit the data well.</p>
+</li>
 </ul>
 </li>
 </ul>
+<h3 id="random-forest-regressor"><a class="header" href="#random-forest-regressor">Random Forest Regressor</a></h3>
+<p>For regression, we can average the results to get our final prediction.</p>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestRegressor
+
+# Instantiate the regressor
+rfr = RandomForestRegressor(n_estimators=4, random_state=0, max_leaf_nodes=3)
+
+# Fit the regressor to the data
+rfr.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = rfr.predict(X_test)
+</code></pre>
+<p><em>The code snippet above shows how to use a <code>random forest regressor</code> to predict the labels of the test set.</em></p>
+<p><img src="chapters/Machine_Learning/./images/image42.png" alt="Random Forest Regressor" /></p>
+<h3 id="random-forest-classifier"><a class="header" href="#random-forest-classifier">Random Forest Classifier</a></h3>
+<p>For classification, each algorithm makes a &quot;soft&quot; prediction, providing a probability of each possible output label. The probabilities predicted by all the trees are averaged, and the class with the highest probability is the final prediction.</p>
+<pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
+
+# Instantiate the classifier
+rfc = RandomForestClassifier(n_estimators=4, random_state=0, max_leaf_nodes=3)
+
+# Fit the classifier to the data
+rfc.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = rfc.predict(X_test)
+</code></pre>
+<p><em>The code snippet above shows how to use a <code>random forest classifier</code> to predict the labels of the test set.</em></p>
+<p><img src="chapters/Machine_Learning/./images/image43.png" alt="Random Forest Classifier" /></p>
+<h3 id="parameters"><a class="header" href="#parameters">Parameters</a></h3>
+<ul>
+<li>
+<p><strong><em>random_state</em></strong>: Setting this variable is important for reproducibility.</p>
+</li>
+<li>
+<p><strong><em>max_features</em></strong>: Determines how random each tree is</p>
+</li>
+<li>
+<p><strong><em>n_estimators</em></strong>: Larger is always better. Averaging more trees will yield a more robust ensemble by reducing over-fitting.</p>
+</li>
+</ul>
+<h3 id="strengths"><a class="header" href="#strengths">Strengths</a></h3>
+<ul>
+<li>
+<p>Random forests share all the benefits of decision trees.</p>
+</li>
+<li>
+<p>They are very powerful, often work well without heavy tuning of the parameters, and don’t require scaling of the data.</p>
+</li>
+<li>
+<p>Random forests for regression and classification are currently among the most widely used machine learning methods.</p>
+</li>
+</ul>
+<h3 id="weaknesses"><a class="header" href="#weaknesses">Weaknesses</a></h3>
+<ul>
+<li>
+<p>Random forests require more memory and are slower to train and predict than linear models.</p>
+</li>
+<li>
+<p>Random forests don’t tend to perform well on very high dimensional, sparse data, such as text data.</p>
+</li>
+</ul>
+<hr />
+<h2 id="gradient-boosted-trees"><a class="header" href="#gradient-boosted-trees">Gradient Boosted Trees</a></h2>
+<p><img src="chapters/Machine_Learning/./images/image44.png" alt="Gradient Boosted Trees" /></p>
+<p>Gradient boosting works by iteratively training the weak learners on gradient-based functions and incorporating them into the model as <strong><em>boosted</em></strong> participants.</p>
+<ul>
+<li>At its core, gradient boosting works by combining multiple gradient steps to build up a strong predicting model from weak estimators residing in a gradient function space with additional weak learners joining the gradient function space after each iteration of gradient boosting.</li>
+</ul>
+<h3 id="control-parameters"><a class="header" href="#control-parameters">Control Parameters</a></h3>
+<ul>
+<li>
+<p><strong><em>n_estimators</em></strong>: The number of trees created.</p>
+</li>
+<li>
+<p><strong><em>learning_rate</em></strong>: Controls how strongly each tree tries to correct after the previous one.</p>
+</li>
+</ul>
+<h3 id="gradient-boosting-regressor"><a class="header" href="#gradient-boosting-regressor">Gradient Boosting Regressor</a></h3>
+<pre><code class="language-python">from sklearn.ensemble import GradientBoostingRegressor
+
+# Instantiate the regressor
+gbr = GradientBoostingRegressor(n_estimators=100, random_state=0, learning_rate=0.1)
+
+# Fit the regressor to the data
+gbr.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = gbr.predict(X_test)
+</code></pre>
+<p><em>The code snippet above shows how to use a <code>gradient boosting regressor</code> to predict the labels of the test set.</em></p>
+<p><img src="chapters/Machine_Learning/./images/image45.png" alt="Gradient Boosting Regressor" /></p>
+<h3 id="gradient-boosting-classifier"><a class="header" href="#gradient-boosting-classifier">Gradient Boosting Classifier</a></h3>
+<pre><code class="language-python">from sklearn.ensemble import GradientBoostingClassifier
+
+# Instantiate the classifier
+gbc = GradientBoostingClassifier(n_estimators=100, random_state=0, learning_rate=0.1)
+
+# Fit the classifier to the data
+gbc.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = gbc.predict(X_test)
+</code></pre>
+<p><em>The code snippet above shows how to use a <code>gradient boosting classifier</code> to predict the labels of the test set.</em></p>
+<p><img src="chapters/Machine_Learning/./images/image46.png" alt="Gradient Boosting Classifier" /></p>
+<hr />
+<h2 id="support-vector-machines-svm"><a class="header" href="#support-vector-machines-svm">Support Vector Machines (SVM)</a></h2>
+<hr />
+<pre><code>
+</code></pre>
+<pre><code>
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software-architecture"><a class="header" href="#software-architecture">Software Architecture</a></h1>
 <hr />
 <h2 id="table-of-contents-2"><a class="header" href="#table-of-contents-2">Table of Contents</a></h2>
