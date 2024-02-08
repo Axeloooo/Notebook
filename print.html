@@ -1932,6 +1932,43 @@ margin = 2 / np.linalg.norm(coefficients)
 <li><a href="chapters/Software_Architecture/index.html#other-architectures">Other Architectures</a></li>
 </ul>
 </li>
+<li><a href="chapters/Software_Architecture/index.html#data-management">Data Management</a>
+<ul>
+<li><a href="chapters/Software_Architecture/index.html#pdca-for-data-governance">PDCA For Data Governance</a></li>
+<li><a href="chapters/Software_Architecture/index.html#dimensions-of-data-quality">Dimensions of Data Quality</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Architecture/index.html#data-modeling">Data Modeling</a>
+<ul>
+<li><a href="chapters/Software_Architecture/index.html#database-models">Database Models</a></li>
+<li><a href="chapters/Software_Architecture/index.html#normalizing-a-relational-database">Normalizing A Relational Database</a></li>
+<li><a href="chapters/Software_Architecture/index.html#components-of-a-dbms">Components Of A DBMS</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Architecture/index.html#software-development-life-cycle">Software Development Life Cycle</a>
+<ul>
+<li><a href="chapters/Software_Architecture/index.html#delivery-cycles">Delivery Cycles</a></li>
+<li><a href="chapters/Software_Architecture/index.html#planning">Planning</a></li>
+<li><a href="chapters/Software_Architecture/index.html#requirements-gathering--analysis">Requirements Gathering &amp; Analysis</a></li>
+<li><a href="chapters/Software_Architecture/index.html#design">Design</a></li>
+<li><a href="chapters/Software_Architecture/index.html#implementation">Implementation</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Architecture/index.html#software-development-patterns">Software Development Patterns</a>
+<ul>
+<li><a href="chapters/Software_Architecture/index.html#model-view-controller-mvc">Model-View-Controller (MVC)</a></li>
+<li><a href="chapters/Software_Architecture/index.html#solid-principles">SOLID Principles</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Architecture/index.html#cloud-computing">Cloud Computing</a>
+<ul>
+<li><a href="chapters/Software_Architecture/index.html#essential-characteristics">Essential Characteristics</a></li>
+<li><a href="chapters/Software_Architecture/index.html#resource">Resource</a></li>
+<li><a href="chapters/Software_Architecture/index.html#scaling">Scaling</a></li>
+<li><a href="chapters/Software_Architecture/index.html#service-models">Service Models</a></li>
+<li><a href="chapters/Software_Architecture/index.html#deployment-models">Deployment Models</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
@@ -2058,6 +2095,281 @@ margin = 2 / np.linalg.norm(coefficients)
 <li>Microservices</li>
 </ul>
 <p><img src="chapters/Software_Architecture/./images/image15.png" alt="Others" /></p>
+<hr />
+<h2 id="data-management"><a class="header" href="#data-management">Data Management</a></h2>
+<p><img src="chapters/Software_Architecture/./images/image16.png" alt="Data Management" /></p>
+<ul>
+<li>
+<p>Data Stewardship</p>
+</li>
+<li>
+<p>Data Quality</p>
+</li>
+<li>
+<p>Data Integration</p>
+</li>
+<li>
+<p>Enterprise Perspectives</p>
+</li>
+<li>
+<p>Culture Change Leadership</p>
+</li>
+</ul>
+<h3 id="pdca-for-data-governance"><a class="header" href="#pdca-for-data-governance">PDCA For Data Governance</a></h3>
+<ul>
+<li>
+<p><strong>Plan</strong>: Establish a plan to solve data issue problems and determine cost and effort.</p>
+</li>
+<li>
+<p><strong>Do</strong>: Implement data quality controls and processes.</p>
+</li>
+<li>
+<p><strong>Check</strong>: Continuous monitoring and measurement of data quality.</p>
+</li>
+<li>
+<p><strong>Act</strong>: Identify data quality issues and take corrective actions.</p>
+</li>
+</ul>
+<h3 id="dimensions-of-data-quality"><a class="header" href="#dimensions-of-data-quality">Dimensions of Data Quality</a></h3>
+<ul>
+<li>
+<p><strong>Accuracy</strong>: Data is correct and reliable.</p>
+</li>
+<li>
+<p><strong>Completeness</strong>: Data is not missing any information.</p>
+</li>
+<li>
+<p><strong>Consistency</strong>: Data is consistent across the organization.</p>
+</li>
+<li>
+<p><strong>Currency</strong>: Data is up-to-date and relevant.</p>
+</li>
+<li>
+<p><strong>Precision</strong>: Data is precise and accurate.</p>
+</li>
+<li>
+<p><strong>Privacy</strong>: Data is secure and private.</p>
+</li>
+<li>
+<p><strong>Reasonableness</strong>: Data is reasonable and logical.</p>
+</li>
+<li>
+<p><strong>Timeliness</strong>: Data is available when needed.</p>
+</li>
+<li>
+<p><strong>Uniqueness</strong>: Data is unique and not duplicated.</p>
+</li>
+<li>
+<p><strong>Validity</strong>: Data is valid and conforms to business rules.</p>
+</li>
+</ul>
+<hr />
+<h2 id="data-modeling"><a class="header" href="#data-modeling">Data Modeling</a></h2>
+<ul>
+<li>
+<p><strong>Database</strong>: A collection of related data that can be stored in a central location or in multiple locations.</p>
+</li>
+<li>
+<p><strong>Data Hierarchy</strong>: The structure and organization of data, which involves fields, records, and tables.</p>
+</li>
+<li>
+<p><strong>Database Management System (DBMS)</strong>: Software for creating, storing, maintaining, and accessing database files.</p>
+</li>
+</ul>
+<h3 id="database-models"><a class="header" href="#database-models">Database Models</a></h3>
+<p><img src="chapters/Software_Architecture/./images/image17.png" alt="Database Models" /></p>
+<ul>
+<li>
+<p><strong>Conceptual Model</strong>: High-level view of the entities and their attributes.</p>
+</li>
+<li>
+<p><strong>Logical Model</strong>: Detailed view of the entities and the relationships between them.</p>
+</li>
+<li>
+<p><strong>Physical Model</strong>: Detailed view of the entities, their attributes, and the relationships between them.</p>
+</li>
+</ul>
+<h3 id="normalizing-a-relational-database"><a class="header" href="#normalizing-a-relational-database">Normalizing A Relational Database</a></h3>
+<ul>
+<li>
+<p>Eliminate duplicated fields from the same table.</p>
+</li>
+<li>
+<p>Create separate tables for each group of related data.</p>
+</li>
+<li>
+<p>Identify each record with a unique field (primary key).</p>
+</li>
+</ul>
+<h3 id="components-of-a-dbms"><a class="header" href="#components-of-a-dbms">Components Of A DBMS</a></h3>
+<ul>
+<li>
+<p><strong>Database Engine</strong>: Translates logical requests to physical ones</p>
+</li>
+<li>
+<p><strong>Data Definition</strong>: Create / maintain data dictionary</p>
+</li>
+<li>
+<p><strong>Data Manipulation</strong>: SQL or QBE</p>
+</li>
+<li>
+<p><strong>Application Generation</strong>: Design applications or parts of them</p>
+</li>
+<li>
+<p><strong>Data Administration</strong>: Security (CRUD), recovery, backup</p>
+</li>
+</ul>
+<hr />
+<h2 id="software-development-life-cycle"><a class="header" href="#software-development-life-cycle">Software Development Life Cycle</a></h2>
+<p><img src="chapters/Software_Architecture/./images/image18.png" alt="SDLC" /></p>
+<p>Software development life cycle (SDLC) is a series of well-defined phases performed in sequence that serves as a framework for developing a system or project.</p>
+<h3 id="delivery-cycles"><a class="header" href="#delivery-cycles">Delivery Cycles</a></h3>
+<ul>
+<li>
+<p>Predictive</p>
+</li>
+<li>
+<p>Iterative</p>
+</li>
+<li>
+<p>Incremental</p>
+</li>
+<li>
+<p>Agile</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Architecture/./images/image19.png" alt="Delivery Cycles" /></p>
+<h3 id="planning"><a class="header" href="#planning">Planning</a></h3>
+<ol>
+<li>
+<p>Economic feasibility</p>
+</li>
+<li>
+<p>Technical feasibility</p>
+</li>
+<li>
+<p>Operational feasibility</p>
+</li>
+<li>
+<p>Schedule feasibility</p>
+</li>
+<li>
+<p>Legal feasibility</p>
+</li>
+</ol>
+<h3 id="requirements-gathering--analysis"><a class="header" href="#requirements-gathering--analysis">Requirements Gathering &amp; Analysis</a></h3>
+<p>Requirements are documented and tracked in a requirements traceability matrix (RTM).</p>
+<p><img src="chapters/Software_Architecture/./images/image20.png" alt="Requirements Gathering" /></p>
+<h3 id="design"><a class="header" href="#design">Design</a></h3>
+<ul>
+<li>
+<p><strong>Conceptual</strong>: The output of analysis.</p>
+</li>
+<li>
+<p><strong>Logical</strong>: Adds a hardware / software / OS layer.</p>
+</li>
+<li>
+<p><strong>Physical</strong>: Specific platform design.</p>
+</li>
+</ul>
+<h3 id="implementation"><a class="header" href="#implementation">Implementation</a></h3>
+<ul>
+<li>
+<p><strong>Coding</strong>: Writing the code.</p>
+</li>
+<li>
+<p><strong>Testing</strong>: Testing the code.</p>
+</li>
+<li>
+<p><strong>Deployment</strong>: Deploying the code.</p>
+</li>
+</ul>
+<hr />
+<h2 id="software-development-patterns"><a class="header" href="#software-development-patterns">Software Development Patterns</a></h2>
+<p>Patterns are reusable solutions to common problems in software design. From a solution design perspective different patterns exist to solve different problems.</p>
+<ul>
+<li>
+<p>Creational Patterns</p>
+</li>
+<li>
+<p>Structural Patterns</p>
+</li>
+<li>
+<p>Behavioral Patterns</p>
+</li>
+</ul>
+<h3 id="model-view-controller-mvc"><a class="header" href="#model-view-controller-mvc">Model-View-Controller (MVC)</a></h3>
+<p><img src="chapters/Software_Architecture/./images/image10.png" alt="MVC" /></p>
+<ul>
+<li>Model</li>
+</ul>
+<p>The model manages the behavior and data of the application domain, responds to requests for information about its state (usually from the view), and responds to instructions to change state (usually from the controller).</p>
+<ul>
+<li>View</li>
+</ul>
+<p>The view manages the display of information.</p>
+<ul>
+<li>Controller</li>
+</ul>
+<p>The controller interprets the mouse and keyboard inputs from the user, informing the model and/or the view of change as appropriate.</p>
+<h3 id="solid-principles"><a class="header" href="#solid-principles">SOLID Principles</a></h3>
+<p><img src="chapters/Software_Architecture/./images/image21.png" alt="SOLID" /></p>
+<ul>
+<li>
+<p><strong>S - Single Responsibility Principle</strong>: A class should have only one reason to change.</p>
+</li>
+<li>
+<p><strong>O - Open/Closed Principle</strong>: A class should be open for extension, but closed for modification.</p>
+</li>
+<li>
+<p><strong>L - Liskov Substitution Principle</strong>: Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.</p>
+</li>
+<li>
+<p><strong>I - Interface Segregation Principle</strong>: Software modules (classes and methods) should not be forced to depend upon interfaces that they do not use.</p>
+</li>
+<li>
+<p><strong>D - Dependency Inversion Principle</strong>: High-level modules should not depend on low-level modules. Both should depend on abstractions.</p>
+</li>
+</ul>
+<hr />
+<h2 id="cloud-computing"><a class="header" href="#cloud-computing">Cloud Computing</a></h2>
+<p><img src="chapters/Software_Architecture/./images/image22.png" alt="Cloud Computing" /></p>
+<p>Cloud computing is a model for enabling ubiquitous, convenient, on-demand network access to a shared pool of configurable computing resources (e.g., networks, servers, storage,
+applications, and services) that can be rapidly provisioned and released with minimal management effort or service provider interaction. This cloud model is composed of five essential characteristics, three service models, and four deployment models.</p>
+<h3 id="essential-characteristics"><a class="header" href="#essential-characteristics">Essential Characteristics</a></h3>
+<ul>
+<li>
+<p>On-demand</p>
+</li>
+<li>
+<p>Ubiquitous access</p>
+</li>
+<li>
+<p>Multitenancy (and resource pooling)</p>
+</li>
+<li>
+<p>Elasticity</p>
+</li>
+<li>
+<p>Measured usage</p>
+</li>
+</ul>
+<h3 id="resource"><a class="header" href="#resource">Resource</a></h3>
+<p>An IT resource is a physical or virtual IT related artifact that can be either software based, such as a virtual server or a custom software program, or hardware based, such as a physical server or a network device.</p>
+<p><img src="chapters/Software_Architecture/./images/image23.png" alt="Resource" /></p>
+<h3 id="scaling"><a class="header" href="#scaling">Scaling</a></h3>
+<ul>
+<li><strong>Horizontal Scaling</strong>: Adding more nodes to a system.</li>
+</ul>
+<p><img src="chapters/Software_Architecture/./images/image24.png" alt="Horizontal Scaling" /></p>
+<ul>
+<li><strong>Vertical Scaling</strong>: Adding more resources to a single node.</li>
+</ul>
+<p><img src="chapters/Software_Architecture/./images/image25.png" alt="Vertical Scaling" /></p>
+<h3 id="service-models"><a class="header" href="#service-models">Service Models</a></h3>
+<p><img src="chapters/Software_Architecture/./images/image26.png" alt="Service Models" /></p>
+<h3 id="deployment-models"><a class="header" href="#deployment-models">Deployment Models</a></h3>
+<p><img src="chapters/Software_Architecture/./images/image27.png" alt="Deployment Models" /></p>
 <hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software-testing"><a class="header" href="#software-testing">Software Testing</a></h1>
 <hr />
