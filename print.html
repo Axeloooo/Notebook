@@ -2109,6 +2109,21 @@ margin = 2 / np.linalg.norm(coefficients)
 <li><a href="chapters/Software_Testing/index.html#mockito">Mockito</a></li>
 </ul>
 </li>
+<li><a href="chapters/Software_Testing/index.html#black-box-testing">Black Box Testing</a>
+<ul>
+<li><a href="chapters/Software_Testing/index.html#equivalent-class-testing-ect">Equivalent Class Testing (ECT)</a></li>
+<li><a href="chapters/Software_Testing/index.html#weak--strong-ect">Weak / Strong ECT</a></li>
+<li><a href="chapters/Software_Testing/index.html#boundary-value-testing-bvt">Boundary Value Testing (BVT)</a></li>
+<li><a href="chapters/Software_Testing/index.html#limitations-bvt">Limitations BVT</a></li>
+<li><a href="chapters/Software_Testing/index.html#robustness-testing">Robustness Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#worst-case-testing-wct">Worst Case Testing (WCT)</a></li>
+<li><a href="chapters/Software_Testing/index.html#category-partition-testing-cpt">Category Partition Testing (CPT)</a></li>
+<li><a href="chapters/Software_Testing/index.html#decision-table-testing">Decision Table Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#combinatorial-testing">Combinatorial Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#profile-based-testing">Profile-Based Testing</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Testing/index.html#white-box-testing">White Box Testing</a></li>
 </ul>
 <hr />
 <h2 id="foundations-of-testing"><a class="header" href="#foundations-of-testing">Foundations of Testing</a></h2>
@@ -2564,6 +2579,182 @@ public class GradesServiceTest {
 </ul>
 <p>4 x 2 x 3 = 24</p>
 <h3 id="boundary-value-testing-bvt"><a class="header" href="#boundary-value-testing-bvt">Boundary Value Testing (BVT)</a></h3>
+<ul>
+<li>
+<p>While equivalence partitioning selects tests from within equivalence classes, boundary value analysis focuses on tests at and near the boundaries of equivalence classes.</p>
+</li>
+<li>
+<p>Tests derived using either of the two techniques may overlap.</p>
+</li>
+<li>
+<p>For each equivalence class, setting values for input variable just below the min, at the min, just above the min, a nominal value, just below the max, at the max and just above the max.</p>
+</li>
+<li>
+<p>Typical strategy for all input variables: Holding the values of all but one variable at their nominal values, letting one variable take each of the above combinations.</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image8.png" alt="Boundary Value Testing" /></p>
+<h3 id="limitations-bvt"><a class="header" href="#limitations-bvt">Limitations BVT</a></h3>
+<p>For n independent variables, the number of test cases is:</p>
+<p><code>4n + 1</code></p>
+<p>Example:</p>
+<p>Suppose we are testing a software module of an editor system that allows a user to enter new font identifiers into a font database. The following are the requirements for the font identifier:</p>
+<ul>
+<li>
+<p>Spec. 1:</p>
+<ul>
+<li>
+<p>C1. Font name is alphanumeric, valid</p>
+</li>
+<li>
+<p>C2. Font name is not alphanumeric, invalid</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Spec. 2:</p>
+<ul>
+<li>
+<p>C3. Font identifier has between 3 and 15 characters, valid</p>
+</li>
+<li>
+<p>C4. Font identifier has less than 3 characters, invalid</p>
+</li>
+<li>
+<p>C5. Font identifier has greater than 15 characters, invalid</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Spec. 3:</p>
+<ul>
+<li>
+<p>C6. The first 2 characters are letters, valid</p>
+</li>
+<li>
+<p>C7. The first 2 characters are not letters, invalid</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>For font identifier the values for the bounds groups are:</p>
+<ul>
+<li>
+<p>BLB — 2</p>
+</li>
+<li>
+<p>LB — 3</p>
+</li>
+<li>
+<p>ALB — 4</p>
+</li>
+<li>
+<p>BUB — 14</p>
+</li>
+<li>
+<p>UB — 15</p>
+</li>
+<li>
+<p>AUB — 16</p>
+</li>
+<li>
+<p>NOM — anything between 4 and 14</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image7.png" alt="Boundary Value Testing" /></p>
+<h3 id="robustness-testing"><a class="header" href="#robustness-testing">Robustness Testing</a></h3>
+<ul>
+<li>
+<p>Robustness testing is the degree to which a component or system can function correctly in the presence of invalid inputs or stressful environmental conditions.</p>
+</li>
+<li>
+<p>In Robustness testing the BLB and AUB are also included in test cases</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image9.png" alt="Robustness Testing" /></p>
+<h3 id="worst-case-testing-wct"><a class="header" href="#worst-case-testing-wct">Worst Case Testing (WCT)</a></h3>
+<ul>
+<li>
+<p>The worst case testing originates from the concept that more than one variable has extreme values.</p>
+</li>
+<li>
+<p>Good strategy when physical variables have numerous interactions and failure is costly.</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image10.png" alt="Worst Case Testing" /></p>
+<h3 id="category-partition-testing-cpt"><a class="header" href="#category-partition-testing-cpt">Category Partition Testing (CPT)</a></h3>
+<ul>
+<li>
+<p>Combines boundary value analysis and equivalent classes with domain expertise.</p>
+</li>
+<li>
+<p>You can define constraints as well.</p>
+</li>
+</ul>
+<h3 id="decision-table-testing"><a class="header" href="#decision-table-testing">Decision Table Testing</a></h3>
+<ul>
+<li>
+<p>Can help us deal with combination of inputs which produce different results, only one of which is correct.</p>
+</li>
+<li>
+<p>Number of possible combinations is given by <code>2^n</code> (if binary), where n is the number of inputs.</p>
+</li>
+<li>
+<p>Some combinations are meaningless and/or you cannot test all but you will choose a rich sub-set of the possible combinations using decision based testing technique.</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image11.png" alt="Decision Table Testing" /></p>
+<h3 id="combinatorial-testing"><a class="header" href="#combinatorial-testing">Combinatorial Testing</a></h3>
+<p>Combinatorial or t-way testing is a proven method for more effective testing at lower cost. NIST research showed that most software bugs and failures are caused by one or two parameters, with progressively fewer by three or more, which means that combinatorial testing can provide more efficient fault detection than conventional methods.</p>
+<p><img src="chapters/Software_Testing/./images/image12.png" alt="Combinatorial Testing" /></p>
+<ul>
+<li>
+<p><code>k</code> factors (number of parameters/configurations)</p>
+</li>
+<li>
+<p><code>t</code> interactions (t-way testing)</p>
+</li>
+<li>
+<p><code>l</code> levels: possible values for each factor</p>
+</li>
+</ul>
+<p>The usage of NIST's combinatorial testing tool, Automated Combinatorial Testing for Software (ACTS), can help you to generate test cases for combinatorial testing.</p>
+<p><a href="https://csrc.nist.gov/projects/automated-combinatorial-testing-for-software/downloadable-tools"><strong><em>Download ACTS</em></strong></a></p>
+<h3 id="profile-based-testing"><a class="header" href="#profile-based-testing">Profile-Based Testing</a></h3>
+<ul>
+<li>
+<p>Profile for a phenomenon is a set of disjoint alternatives called <strong><em>elements</em></strong> or <strong><em>features</em></strong> that represent that phenomenon together with their occurrence probabilities.</p>
+</li>
+<li>
+<p>Operational Profile is the set of operations (operation names and frequencies) and their probabilities of occurrences.</p>
+</li>
+<li>
+<p>Tabular representation is composed of a list of operation names and their probability of
+occurrence.</p>
+</li>
+</ul>
+<p>Example:</p>
+<p>Assume that the following is the operational profile for a VCR system. The following table shows the usages scenario of each function depending on the starting state (rows) data that has been collected through analysis of customers’ behavior.</p>
+<ul>
+<li>
+<p>Stop (STOP)</p>
+</li>
+<li>
+<p>Rewind (REWIND)</p>
+</li>
+<li>
+<p>Play (PLAY)</p>
+</li>
+<li>
+<p>Fast Forward (FF)</p>
+</li>
+<li>
+<p>Record (REC)</p>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image13.png" alt="Profile-Based Testing" /></p>
+<hr />
+<h2 id="white-box-testing"><a class="header" href="#white-box-testing">White Box Testing</a></h2>
 
                     </main>
 
