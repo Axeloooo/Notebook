@@ -570,7 +570,7 @@ to output variables.</p>
 <ul>
 <li>
 <p>In <strong>classification</strong>, we want to assign a discrete label to an input, such as
-&quot;spam&quot; or &quot;not spam&quot; for an email.</p>
+"spam" or "not spam" for an email.</p>
 </li>
 <li>
 <p>In <strong>regression</strong>, we want to estimate a continuous value for an input, such as
@@ -1159,7 +1159,7 @@ y_pred = rfr.predict(X_test)
 <p><em>The code snippet above shows how to use a <code>random forest regressor</code> to predict the labels of the test set.</em></p>
 <p><img src="./images/image42.png" alt="Random Forest Regressor" /></p>
 <h3 id="random-forest-classifier"><a class="header" href="#random-forest-classifier">Random Forest Classifier</a></h3>
-<p>For classification, each algorithm makes a &quot;soft&quot; prediction, providing a probability of each possible output label. The probabilities predicted by all the trees are averaged, and the class with the highest probability is the final prediction.</p>
+<p>For classification, each algorithm makes a "soft" prediction, providing a probability of each possible output label. The probabilities predicted by all the trees are averaged, and the class with the highest probability is the final prediction.</p>
 <pre><code class="language-python">from sklearn.ensemble import RandomForestClassifier
 
 # Instantiate the classifier
@@ -1250,13 +1250,55 @@ y_pred = gbc.predict(X_test)
 </code></pre>
 <p><em>The code snippet above shows how to use a <code>gradient boosting classifier</code> to predict the labels of the test set.</em></p>
 <p><img src="./images/image46.png" alt="Gradient Boosting Classifier" /></p>
+<h3 id="strengths-1"><a class="header" href="#strengths-1">Strengths</a></h3>
+<ul>
+<li>Gradient boosted decision trees are among the most powerful and widely used models for supervised learning.</li>
+</ul>
+<h3 id="weaknesses-1"><a class="header" href="#weaknesses-1">Weaknesses</a></h3>
+<ul>
+<li>
+<p>Their main drawback is that they require careful tuning of the parameters and may take a long time to train.</p>
+</li>
+<li>
+<p>As with other tree-based models, it often does not work well on high-dimensional sparse data.</p>
+</li>
+</ul>
+<h3 id="random-forest-vs-gradient-boosting"><a class="header" href="#random-forest-vs-gradient-boosting">Random Forest vs Gradient Boosting</a></h3>
+<ul>
+<li>
+<p>As both gradient boosting and random forests perform well on similar kinds of data, a common approach is to first try random forests.</p>
+</li>
+<li>
+<p>If random forests work well but prediction time is at a premium, or it’s important to squeeze out that last percentage of accuracy from the machine learning model, moving to gradient boosting often helps.</p>
+</li>
+</ul>
 <hr />
 <h2 id="support-vector-machines-svm"><a class="header" href="#support-vector-machines-svm">Support Vector Machines (SVM)</a></h2>
+<p><img src="./images/image47.png" alt="Support Vector Machines" /></p>
+<p>In Support Vector Machines (SVM), support vectors are the data points that lie closest to the decision boundary (or hyperplane). They are the data points most difficult to classify and have direct influence on the optimal location of the decision boundary.</p>
+<h3 id="hyperplane"><a class="header" href="#hyperplane">Hyperplane</a></h3>
+<p>A hyperplane is a plane with one less dimension than the dimension of its ambient space. For example, if space is 3-dimensional, then its hyperplanes are 2-dimensional planes. Moreover, if the space is 2-dimensional, its hyperplanes are the 1-dimensional lines.</p>
+<p><img src="./images/image48.png" alt="Hyperplane" /></p>
+<pre><code class="language-python">from sklearn.svm import SVC
+import numpy as np
+
+# Instantiate the classifier
+svc = SVC(kernel='linear')
+
+# Fit the classifier to the data
+svc.fit(X_train, y_train)
+
+# Get the support vectors
+support_vectors = svc.support_vectors_
+
+# Get the coefficients and the intercept
+coefficients = svc.coef_
+intercept = svc.intercept_
+
+# Get the margin
+margin = 2 / np.linalg.norm(coefficients)
+</code></pre>
 <hr />
-<pre><code>
-</code></pre>
-<pre><code>
-</code></pre>
 
                     </main>
 

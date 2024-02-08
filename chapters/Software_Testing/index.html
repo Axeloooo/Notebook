@@ -339,7 +339,7 @@ public class TestClass {
     assertNotNull(1);             // Check if not null
     assertSame(1, 2);             // Check if object is same
     assertNotSame(1, 1.5);        // Check if object not same
-    fail(&quot;Not yet implemented&quot;);  // Fail test
+    fail("Not yet implemented");  // Fail test
   }
 }
 </code></pre>
@@ -409,7 +409,7 @@ public class TestClass {
 
   @BeforeEach // Optional (setup)
   public void before() throws Exception {
-    System.out.println(&quot;Before&quot;);
+    System.out.println("Before");
     tournament = new Tournament(100, 60);
   }
 
@@ -424,7 +424,7 @@ public class TestClass {
 
   @AfterEach // Optional (cleanup)
   public void after() throws Exception {
-    System.out.println(&quot;After&quot;);
+    System.out.println("After");
     tournament = null;
   }
 }
@@ -436,7 +436,7 @@ public class TestClass {
 <p>Use <code>@Ignore</code> annotation to ignore a test.</p>
 <pre><code class="language-java">import org.junit.Disabled;
 
-@Disabled(&quot;Disabled until bug #99 has been fixed&quot;)
+@Disabled("Disabled until bug #99 has been fixed")
 @Test
 public void testMethod() {
   // Test method to be ignored
@@ -499,7 +499,7 @@ public class TestClass {
 
   @Test // Test case
   public void testAdd() {
-    assertTrue(&quot;Addition Test&quot;, this.sum == calculator.add(this.a, this.b));
+    assertTrue("Addition Test", this.sum == calculator.add(this.a, this.b));
   }
 
   @AfterAll // Cleanup

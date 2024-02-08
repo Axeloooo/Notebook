@@ -311,8 +311,8 @@
 <pre><code class="language-python">import json
 
 item = {
-    &quot;name&quot;: &quot;egg&quot;,
-    &quot;price&quot;: 0.99,
+    "name": "egg",
+    "price": 0.99,
 }
 
 with open('data.json', 'w') as f:
@@ -349,8 +349,8 @@ to work with.</p>
 <pre><code class="language-python">import yaml
 
 item = {
-    &quot;name&quot;: &quot;egg&quot;,
-    &quot;price&quot;: 0.99,
+    "name": "egg",
+    "price": 0.99,
 }
 
 with open('data.yaml', 'w') as f:
@@ -388,7 +388,7 @@ git config --global user.email &lt;email&gt;  # Set user email
 <p>Identified by a unique <code>SHA-1 Hash</code>.</p>
 </li>
 </ul>
-<pre><code class="language-bash">git commit -m &quot;Add new feature&quot;   # Commit changes
+<pre><code class="language-bash">git commit -m "Add new feature"   # Commit changes
 
 git show 5b8e4f                   # Show commit details
 </code></pre>
@@ -693,7 +693,7 @@ dockerfiles on Github WorkFlows.</p>
 <pre><code class="language-Dockerfile">FROM ubuntu
 ENV DOCK_MESSAGE Hello My World
 ADD dir /files
-CMD [&quot;bash&quot;, &quot;echo $DOCK_MESSAGE&quot;]
+CMD ["bash", "echo $DOCK_MESSAGE"]
 </code></pre>
 <p>The above <code>Dockerfile</code> will create an image from the <code>ubuntu</code> image, set an environment variable, add a directory to the image, and run a command.</p>
 <ul>
@@ -731,7 +731,7 @@ docker inspect &lt;image_id&gt;   # Return low-level information on Docker objec
 <ul>
 <li>Configuration is done in a <code>docker-compose.yml</code> file.</li>
 </ul>
-<pre><code class="language-yaml">version: &quot;3&quot;
+<pre><code class="language-yaml">version: "3"
 
 services:
   postgres:
@@ -739,7 +739,7 @@ services:
     environment:
       POSTGRES_PASSWORD: root
     ports:
-      - &quot;5432:5432&quot;
+      - "5432:5432"
     volumes:
       - db:/var/lib/postgresql/data
     networks:
@@ -751,7 +751,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.com
       PGADMIN_DEFAULT_PASSWORD: admin
     ports:
-      - &quot;5050:80&quot;
+      - "5050:80"
     networks:
       - postgres
     volumes:
