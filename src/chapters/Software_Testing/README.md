@@ -35,6 +35,18 @@
   - [Mocks](#mocks)
   - [Test Lifecycle with Mocks](#test-lifecycle-with-mocks)
   - [Mockito](#mockito)
+- [Black Box Testing](#black-box-testing)
+  - [Equivalent Class Testing (ECT)](#equivalent-class-testing-ect)
+  - [Weak / Strong ECT](#weak--strong-ect)
+  - [Boundary Value Testing (BVT)](#boundary-value-testing-bvt)
+  - [Limitations BVT](#limitations-bvt)
+  - [Robustness Testing](#robustness-testing)
+  - [Worst Case Testing (WCT)](#worst-case-testing-wct)
+  - [Category Partition Testing (CPT)](#category-partition-testing-cpt)
+  - [Decision Table Testing](#decision-table-testing)
+  - [Combinatorial Testing](#combinatorial-testing)
+  - [Profile-Based Testing](#profile-based-testing)
+- [White Box Testing](#white-box-testing)
 
 ---
 
@@ -544,3 +556,138 @@ Example:
 4 x 2 x 3 = 24
 
 ### Boundary Value Testing (BVT)
+
+- While equivalence partitioning selects tests from within equivalence classes, boundary value analysis focuses on tests at and near the boundaries of equivalence classes.
+
+- Tests derived using either of the two techniques may overlap.
+
+- For each equivalence class, setting values for input variable just below the min, at the min, just above the min, a nominal value, just below the max, at the max and just above the max.
+
+- Typical strategy for all input variables: Holding the values of all but one variable at their nominal values, letting one variable take each of the above combinations.
+
+![Boundary Value Testing](./images/image8.png)
+
+### Limitations BVT
+
+For n independent variables, the number of test cases is:
+
+`4n + 1`
+
+Example:
+
+Suppose we are testing a software module of an editor system that allows a user to enter new font identifiers into a font database. The following are the requirements for the font identifier:
+
+- Spec. 1:
+
+  - C1. Font name is alphanumeric, valid
+
+  - C2. Font name is not alphanumeric, invalid
+
+- Spec. 2:
+
+  - C3. Font identifier has between 3 and 15 characters, valid
+
+  - C4. Font identifier has less than 3 characters, invalid
+
+  - C5. Font identifier has greater than 15 characters, invalid
+
+- Spec. 3:
+
+  - C6. The first 2 characters are letters, valid
+
+  - C7. The first 2 characters are not letters, invalid
+
+For font identifier the values for the bounds groups are:
+
+- BLB — 2
+
+- LB — 3
+
+- ALB — 4
+
+- BUB — 14
+
+- UB — 15
+
+- AUB — 16
+
+- NOM — anything between 4 and 14
+
+![Boundary Value Testing](./images/image7.png)
+
+### Robustness Testing
+
+- Robustness testing is the degree to which a component or system can function correctly in the presence of invalid inputs or stressful environmental conditions.
+
+- In Robustness testing the BLB and AUB are also included in test cases
+
+![Robustness Testing](./images/image9.png)
+
+### Worst Case Testing (WCT)
+
+- The worst case testing originates from the concept that more than one variable has extreme values.
+
+- Good strategy when physical variables have numerous interactions and failure is costly.
+
+![Worst Case Testing](./images/image10.png)
+
+### Category Partition Testing (CPT)
+
+- Combines boundary value analysis and equivalent classes with domain expertise.
+
+- You can define constraints as well.
+
+### Decision Table Testing
+
+- Can help us deal with combination of inputs which produce different results, only one of which is correct.
+
+- Number of possible combinations is given by `2^n` (if binary), where n is the number of inputs.
+
+- Some combinations are meaningless and/or you cannot test all but you will choose a rich sub-set of the possible combinations using decision based testing technique.
+
+![Decision Table Testing](./images/image11.png)
+
+### Combinatorial Testing
+
+Combinatorial or t-way testing is a proven method for more effective testing at lower cost. NIST research showed that most software bugs and failures are caused by one or two parameters, with progressively fewer by three or more, which means that combinatorial testing can provide more efficient fault detection than conventional methods.
+
+![Combinatorial Testing](./images/image12.png)
+
+- `k` factors (number of parameters/configurations)
+
+- `t` interactions (t-way testing)
+
+- `l` levels: possible values for each factor
+
+The usage of NIST's combinatorial testing tool, Automated Combinatorial Testing for Software (ACTS), can help you to generate test cases for combinatorial testing.
+
+[**_Download ACTS_**](https://csrc.nist.gov/projects/automated-combinatorial-testing-for-software/downloadable-tools)
+
+### Profile-Based Testing
+
+- Profile for a phenomenon is a set of disjoint alternatives called **_elements_** or **_features_** that represent that phenomenon together with their occurrence probabilities.
+
+- Operational Profile is the set of operations (operation names and frequencies) and their probabilities of occurrences.
+
+- Tabular representation is composed of a list of operation names and their probability of
+  occurrence.
+
+Example:
+
+Assume that the following is the operational profile for a VCR system. The following table shows the usages scenario of each function depending on the starting state (rows) data that has been collected through analysis of customers’ behavior.
+
+- Stop (STOP)
+
+- Rewind (REWIND)
+
+- Play (PLAY)
+
+- Fast Forward (FF)
+
+- Record (REC)
+
+![Profile-Based Testing](./images/image13.png)
+
+---
+
+## White Box Testing
