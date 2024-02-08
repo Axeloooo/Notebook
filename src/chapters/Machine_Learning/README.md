@@ -1147,16 +1147,55 @@ _The code snippet above shows how to use a `gradient boosting classifier` to pre
 
 ![Gradient Boosting Classifier](./images/image46.png)
 
+### Strengths
+
+- Gradient boosted decision trees are among the most powerful and widely used models for supervised learning.
+
+### Weaknesses
+
+- Their main drawback is that they require careful tuning of the parameters and may take a long time to train.
+
+- As with other tree-based models, it often does not work well on high-dimensional sparse data.
+
+### Random Forest vs Gradient Boosting
+
+- As both gradient boosting and random forests perform well on similar kinds of data, a common approach is to first try random forests.
+
+- If random forests work well but prediction time is at a premium, or it’s important to squeeze out that last percentage of accuracy from the machine learning model, moving to gradient boosting often helps.
+
 ---
 
 ## Support Vector Machines (SVM)
 
+![Support Vector Machines](./images/image47.png)
+
+In Support Vector Machines (SVM), support vectors are the data points that lie closest to the decision boundary (or hyperplane). They are the data points most difficult to classify and have direct influence on the optimal location of the decision boundary.
+
+### Hyperplane
+
+A hyperplane is a plane with one less dimension than the dimension of its ambient space. For example, if space is 3-dimensional, then its hyperplanes are 2-dimensional planes. Moreover, if the space is 2-dimensional, its hyperplanes are the 1-dimensional lines.
+
+![Hyperplane](./images/image48.png)
+
+```python
+from sklearn.svm import SVC
+import numpy as np
+
+# Instantiate the classifier
+svc = SVC(kernel='linear')
+
+# Fit the classifier to the data
+svc.fit(X_train, y_train)
+
+# Get the support vectors
+support_vectors = svc.support_vectors_
+
+# Get the coefficients and the intercept
+coefficients = svc.coef_
+intercept = svc.intercept_
+
+# Get the margin
+margin = 2 / np.linalg.norm(coefficients)
+```
+
 ---
-
-```
-
-```
-
-```
-
-```
