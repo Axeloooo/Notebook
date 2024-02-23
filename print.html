@@ -224,6 +224,33 @@
 <li><a href="chapters/DevOps/index.html#docker-compose">Docker Compose</a></li>
 </ul>
 </li>
+<li><a href="chapters/DevOps/index.html#portainer">Portainer</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#installation">Installation</a></li>
+</ul>
+</li>
+<li><a href="chapters/DevOps/index.html#ansible">Ansible</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#ssh-or-winrm">SSH Or WinRM</a></li>
+<li><a href="chapters/DevOps/index.html#inventory">Inventory</a></li>
+<li><a href="chapters/DevOps/index.html#playbook">Playbook</a></li>
+<li><a href="chapters/DevOps/index.html#task">Task</a></li>
+<li><a href="chapters/DevOps/index.html#role">Role</a></li>
+<li><a href="chapters/DevOps/index.html#facts">Facts</a></li>
+<li><a href="chapters/DevOps/index.html#modules">Modules</a></li>
+<li><a href="chapters/DevOps/index.html#variables">Variables</a></li>
+</ul>
+</li>
+<li><a href="chapters/DevOps/index.html#terraform">Terraform</a>
+<ul>
+<li><a href="chapters/DevOps/index.html#configuration">Configuration</a></li>
+<li><a href="chapters/DevOps/index.html#commands">Commands</a></li>
+<li><a href="chapters/DevOps/index.html#local-state">Local State</a></li>
+<li><a href="chapters/DevOps/index.html#remote-state">Remote State</a></li>
+<li><a href="chapters/DevOps/index.html#plan--apply">Plan / Apply</a></li>
+<li><a href="chapters/DevOps/index.html#terraform-variables">Terraform Variables</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="data-formats"><a class="header" href="#data-formats">Data Formats</a></h2>
@@ -775,6 +802,254 @@ volumes:
 <pre><code class="language-bash">docker-compose up    # Create and start all the services from your configuration
 
 docker-compose down  # Stop and remove containers, networks, images, and volumes
+</code></pre>
+<hr />
+<h2 id="portainer"><a class="header" href="#portainer">Portainer</a></h2>
+<p><img src="chapters/DevOps/./images/image15.png" alt="Portainer" /></p>
+<p>Portainer is a lightweight management UI which allows you to easily manage your Docker host or Swarm cluster.</p>
+<ul>
+<li>
+<p><strong>Portainer Agent</strong>: A container that runs on each Docker host and Swarm manager. It is responsible for managing the local Docker environment.</p>
+</li>
+<li>
+<p><strong>Portainer Server</strong>: A container that runs on the Docker host and is responsible for managing the Portainer Agent.</p>
+</li>
+</ul>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<ol>
+<li>Run the following commands to install Portainer:</li>
+</ol>
+<pre><code class="language-bash">docker volume create portainer_data
+
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+</code></pre>
+<ol start="2">
+<li>
+<p>Open your web browser and navigate to <code>http://localhost:8000</code>.</p>
+</li>
+<li>
+<p>Create an admin user and password.</p>
+</li>
+<li>
+<p>Select <code>Local</code> and click <code>Connect</code>.</p>
+</li>
+<li>
+<p>You will be redirected to the Portainer dashboard.</p>
+</li>
+</ol>
+<hr />
+<h2 id="ansible"><a class="header" href="#ansible">Ansible</a></h2>
+<p><img src="chapters/DevOps/./images/image16.png" alt="Ansible" /></p>
+<p>Ansible is an open-source IT automation tool that simplifies and automates various manual IT processes, including provisioning, configuration management, application deployment, and orchestration.</p>
+<p>Ansible uses a declarative language called <code>YAML</code> to define automation tasks, which makes it easy to read and understand.</p>
+<p>Ansible is agentless, which means it doesn’t require any software or agents to be installed on the target hosts (managed nodes).</p>
+<h3 id="ssh-or-winrm"><a class="header" href="#ssh-or-winrm">SSH Or WinRM</a></h3>
+<p>Ansible communicates with the managed nodes using SSH (for Unix-based systems) or WinRM (for Windows systems).</p>
+<pre><code class="language-yaml">ansible_ssh_user: root
+ansible_ssh_pass: password
+</code></pre>
+<p><em>The above configuration will allow Ansible to communicate with the managed nodes using <code>SSH</code>.</em></p>
+<h3 id="inventory"><a class="header" href="#inventory">Inventory</a></h3>
+<p>Ansible uses an inventory file that lists the IP addresses or hostnames of the managed nodes. This inventory can be static (defined in a file) or dynamic (generated programmatically).</p>
+<pre><code class="language-yaml">webservers:
+  hosts:
+    web1:
+    web2:
+    web3:
+</code></pre>
+<p><em>The above inventory file contains a list of hosts in the <code>webservers</code> group.</em></p>
+<h3 id="playbook"><a class="header" href="#playbook">Playbook</a></h3>
+<p>A blueprint of automation tasks that are executed with limited manual effort across an inventory of IT solutions. Playbooks tell Ansible what to do and how to do it. They are written in YAML and can be used to automate a wide range of tasks.</p>
+<pre><code class="language-yaml">- name: Install Apache
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+    - name: Start Apache
+      service:
+        name: apache2
+        state: started
+</code></pre>
+<p><em>The above playbook will install Apache on all the hosts in the <code>webservers</code> group.</em></p>
+<h3 id="task"><a class="header" href="#task">Task</a></h3>
+<p>The individual steps that Ansible executes. Tasks are defined in playbooks and can be used to install packages, configure services, and more.</p>
+<pre><code class="language-yaml">- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+</code></pre>
+<p><em>The above <code>task</code> will install <code>Apache</code> on the managed node.</em></p>
+<h3 id="role"><a class="header" href="#role">Role</a></h3>
+<p>A way to break down complex tasks into smaller, more manageable pieces. Roles contain lists of tasks that perform the work you’ve configured them to do.</p>
+<pre><code class="language-yaml">- name: Install Apache
+  hosts: webservers
+  become: true
+  roles:
+    - apache
+</code></pre>
+<p><em>The above playbook will install Apache on all the hosts in the <code>webservers</code> group using the <code>apache</code> role.</em></p>
+<h3 id="facts"><a class="header" href="#facts">Facts</a></h3>
+<p>The way of getting data from systems. Facts can be used in playbook variables and can be disabled if not required.</p>
+<pre><code class="language-yaml">- name: Gather facts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Print facts
+      debug:
+        var: ansible_facts
+</code></pre>
+<p><em>The above playbook will gather <code>facts</code> from all the hosts and print them.</em></p>
+<h3 id="modules"><a class="header" href="#modules">Modules</a></h3>
+<p>Ansible modules are standalone scripts that can be used inside playbooks to automate tasks. They are used to perform tasks such as installing packages, copying files, and managing services.</p>
+<pre><code class="language-yaml">- name: Install Apache
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+</code></pre>
+<p><em>The above playbook uses the <code>apt</code> module to install <code>Apache</code> on the managed node.</em></p>
+<h3 id="variables"><a class="header" href="#variables">Variables</a></h3>
+<p>Ansible playbooks use a double curly brace <code>{{}}</code> syntax to reference variables. Variables can be defined in playbooks, roles, and inventory files.</p>
+<pre><code class="language-yaml">- name: Informative message
+  hosts: webservers
+  tasks:
+    - name: Hostname and port
+      debug: msg="{{ ansible_hostname }} is running on port {{ apache_port }}"
+</code></pre>
+<p><em>The above playbook will print the value of the <code>ansible_hostname</code> and <code>apache_port</code> variables.</em></p>
+<hr />
+<h2 id="terraform"><a class="header" href="#terraform">Terraform</a></h2>
+<p><img src="chapters/DevOps/./images/image17.png" alt="Terraform" /></p>
+<p>Terraform is an infrastructure as code (IaC) tool for provisioning cloud resources. It is cloud-agnostic and allows you to define your infrastructure in a declarative configuration language.</p>
+<p>Terraform then creates an execution plan that defines what will be done to reach the desired state, and then executes it to build the described infrastructure.</p>
+<p>Terraform uses a declarative language called <code>HCL</code> (HashiCorp Configuration Language) to define infrastructure.</p>
+<p>Terraform supports a wide range of cloud providers, the most popular being AWS, Azure, Google Cloud, and DigitalOcean.</p>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
+<p>Terraform configuration files are used to define the infrastructure that you want to create. These files are written in <code>HCL</code> and have a <code>.tf</code> extension.</p>
+<pre><code class="language-hcl">provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket = "mybucket"
+  acl    = "private"
+}
+</code></pre>
+<p><em>The above configuration file will create an <code>EC2</code> instance and an <code>S3</code> bucket in the <code>us-east-1</code> region.</em></p>
+<h3 id="commands"><a class="header" href="#commands">Commands</a></h3>
+<ul>
+<li>
+<p><strong>terraform init</strong>: Initialize a new or existing Terraform configuration.</p>
+</li>
+<li>
+<p><strong>terraform plan</strong>: Generate and show an execution plan.</p>
+</li>
+<li>
+<p><strong>terraform apply</strong>: Builds or changes infrastructure according to Terraform configuration files.</p>
+</li>
+<li>
+<p><strong>terraform destroy</strong>: Destroy the Terraform-managed infrastructure.</p>
+</li>
+<li>
+<p><strong>terraform validate</strong>: Validates the Terraform files.</p>
+</li>
+<li>
+<p><strong>terraform fmt</strong>: Rewrites Terraform configuration files to a canonical format.</p>
+</li>
+<li>
+<p><strong>terraform output</strong>: Read an output from a state file.</p>
+</li>
+<li>
+<p><strong>terraform refresh</strong>: Update local state file against real resources.</p>
+</li>
+</ul>
+<h3 id="local-state"><a class="header" href="#local-state">Local State</a></h3>
+<p>Terraform stores information about the resources it has built in a state file. This important file contains all of the data that Terraform needs to change, update, and delete infrastructure.</p>
+<p>When running <code>terraform init</code>, Terraform will create a <code>.terraform</code> directory in your working directory. This directory contains the state file.</p>
+<pre><code class="language-bash">terraform init    # Initialize a new or existing Terraform configuration
+</code></pre>
+<p><em>The above command will initialize a new or existing state file in the <code>.terraform</code> directory.</em></p>
+<h3 id="remote-state"><a class="header" href="#remote-state">Remote State</a></h3>
+<p>Terraform can store state files remotely, which allows you to share the state file with other team members and use it to manage infrastructure across multiple workspaces.</p>
+<pre><code class="language-hcl">terraform {
+  backend "s3" {
+    region = "us-east-1"
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+  }
+}
+</code></pre>
+<p><em>The above configuration will store the <code>state file</code> in an S3 bucket.</em></p>
+<h3 id="plan--apply"><a class="header" href="#plan--apply">Plan / Apply</a></h3>
+<p>Terraform uses a two-step process to build infrastructure. The first step is to generate an execution plan, and the second step is to apply that plan to build the infrastructure.</p>
+<ol>
+<li>To generate an execution plan, run the following command:</li>
+</ol>
+<pre><code class="language-bash">terraform plan    # Generate and show an execution plan
+</code></pre>
+<p>Terraform plan will show you what resources will be created, modified, or destroyed as follows:</p>
+<ul>
+<li>
+<p><code>+</code> to indicate that a resource will be created.</p>
+</li>
+<li>
+<p><code>-</code> to indicate that a resource will be destroyed.</p>
+</li>
+<li>
+<p><code>~</code> to indicate that a resource will be updated.</p>
+</li>
+<li>
+<p><code>+/-</code> to indicate that a resource will be destroyed and re-created.</p>
+</li>
+</ul>
+<ol start="2">
+<li>To apply the execution plan and build the infrastructure, run the following command:</li>
+</ol>
+<pre><code class="language-bash">terraform apply    # Builds or changes infrastructure according to Terraform configuration files
+</code></pre>
+<h3 id="terraform-variables"><a class="header" href="#terraform-variables">Terraform Variables</a></h3>
+<p>Terraform variables are used to parameterize your configuration. They allow you to input data into your configuration and use it to create resources.</p>
+<ul>
+<li>Variables can be defined in a <code>variables.tf</code> file.</li>
+</ul>
+<pre><code class="language-hcl">variable "region" {
+  description = "The AWS region to deploy to"
+  type        = string
+  default     = "us-east-1"
+}
+</code></pre>
+<ul>
+<li>Variables can be set using a <code>terraform.tfvars</code> file.</li>
+</ul>
+<pre><code class="language-hcl">region = "us-west-2"
+</code></pre>
+<ul>
+<li>Variables can be used in your configuration files using the <code>var</code> keyword.</li>
+</ul>
+<pre><code class="language-hcl">provider "aws" {
+  region = var.region
+}
+</code></pre>
+<ul>
+<li>Variables can be set via <code>command line</code>.</li>
+</ul>
+<pre><code class="language-bash">terraform apply -var 'region=us-west-2'
+</code></pre>
+<ul>
+<li>Variables can be read from <code>environment variables</code>.</li>
+</ul>
+<pre><code class="language-bash">export TF_VAR_region=us-west-2
 </code></pre>
 <hr />
 <div style="break-before: page; page-break-before: always;"></div><h1 id="flutter"><a class="header" href="#flutter">Flutter</a></h1>
