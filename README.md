@@ -21,7 +21,6 @@ This repository contains all my notes about programming, data science, machine l
 - Languages
 
 ![MdBook](https://img.shields.io/badge/MdBook-000000.svg?style=for-the-badge&logo=mdbook&logoColor=white)
-![Rust](https://img.shields.io/badge/Rust-000000.svg?style=for-the-badge&logo=Rust&logoColor=white)
 
 - CI/CD
 

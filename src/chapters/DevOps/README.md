@@ -36,6 +36,24 @@
   - [Mount Volumes](#mount-volumes)
   - [Publish Port](#publish-port)
   - [Docker Compose](#docker-compose)
+- [Portainer](#portainer)
+  - [Installation](#installation)
+- [Ansible](#ansible)
+  - [SSH Or WinRM](#ssh-or-winrm)
+  - [Inventory](#inventory)
+  - [Playbook](#playbook)
+  - [Task](#task)
+  - [Role](#role)
+  - [Facts](#facts)
+  - [Modules](#modules)
+  - [Variables](#variables)
+- [Terraform](#terraform)
+  - [Configuration](#configuration)
+  - [Commands](#commands)
+  - [Local State](#local-state)
+  - [Remote State](#remote-state)
+  - [Plan / Apply](#plan--apply)
+  - [Terraform Variables](#terraform-variables)
 
 ---
 
@@ -586,6 +604,316 @@ The above `docker-compose.yml` file will create two services, `postgres` and `pg
 docker-compose up    # Create and start all the services from your configuration
 
 docker-compose down  # Stop and remove containers, networks, images, and volumes
+```
+
+---
+
+## Portainer
+
+![Portainer](./images/image15.png)
+
+Portainer is a lightweight management UI which allows you to easily manage your Docker host or Swarm cluster.
+
+- **Portainer Agent**: A container that runs on each Docker host and Swarm manager. It is responsible for managing the local Docker environment.
+
+- **Portainer Server**: A container that runs on the Docker host and is responsible for managing the Portainer Agent.
+
+### Installation
+
+1. Run the following commands to install Portainer:
+
+```bash
+docker volume create portainer_data
+
+docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+```
+
+2. Open your web browser and navigate to `http://localhost:8000`.
+
+3. Create an admin user and password.
+
+4. Select `Local` and click `Connect`.
+
+5. You will be redirected to the Portainer dashboard.
+
+---
+
+## Ansible
+
+![Ansible](./images/image16.png)
+
+Ansible is an open-source IT automation tool that simplifies and automates various manual IT processes, including provisioning, configuration management, application deployment, and orchestration.
+
+Ansible uses a declarative language called `YAML` to define automation tasks, which makes it easy to read and understand.
+
+Ansible is agentless, which means it doesn’t require any software or agents to be installed on the target hosts (managed nodes).
+
+### SSH Or WinRM
+
+Ansible communicates with the managed nodes using SSH (for Unix-based systems) or WinRM (for Windows systems).
+
+```yaml
+ansible_ssh_user: root
+ansible_ssh_pass: password
+```
+
+_The above configuration will allow Ansible to communicate with the managed nodes using `SSH`._
+
+### Inventory
+
+Ansible uses an inventory file that lists the IP addresses or hostnames of the managed nodes. This inventory can be static (defined in a file) or dynamic (generated programmatically).
+
+```yaml
+webservers:
+  hosts:
+    web1:
+    web2:
+    web3:
+```
+
+_The above inventory file contains a list of hosts in the `webservers` group._
+
+### Playbook
+
+A blueprint of automation tasks that are executed with limited manual effort across an inventory of IT solutions. Playbooks tell Ansible what to do and how to do it. They are written in YAML and can be used to automate a wide range of tasks.
+
+```yaml
+- name: Install Apache
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+    - name: Start Apache
+      service:
+        name: apache2
+        state: started
+```
+
+_The above playbook will install Apache on all the hosts in the `webservers` group._
+
+### Task
+
+The individual steps that Ansible executes. Tasks are defined in playbooks and can be used to install packages, configure services, and more.
+
+```yaml
+- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+```
+
+_The above `task` will install `Apache` on the managed node._
+
+### Role
+
+A way to break down complex tasks into smaller, more manageable pieces. Roles contain lists of tasks that perform the work you’ve configured them to do.
+
+```yaml
+- name: Install Apache
+  hosts: webservers
+  become: true
+  roles:
+    - apache
+```
+
+_The above playbook will install Apache on all the hosts in the `webservers` group using the `apache` role._
+
+### Facts
+
+The way of getting data from systems. Facts can be used in playbook variables and can be disabled if not required.
+
+```yaml
+- name: Gather facts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Print facts
+      debug:
+        var: ansible_facts
+```
+
+_The above playbook will gather `facts` from all the hosts and print them._
+
+### Modules
+
+Ansible modules are standalone scripts that can be used inside playbooks to automate tasks. They are used to perform tasks such as installing packages, copying files, and managing services.
+
+```yaml
+- name: Install Apache
+  hosts: webservers
+  become: true
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+```
+
+_The above playbook uses the `apt` module to install `Apache` on the managed node._
+
+### Variables
+
+Ansible playbooks use a double curly brace `{{}}` syntax to reference variables. Variables can be defined in playbooks, roles, and inventory files.
+
+```yaml
+- name: Informative message
+  hosts: webservers
+  tasks:
+    - name: Hostname and port
+      debug: msg="{{ ansible_hostname }} is running on port {{ apache_port }}"
+```
+
+_The above playbook will print the value of the `ansible_hostname` and `apache_port` variables._
+
+---
+
+## Terraform
+
+![Terraform](./images/image17.png)
+
+Terraform is an infrastructure as code (IaC) tool for provisioning cloud resources. It is cloud-agnostic and allows you to define your infrastructure in a declarative configuration language.
+
+Terraform then creates an execution plan that defines what will be done to reach the desired state, and then executes it to build the described infrastructure.
+
+Terraform uses a declarative language called `HCL` (HashiCorp Configuration Language) to define infrastructure.
+
+Terraform supports a wide range of cloud providers, the most popular being AWS, Azure, Google Cloud, and DigitalOcean.
+
+### Configuration
+
+Terraform configuration files are used to define the infrastructure that you want to create. These files are written in `HCL` and have a `.tf` extension.
+
+```hcl
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0c55b159cbfafe1f0"
+  instance_type = "t2.micro"
+}
+
+resource "aws_s3_bucket" "example" {
+  bucket = "mybucket"
+  acl    = "private"
+}
+```
+
+_The above configuration file will create an `EC2` instance and an `S3` bucket in the `us-east-1` region._
+
+### Commands
+
+- **terraform init**: Initialize a new or existing Terraform configuration.
+
+- **terraform plan**: Generate and show an execution plan.
+
+- **terraform apply**: Builds or changes infrastructure according to Terraform configuration files.
+
+- **terraform destroy**: Destroy the Terraform-managed infrastructure.
+
+- **terraform validate**: Validates the Terraform files.
+
+- **terraform fmt**: Rewrites Terraform configuration files to a canonical format.
+
+- **terraform output**: Read an output from a state file.
+
+- **terraform refresh**: Update local state file against real resources.
+
+### Local State
+
+Terraform stores information about the resources it has built in a state file. This important file contains all of the data that Terraform needs to change, update, and delete infrastructure.
+
+When running `terraform init`, Terraform will create a `.terraform` directory in your working directory. This directory contains the state file.
+
+```bash
+terraform init    # Initialize a new or existing Terraform configuration
+```
+
+_The above command will initialize a new or existing state file in the `.terraform` directory._
+
+### Remote State
+
+Terraform can store state files remotely, which allows you to share the state file with other team members and use it to manage infrastructure across multiple workspaces.
+
+```hcl
+terraform {
+  backend "s3" {
+    region = "us-east-1"
+    bucket = "mybucket"
+    key    = "path/to/my/key"
+  }
+}
+```
+
+_The above configuration will store the `state file` in an S3 bucket._
+
+### Plan / Apply
+
+Terraform uses a two-step process to build infrastructure. The first step is to generate an execution plan, and the second step is to apply that plan to build the infrastructure.
+
+1. To generate an execution plan, run the following command:
+
+```bash
+terraform plan    # Generate and show an execution plan
+```
+
+Terraform plan will show you what resources will be created, modified, or destroyed as follows:
+
+- `+` to indicate that a resource will be created.
+
+- `-` to indicate that a resource will be destroyed.
+
+- `~` to indicate that a resource will be updated.
+
+- `+/-` to indicate that a resource will be destroyed and re-created.
+
+2. To apply the execution plan and build the infrastructure, run the following command:
+
+```bash
+terraform apply    # Builds or changes infrastructure according to Terraform configuration files
+```
+
+### Terraform Variables
+
+Terraform variables are used to parameterize your configuration. They allow you to input data into your configuration and use it to create resources.
+
+- Variables can be defined in a `variables.tf` file.
+
+```hcl
+variable "region" {
+  description = "The AWS region to deploy to"
+  type        = string
+  default     = "us-east-1"
+}
+```
+
+- Variables can be set using a `terraform.tfvars` file.
+
+```hcl
+region = "us-west-2"
+```
+
+- Variables can be used in your configuration files using the `var` keyword.
+
+```hcl
+provider "aws" {
+  region = var.region
+}
+```
+
+- Variables can be set via `command line`.
+
+```bash
+terraform apply -var 'region=us-west-2'
+```
+
+- Variables can be read from `environment variables`.
+
+```bash
+export TF_VAR_region=us-west-2
 ```
 
 ---
