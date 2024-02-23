@@ -59,13 +59,39 @@
   - [Steps to Create a Random Forest](#steps-to-create-a-random-forest)
   - [Random Forest Regressor](#random-forest-regressor)
   - [Random Forest Classifier](#random-forest-classifier)
-  - [Parameters](#parameters)
-  - [Strengths](#strengths)
-  - [Weaknesses](#weaknesses)
+  - [Random Forest Parameters](#random-forest-parameters)
+  - [Random Forest Strengths](#random-forest-strengths)
+  - [Random Forest Weaknesses](#random-forest-weaknesses)
 - [Gradient Boosted Trees](#gradient-boosted-trees)
   - [Control Parameters](#control-parameters)
   - [Gradient Boosting Regressor](#gradient-boosting-regressor)
   - [Gradient Boosting Classifier](#gradient-boosting-classifier)
+  - [Gradient Boosting Strengths](#gradient-boosting-strengths)
+  - [Gradient Boosting Weaknesses](#gradient-boosting-weaknesses)
+  - [Random Forest vs Gradient Boosting](#random-forest-vs-gradient-boosting)
+- [Support Vector Machines (SVM)](#support-vector-machines-svm)
+  - [Hyperplane](#hyperplane)
+  - [Types Of Kernels](#types-of-kernels)
+  - [SVM Parameters](#svm-parameters)
+  - [SVR And SVC](#svr-and-svc)
+  - [SVM Strengths](#svm-strengths)
+  - [SVM Weaknesses](#svm-weaknesses)
+- [K-Nearest Neighbors (KNN)](#k-nearest-neighbors-knn)
+  - [Determine Proximity](#determine-proximity)
+  - [KNN Function](#knn-function)
+  - [KNN Classifier](#knn-classifier)
+  - [KNN Regression](#knn-regression)
+- [Data Scaling](#data-scaling)
+  - [StandardScaler](#standardscaler)
+  - [RobustScaler](#robustscaler)
+  - [MinMaxScaler](#minmaxscaler)
+  - [Normalizer](#normalizer)
+- [Encoders](#encoders)
+  - [Categorical Variables](#categorical-variables)
+  - [OneHotEncoder](#onehotencoder)
+  - [OrdinalEncoder](#ordinalencoder)
+  - [SimpleImputer](#simpleimputer)
+  - [ColumnTransformer](#columntransformer)
 
 ---
 
@@ -1071,7 +1097,7 @@ _The code snippet above shows how to use a `random forest classifier` to predict
 
 ![Random Forest Classifier](./images/image43.png)
 
-### Parameters
+### Random Forest Parameters
 
 - **_random_state_**: Setting this variable is important for reproducibility.
 
@@ -1079,7 +1105,7 @@ _The code snippet above shows how to use a `random forest classifier` to predict
 
 - **_n_estimators_**: Larger is always better. Averaging more trees will yield a more robust ensemble by reducing over-fitting.
 
-### Strengths
+### Random Forest Strengths
 
 - Random forests share all the benefits of decision trees.
 
@@ -1087,7 +1113,7 @@ _The code snippet above shows how to use a `random forest classifier` to predict
 
 - Random forests for regression and classification are currently among the most widely used machine learning methods.
 
-### Weaknesses
+### Random Forest Weaknesses
 
 - Random forests require more memory and are slower to train and predict than linear models.
 
@@ -1147,11 +1173,11 @@ _The code snippet above shows how to use a `gradient boosting classifier` to pre
 
 ![Gradient Boosting Classifier](./images/image46.png)
 
-### Strengths
+### Gradient Boosting Strengths
 
 - Gradient boosted decision trees are among the most powerful and widely used models for supervised learning.
 
-### Weaknesses
+### Gradient Boosting Weaknesses
 
 - Their main drawback is that they require careful tuning of the parameters and may take a long time to train.
 
@@ -1197,5 +1223,403 @@ intercept = svc.intercept_
 # Get the margin
 margin = 2 / np.linalg.norm(coefficients)
 ```
+
+_The code snippet above shows how to use a `support vector classifier` to fit the data and get the support vectors, coefficients, intercept, and margin._
+
+### Types Of Kernels
+
+- **Linear Kernel**: The linear kernel is simply the dot product of the vectors. It is the most common kernel used in SVM.
+
+- **Polynomial Kernel**: For a polynomial kernel, we calculate the dot product and raise it to the power of d (degree of the polynomial), 𝛾 is the slope, and 𝑐0 is the constant. It is not as preferred as other kernel functions as it is less efficient and accurate.
+
+- **Radial Basis Function (RBF)** or Gaussian Kernel: The RBF kernel uses the Euclidean distance between the two vectors. It is one of the most preferred kernels in SVM. Usually chosen for non-linear data.
+
+- **Sigmoid Kernel**: The sigmoid kernel applies the sigmoid function to the dot product. It is preferred for neural networks.
+
+![Kernels](./images/image49.png)
+
+### SVM Parameters
+
+- **C**: The regularization parameter. The strength of the regularization is inversely proportional to C.
+
+- **Gamma**: The gamma parameter determines how far the influence of a single training example reaches, with low values corresponding to a far reach, and high values to a limited reach.
+
+- **Epsilon**: _Used just for SVR model_. It specifies the epsilon-tube within which no penalty is associated in the training loss function with points predicted within a distance epsilon from the actual value.
+
+### SVR And SVC
+
+- **Support Vector Regression (SVR)** is a type of Support Vector Machine (SVM) that uses the same principles but for prediction of a continuous outcome. It fits the best line or curve to a set of data points.
+
+- **Support Vector Classification (SVC)** is a type of Support Vector Machine (SVM) that uses the same principles but for prediction of a categorical outcome. It creates a boundary between different categories.
+
+```python
+from sklearn.svm import SVR
+from sklearn.svm import SVC
+
+# Instantiate the regressor and the classifier
+svr = SVR(kernel='linear', C=1.0, epsilon=0.1)
+svc = SVC(kernel='rbf', C=1.0, gamma=0.1)
+
+# Fit the regressor and the classifier to the data
+svr.fit(X_train, y_train)
+svc.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred_svr = svr.predict(X_test)
+y_pred_svc = svc.predict(X_test)
+```
+
+_The code snippet above shows how to use a `support vector regressor` and a `support vector classifier` to predict the labels of the test set._
+
+![Support Vector Machines](./images/image50.png)
+
+### SVM Strengths
+
+- Kernelized support vector machines are powerful models and perform well on a variety of datasets.
+
+- SVMs work well on low-dimensional and high-dimensional data.
+
+### SVM Weaknesses
+
+- SVMs don’t scale very well with the number of samples.
+
+- They require careful pre-processing of the data and tuning of the parameters.
+
+---
+
+## K-Nearest Neighbors (KNN)
+
+![K-Nearest Neighbors](./images/image51.png)
+
+K-nearest neighbors (K-NN) predicts the classification of new data sample(s) depending on the proximity of the new data sample(s) to the existing data.
+
+K represents the number of neighbors considered to determine the label for the new data sample.
+
+The predicted label is based on a voting method, so an odd number of neighbors is preferred to ensure there are no ties.
+
+### Determine Proximity
+
+- **Euclidean Distance**: The most common distance measure. It is the square root of the sum of the squared differences between the two vectors.
+
+- **Manhattan Distance**: The sum of the absolute differences between the two vectors.
+
+- **Minkowski Distance**: A generalization of the Euclidean and Manhattan distances.
+
+### KNN Function
+
+```python
+sklearn.neighbors.KNeighborsClassifier(n_neighbors=5, weights='uniform', p=2, metric='minkowski')
+```
+
+Where:
+
+- **n_neighbors**: The number of neighbors to consider.
+
+- **weights**: The weight function used in prediction. The default is `uniform`, which means all points in each neighborhood are weighted equally. The other option is `distance`, where closer neighbors will be weighted higher than neighbors further away.
+
+- **p**: When `p = 1`, this is equivalent to using the Manhattan distance, and when `p = 2`, which is the default, this is equivalent to using the Euclidean distance. For arbitrary `p`, this is equivalent to using the Minkowski distance.
+
+- **metric**: The distance metric to use for the tree. The default is `minkowski`, and other options include `manhattan` and `euclidean`.
+
+### KNN Classifier
+
+- **Smoother**: With a larger `K`, each prediction is the average of more points, so each
+  individual point has less influence on the outcome. This results in a smoother model with less variance, as the predictions are less sensitive to fluctuations in the training data.
+
+- **More Biased**: A larger `K` means the algorithm is considering more neighbors, some of which may be quite far away from the query point in the feature space. This could lead to predictions that are biased and less accurate.
+
+```python
+from sklearn.neighbors import KNeighborsClassifier
+
+# Instantiate the classifier
+knn = KNeighborsClassifier(n_neighbors=5)
+
+# Fit the classifier to the data
+knn.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = knn.predict(X_test)
+```
+
+_The code snippet above shows how to use a `K-nearest neighbors classifier` to predict the labels of the test set._
+
+![K-Nearest Neighbors](./images/image53.png)
+
+```python
+from sklearn.metrics import confusion_matrix
+
+# Compute the confusion matrix of the classifier
+cm = confusion_matrix(y_test, y_pred)
+```
+
+_The code snippet above shows how to use a `confusion matrix` to evaluate the performance of a classification model._
+
+![K-Nearest Neighbors](./images/image52.png)
+
+### KNN Regression
+
+k-NN regression is a non-parametric algorithm that predicts continuous variables by averaging the output values of the k most similar instances in the training data.
+
+The choice of k and the distance metric affects the model’s performance. A smaller `K` makes the model more flexible but more prone to noise. A larger `K` makes the model smoother but more biased.
+
+```python
+from sklearn.neighbors import KNeighborsRegressor
+
+# Instantiate the regressor
+knn = KNeighborsRegressor(n_neighbors=5)
+
+# Fit the regressor to the data
+knn.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = knn.predict(X_test)
+```
+
+_The code snippet above shows how to use a `K-nearest neighbors regressor` to predict the labels of the test set._
+
+![K-Nearest Neighbors](./images/image54.png)
+
+```python
+from sklearn.metrics import mean_squared_error
+
+# Compute the mean squared error of the regressor
+mse = mean_squared_error(y_test, y_pred)
+```
+
+_The code snippet above shows how to use the `mean squared error` to evaluate the performance of a regression model._
+
+![K-Nearest Neighbors](./images/image55.png)
+
+---
+
+## Data Scaling
+
+![Data Scaling](./images/image59.png)
+
+Data scaling is a crucial step in the preprocessing of data for machine learning models. It is the process of normalizing the range of features of the data. It is generally performed during the data preprocessing step.
+
+The non-linear algorithms, such as K-Nearest Neighbors, Support Vector Machines, and Neural Networks, are sensitive to the scale of the input data.
+
+### StandardScaler
+
+Standard Scaler is a technique for transforming numerical data to have a **_mean of zero_** and a **_standard deviation of one_**.
+
+It is useful for machine learning algorithms that perform better when the input variables are scaled to a standard range.
+
+```python
+from sklearn.preprocessing import StandardScaler
+
+# Instantiate the scaler
+scaler = StandardScaler()
+
+# Fit and transform the data
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Transform the test data
+X_test_scaled = scaler.transform(X_test)
+```
+
+_The code snippet above shows how to use the `StandardScaler` method to transform the data._
+
+![StandardScaler](./images/image56.png)
+
+### RobustScaler
+
+Robust Scaler is a technique for transforming numerical data to have a **_median of zero_** and a **_interquartile range of one_**.
+
+This method is particularly useful when you have data that has outliers. It's a way to standardize your data that is robust to outliers.
+
+```python
+from sklearn.preprocessing import RobustScaler
+
+# Instantiate the scaler
+scaler = RobustScaler()
+
+# Fit and transform the data
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Transform the test data
+X_test_scaled = scaler.transform(X_test)
+```
+
+_The code snippet above shows how to use the `RobustScaler` method to transform the data._
+
+![RobustScaler](./images/image57.png)
+
+### MinMaxScaler
+
+The MinMaxScaler is a data normalization technique used in machine learning preprocessing. It scales each feature to a given range, usually between **_0_** and **_1_**.
+
+This scaling method is beneficial when you want your data to be bounded within a certain range. However, it’s important to note that MinMaxScaler does not reduce the impact of outliers.
+
+```python
+from sklearn.preprocessing import MinMaxScaler
+
+# Instantiate the scaler
+scaler = MinMaxScaler()
+
+# Fit and transform the data
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Transform the test data
+X_test_scaled = scaler.transform(X_test)
+```
+
+_The code snippet above shows how to use the `MinMaxScaler` method to transform the data._
+
+![MinMaxScaler](./images/image58.png)
+
+### Normalizer
+
+Each feature (or data sample) with at least one non-zero component is rescaled independently of other features (or samples) so that its norm (vector length) equals one
+
+It scales each row of the data to unit norm. This means that for each row in your data, it calculates the norm (based on the type of norm you specify - `l1`, `l2`, or `max`), and then divides each element in the row by this norm.
+
+```python
+from sklearn.preprocessing import Normalizer
+
+# Instantiate the scaler (the norm parameter can be 'l1', 'l2', or 'max')
+scaler = Normalizer(norm='l2')
+
+# Fit and transform the data
+X_train_scaled = scaler.fit_transform(X_train)
+
+# Transform the test data
+X_test_scaled = scaler.transform(X_test)
+```
+
+_The code snippet above shows how to use the `Normalizer` method to transform the data._
+
+---
+
+## Encoders
+
+### Categorical Variables
+
+A categorical variable, also known as a qualitative variable, is a type of variable that can assume a set number of distinct categories or groups.
+
+Each category represents a qualitative characteristic or attribute. The categories are mutually exclusive, meaning an observation can only belong to one category.
+
+Categorical variables come in two types: `nominal` and `ordinal`.
+
+- **Nominal variables** consist of categories that lack any inherent order, such as the color of a car (red, blue, green, etc.).
+
+- **Ordinal variables** contain categories that have a natural order or ranking, like educational level (high school, bachelor's, master's, Ph.D.).
+
+![Categorical Variables](./images/image60.png)
+
+### OneHotEncoder
+
+One hot encoding is a technique to convert categorical variables into numerical values for machine learning models.
+
+It creates a new column for each category and assigns a binary value of **1** or **0** to indicate the presence or absence of that category.
+
+```python
+from sklearn.preprocessing import OneHotEncoder
+
+# Instantiate the encoder
+encoder = OneHotEncoder(sparse_output=False, dtype="int")
+
+# Fit and transform the data
+X_train_encoded = encoder.fit_transform(X_train)
+
+# Transform the test data
+X_test_encoded = encoder.transform(X_test)
+```
+
+_The code snippet above shows how to use the `OneHotEncoder` method to transform the data._
+
+![One-Hot Encoding](./images/image61.png)
+
+### OrdinalEncoder
+
+Ordinal encoding is a technique that transforms categorical variables into numerical values by assigning a unique integer to each category.
+
+This is useful when the categories have some inherent order or ranking, such as low, medium and high.
+
+Ordinal encoding can also reduce the dimensionality of the data and make it easier for some algorithms to handle.
+
+```python
+from sklearn.preprocessing import OrdinalEncoder
+
+# Instantiate the encoder
+encoder = OrdinalEncoder()
+
+# Fit and transform the data
+X_train_encoded = encoder.fit_transform(X_train)
+
+# Transform the test data
+X_test_encoded = encoder.transform(X_test)
+```
+
+_The code snippet above shows how to use the `OrdinalEncoder` method to transform the data._
+
+![Ordinal Encoding](./images/image62.png)
+
+### SimpleImputer
+
+SimpleImputer can replace missing values with a constant value, or with a statistic (such as mean, median, or mode) calculated from each column. The choice of strategy depends on the type and distribution of the data, as well as the goal of the analysis.
+
+Imputation strategies include:
+
+- **mean**: Replace missing values using the mean along each column.
+
+- **median**: Replace missing values using the median along each column.
+
+- **most_frequent**: Replace missing using the most frequent value along each column.
+
+- **constant**: Replace missing values with a constant value.
+
+```python
+from sklearn.impute import SimpleImputer
+
+# Instantiate the imputer
+imputer = SimpleImputer(strategy='mean')
+
+# Fit and transform the data
+X_train_imputed = imputer.fit_transform(X_train)
+
+# Transform the test data
+X_test_imputed = imputer.transform(X_test)
+```
+
+_The code snippet above shows how to use the `SimpleImputer` method to transform the data._
+
+![SimpleImputer](./images/image63.png)
+
+### ColumnTransformer
+
+The ColumnTransformer class allows you to apply different transformations to different columns in the input data.
+
+This is incredibly useful, since continuous and categorical features need very different kinds of preprocessing.
+
+```python
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OrdinalEncoder, OneHotEncoder
+from sklearn.impute import SimpleImputer
+
+# Define transformers and preprocessor
+ordinal_encoder = OrdinalEncoder(categories=[['Low', 'Medium', 'High']])
+onehot_encoder = OneHotEncoder(sparse_output = False)
+imputer = SimpleImputer(strategy='mean')
+
+# Instantiate the ColumnTransformer
+preprocessor = ColumnTransformer(
+  transformers=[('ordinal', ordinal_encoder, ['Quality']),
+                ('onehot', onehot_encoder, ['Fruit']),
+                ('imputer', imputer, ['Weight'])],
+  remainder='passthrough' # Pass through any other columns not specified
+)
+
+# Fit and transform the data
+X_train_preprocessed = preprocessor.fit_transform(X_train)
+
+# Transform the test data
+X_test_preprocessed = preprocessor.transform(X_test)
+```
+
+_The code snippet above shows how to use the `ColumnTransformer` method to transform the data._
+
+![ColumnTransformer](./images/image64.png)
 
 ---
