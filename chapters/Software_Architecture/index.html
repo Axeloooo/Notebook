@@ -233,6 +233,24 @@
 <li><a href="#deployment-models">Deployment Models</a></li>
 </ul>
 </li>
+<li><a href="#enterprise-application-integration-eai">Enterprise Application Integration (EAI)</a>
+<ul>
+<li><a href="#middleware">Middleware</a></li>
+<li><a href="#integration-requirements">Integration Requirements</a></li>
+<li><a href="#point-to-point-integration">Point-to-Point Integration</a></li>
+<li><a href="#publish-subscribe-integration">Publish-Subscribe Integration</a></li>
+<li><a href="#remote-procedure-call-rpc-integration">Remote Procedure Call (RPC) Integration</a></li>
+<li><a href="#async-vs-sync-communication">Async vs Sync Communication</a></li>
+<li><a href="#routing-patterns">Routing Patterns</a></li>
+</ul>
+</li>
+<li><a href="#security">Security</a>
+<ul>
+<li><a href="#cia-triad">CIA Triad</a></li>
+<li><a href="#security-threats">Security Threats</a></li>
+<li><a href="#business-continuity-planning-bcp">Business Continuity Planning (BCP)</a></li>
+</ul>
+</li>
 </ul>
 <hr />
 <h2 id="abstraction"><a class="header" href="#abstraction">Abstraction</a></h2>
@@ -635,6 +653,110 @@ applications, and services) that can be rapidly provisioned and released with mi
 <h3 id="deployment-models"><a class="header" href="#deployment-models">Deployment Models</a></h3>
 <p><img src="./images/image27.png" alt="Deployment Models" /></p>
 <hr />
+<h2 id="enterprise-application-integration-eai"><a class="header" href="#enterprise-application-integration-eai">Enterprise Application Integration (EAI)</a></h2>
+<p><img src="./images/image34.png" alt="EAI" /></p>
+<p>Enterprise Application Integration (EAI) is the use of technologies and services across an enterprise to enable the integration of software applications and hardware systems.</p>
+<h3 id="middleware"><a class="header" href="#middleware">Middleware</a></h3>
+<p><img src="./images/image28.png" alt="Middleware" /></p>
+<h3 id="integration-requirements"><a class="header" href="#integration-requirements">Integration Requirements</a></h3>
+<ul>
+<li>
+<p><strong>Transportation</strong>: EAI is responsible to transport and route messages from the
+source endpoint to the target endpoint.</p>
+</li>
+<li>
+<p><strong>Transformation</strong>: Transform the messages from one format into another.</p>
+</li>
+<li>
+<p><strong>Orchestration</strong>: Orchestration is responsible of connecting different integration steps such as routing and mapping.</p>
+</li>
+</ul>
+<h3 id="point-to-point-integration"><a class="header" href="#point-to-point-integration">Point-to-Point Integration</a></h3>
+<p>Sender establishes a direct connection to the receiver. The connection is maintained for the duration of the session. Can be either synchronous or asynchronous.</p>
+<p><img src="./images/image29.png" alt="Point-to-Point" /></p>
+<h3 id="publish-subscribe-integration"><a class="header" href="#publish-subscribe-integration">Publish-Subscribe Integration</a></h3>
+<p>Publisher sends messages to a topic, and subscribers register to the topic to receive messages. Asynchronous communication.</p>
+<p><img src="./images/image30.png" alt="Publish-Subscribe" /></p>
+<h3 id="remote-procedure-call-rpc-integration"><a class="header" href="#remote-procedure-call-rpc-integration">Remote Procedure Call (RPC) Integration</a></h3>
+<p>Client sends a request to a server, and the server sends a response back to the client. Synchronous communication.</p>
+<p><img src="./images/image31.png" alt="RPC" /></p>
+<h3 id="async-vs-sync-communication"><a class="header" href="#async-vs-sync-communication">Async vs Sync Communication</a></h3>
+<ul>
+<li>
+<p>Asynchronous</p>
+<ul>
+<li>No response message is expected.</li>
+<li>Only a request message is being sent.</li>
+<li>Process continuous without waiting for a response.</li>
+</ul>
+</li>
+<li>
+<p>Synchronous</p>
+<ul>
+<li>Calling process waits until it gets a response.</li>
+<li>A request is sent, and a response is returned.</li>
+<li>Calling process expects a response.</li>
+</ul>
+</li>
+</ul>
+<h3 id="routing-patterns"><a class="header" href="#routing-patterns">Routing Patterns</a></h3>
+<p>Message routing is a fixed form of routing where the direction is established previously.</p>
+<ul>
+<li>
+<p><strong>Content based routing</strong>: Messages are routed based on certain fields in the message. For example, department number, order type, invoice type.</p>
+</li>
+<li>
+<p><strong>Message filters</strong>: Message filters are a special form of routers, which selectively send message to an endpoint.</p>
+</li>
+</ul>
+<hr />
+<h2 id="security"><a class="header" href="#security">Security</a></h2>
+<p><img src="./images/image33.png" alt="Security" /></p>
+<h3 id="cia-triad"><a class="header" href="#cia-triad">CIA Triad</a></h3>
+<ul>
+<li>
+<p><strong>Confidentiality</strong>: Ensuring that information is only accessible to those who are authorized to access it.</p>
+</li>
+<li>
+<p><strong>Integrity</strong>: Ensuring that information is accurate and reliable.</p>
+</li>
+<li>
+<p><strong>Availability</strong>: Ensuring that information is accessible and usable when needed.</p>
+</li>
+</ul>
+<p><img src="./images/image32.png" alt="CIA Triad" /></p>
+<h3 id="security-threats"><a class="header" href="#security-threats">Security Threats</a></h3>
+<ul>
+<li>
+<p><strong>Phishing</strong>: Sending fraudulent emails that look like
+they come from legitimate senders.</p>
+</li>
+<li>
+<p><strong>Pharming</strong>: Running a fraudulent website to gather credentials, etc.</p>
+</li>
+<li>
+<p><strong>Keylogging</strong>: Recording keystrokes to obtain sensitive information.</p>
+</li>
+<li>
+<p><strong>Sniffing</strong>: Capturing data packets as they travel over a network.</p>
+</li>
+<li>
+<p><strong>Spoofing</strong>: Attempting to gain access to a network by posing as an authorized user. Makes messages appear to be from a known IP address.</p>
+</li>
+<li>
+<p><strong>Spyware</strong>: Software that invades a user’s privacy or produces unwanted effects on a user’s computer.</p>
+</li>
+</ul>
+<h3 id="business-continuity-planning-bcp"><a class="header" href="#business-continuity-planning-bcp">Business Continuity Planning (BCP)</a></h3>
+<p>Business continuity is a series of processes that ensure critical business functions continue to operate in the event of a disaster.</p>
+<ul>
+<li>
+<p><strong>Recovery Point Objective (RPO)</strong>: The recovery point objective (RPO) is the age of files that must be recovered from backup storage for normal operations to resume if a computer, system, or network goes down as a result of a hardware, program, or communications failure.</p>
+</li>
+<li>
+<p><strong>Recovery Time Objective (RTO)</strong>: The Recovery Time Objective (RTO) is the duration of time and a service level within which a business process must be restored after a disaster in order to avoid unacceptable consequences associated with a break in continuity.</p>
+</li>
+</ul>
 
                     </main>
 
