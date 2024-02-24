@@ -39,6 +39,18 @@
   - [Scaling](#scaling)
   - [Service Models](#service-models)
   - [Deployment Models](#deployment-models)
+- [Enterprise Application Integration (EAI)](#enterprise-application-integration-eai)
+  - [Middleware](#middleware)
+  - [Integration Requirements](#integration-requirements)
+  - [Point-to-Point Integration](#point-to-point-integration)
+  - [Publish-Subscribe Integration](#publish-subscribe-integration)
+  - [Remote Procedure Call (RPC) Integration](#remote-procedure-call-rpc-integration)
+  - [Async vs Sync Communication](#async-vs-sync-communication)
+  - [Routing Patterns](#routing-patterns)
+- [Security](#security)
+  - [CIA Triad](#cia-triad)
+  - [Security Threats](#security-threats)
+  - [Business Continuity Planning (BCP)](#business-continuity-planning-bcp)
 
 ---
 
@@ -442,3 +454,101 @@ An IT resource is a physical or virtual IT related artifact that can be either s
 ![Deployment Models](./images/image27.png)
 
 ---
+
+## Enterprise Application Integration (EAI)
+
+![EAI](./images/image34.png)
+
+Enterprise Application Integration (EAI) is the use of technologies and services across an enterprise to enable the integration of software applications and hardware systems.
+
+### Middleware
+
+![Middleware](./images/image28.png)
+
+### Integration Requirements
+
+- **Transportation**: EAI is responsible to transport and route messages from the
+  source endpoint to the target endpoint.
+
+- **Transformation**: Transform the messages from one format into another.
+
+- **Orchestration**: Orchestration is responsible of connecting different integration steps such as routing and mapping.
+
+### Point-to-Point Integration
+
+Sender establishes a direct connection to the receiver. The connection is maintained for the duration of the session. Can be either synchronous or asynchronous.
+
+![Point-to-Point](./images/image29.png)
+
+### Publish-Subscribe Integration
+
+Publisher sends messages to a topic, and subscribers register to the topic to receive messages. Asynchronous communication.
+
+![Publish-Subscribe](./images/image30.png)
+
+### Remote Procedure Call (RPC) Integration
+
+Client sends a request to a server, and the server sends a response back to the client. Synchronous communication.
+
+![RPC](./images/image31.png)
+
+### Async vs Sync Communication
+
+- Asynchronous
+
+  - No response message is expected.
+  - Only a request message is being sent.
+  - Process continuous without waiting for a response.
+
+- Synchronous
+
+  - Calling process waits until it gets a response.
+  - A request is sent, and a response is returned.
+  - Calling process expects a response.
+
+### Routing Patterns
+
+Message routing is a fixed form of routing where the direction is established previously.
+
+- **Content based routing**: Messages are routed based on certain fields in the message. For example, department number, order type, invoice type.
+
+- **Message filters**: Message filters are a special form of routers, which selectively send message to an endpoint.
+
+---
+
+## Security
+
+![Security](./images/image33.png)
+
+### CIA Triad
+
+- **Confidentiality**: Ensuring that information is only accessible to those who are authorized to access it.
+
+- **Integrity**: Ensuring that information is accurate and reliable.
+
+- **Availability**: Ensuring that information is accessible and usable when needed.
+
+![CIA Triad](./images/image32.png)
+
+### Security Threats
+
+- **Phishing**: Sending fraudulent emails that look like
+  they come from legitimate senders.
+
+- **Pharming**: Running a fraudulent website to gather credentials, etc.
+
+- **Keylogging**: Recording keystrokes to obtain sensitive information.
+
+- **Sniffing**: Capturing data packets as they travel over a network.
+
+- **Spoofing**: Attempting to gain access to a network by posing as an authorized user. Makes messages appear to be from a known IP address.
+
+- **Spyware**: Software that invades a user’s privacy or produces unwanted effects on a user’s computer.
+
+### Business Continuity Planning (BCP)
+
+Business continuity is a series of processes that ensure critical business functions continue to operate in the event of a disaster.
+
+- **Recovery Point Objective (RPO)**: The recovery point objective (RPO) is the age of files that must be recovered from backup storage for normal operations to resume if a computer, system, or network goes down as a result of a hardware, program, or communications failure.
+
+- **Recovery Time Objective (RTO)**: The Recovery Time Objective (RTO) is the duration of time and a service level within which a business process must be restored after a disaster in order to avoid unacceptable consequences associated with a break in continuity.
