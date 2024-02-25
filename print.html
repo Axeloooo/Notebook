@@ -3206,7 +3206,23 @@ they come from legitimate senders.</p>
 <li><a href="chapters/Software_Testing/index.html#profile-based-testing">Profile-Based Testing</a></li>
 </ul>
 </li>
-<li><a href="chapters/Software_Testing/index.html#white-box-testing">White Box Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#white-box-testing">White Box Testing</a>
+<ul>
+<li><a href="chapters/Software_Testing/index.html#control-flow-testing">Control Flow Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#statement-coverage">Statement Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#decision-coverage">Decision Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#condition-coverage">Condition Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#modified-condition-decision-coverage-mcdc">Modified Condition-Decision Coverage (MC/DC)</a></li>
+<li><a href="chapters/Software_Testing/index.html#path-coverage">Path Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#data-flow-testing">Data Flow Testing</a></li>
+<li><a href="chapters/Software_Testing/index.html#def-and-use-path">Def And Use Path</a></li>
+<li><a href="chapters/Software_Testing/index.html#all-defs-coverage">All-Defs Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#all-uses-coverage">All-Uses Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#all-du-paths-coverage">All-Du-Paths Coverage</a></li>
+<li><a href="chapters/Software_Testing/index.html#coverage-tools">Coverage Tools</a></li>
+</ul>
+</li>
+<li><a href="chapters/Software_Testing/index.html#mutation-testing">Mutation Testing</a></li>
 </ul>
 <hr />
 <h2 id="foundations-of-testing"><a class="header" href="#foundations-of-testing">Foundations of Testing</a></h2>
@@ -3838,6 +3854,106 @@ occurrence.</p>
 <p><img src="chapters/Software_Testing/./images/image13.png" alt="Profile-Based Testing" /></p>
 <hr />
 <h2 id="white-box-testing"><a class="header" href="#white-box-testing">White Box Testing</a></h2>
+<p>Also known as structural testing, glass box or open box testing.</p>
+<p>A software testing technique in which explicit knowledge of the internal working of SUT is used to select tests, execute tests and collect test data.</p>
+<p>Unlike black box testing that is using the program specification to examine outputs, white box testing is based on specific knowledge of the source code to define the test cases and to examine outputs.</p>
+<h3 id="control-flow-testing"><a class="header" href="#control-flow-testing">Control Flow Testing</a></h3>
+<h3 id="statement-coverage"><a class="header" href="#statement-coverage">Statement Coverage</a></h3>
+<p>Statement coverage is a white-box testing method that covers all nodes in a control flow graph. In general, several test cases are required to achieve 100% statement coverage. The goal of statement coverage is to ensure that each line of code is executed at least once. It is calculated as follows:</p>
+<p><code>Statement Coverage = (Number of Executed Statements / Total Number of Statements) * 100</code></p>
+<p><img src="chapters/Software_Testing/./images/image14.png" alt="Statement Coverage" /></p>
+<p><em>Usually, the percentage of statement coverage is done by the testing tool.</em></p>
+<h3 id="decision-coverage"><a class="header" href="#decision-coverage">Decision Coverage</a></h3>
+<p>Select a test set such that, by executing the program for each test case in the set, each edge of CFG’s decision (predicate) node(s) is traversed at least once. The goal of decision coverage is to ensure that each decision in the code is executed at least once. It is calculated as follows:</p>
+<p><code>Decision Coverage = (Number of Executed Decisions / Total Number of Decisions) * 100</code></p>
+<p><img src="chapters/Software_Testing/./images/image15.png" alt="Decision Coverage" /></p>
+<p><em>Usually, the percentage of decision coverage is done by the testing tool.</em></p>
+<h3 id="condition-coverage"><a class="header" href="#condition-coverage">Condition Coverage</a></h3>
+<p>Condition coverage is a more powerful test coverage criteria. Design a test set such that each individual condition in the program to be both True and False (regardless of the truth or falsity of predicates combining those conditions). The goal of condition coverage is to ensure that each condition in the code is executed at least once. It is calculated as follows:</p>
+<p><code>Condition Coverage = (Number of Executed Conditions / Total Number of Conditions) * 100</code></p>
+<p><img src="chapters/Software_Testing/./images/image16.png" alt="Condition Coverage" /></p>
+<p><em>Usually, the percentage of condition coverage is done by the testing tool.</em></p>
+<h3 id="modified-condition-decision-coverage-mcdc"><a class="header" href="#modified-condition-decision-coverage-mcdc">Modified Condition-Decision Coverage (MC/DC)</a></h3>
+<p>Modified condition/decision coverage (MC/DC) effectively tests “important combinations” of conditions. Only combinations of values such that every atomic condition Ci toggles (impacts) the overall condition’s truth value (True and False), i.e., the outcome of a decision changes as a result of changing each single condition.</p>
+<p><img src="chapters/Software_Testing/./images/image17.png" alt="MC/DC Coverage" /></p>
+<h3 id="path-coverage"><a class="header" href="#path-coverage">Path Coverage</a></h3>
+<p>Path coverage selects a test set such that by executing the program for each test case, all paths leading from the initial to the final node of program’s control flow graph are traversed. Path coverage counts the number of full paths from input to output through a program that get executed. Full path coverage will lead to full branch coverage.</p>
+<p><img src="chapters/Software_Testing/./images/image18.png" alt="Path Coverage" /></p>
+<h3 id="data-flow-testing"><a class="header" href="#data-flow-testing">Data Flow Testing</a></h3>
+<p>Test the connections between variable definitions (“write”) and variable uses (“read”).
+Starting point: variation of the control flow graph (CFG) annotated with location of defined and used variables.</p>
+<h3 id="def-and-use-path"><a class="header" href="#def-and-use-path">Def And Use Path</a></h3>
+<ul>
+<li>
+<p><strong>def</strong>: A variable is defined.</p>
+</li>
+<li>
+<p><strong>use</strong>: A variable is used.</p>
+</li>
+<li>
+<p><strong>du-pair</strong>: A pair of def and use.</p>
+</li>
+<li>
+<p><strong>du-path</strong>: A path from a def to a use.</p>
+</li>
+<li>
+<p><strong>def-clear path</strong>: A path from a def to a use that is not affected by any other def.</p>
+</li>
+<li>
+<p><strong>Predicate use (p-use)</strong>: A variable is used to decide whether a predicate evaluates to true or false (e.g., in an if statement).</p>
+</li>
+</ul>
+<pre><code class="language-java">if (x &gt; 0) { // x is a predicate use
+  y = 1;
+} else {
+  y = 2;
+}
+</code></pre>
+<ul>
+<li><strong>Computational use (c-use)</strong>: Compute a value for defining other variables or output values (e.g., in an assignment statement).</li>
+</ul>
+<pre><code class="language-java">z = x + y; // x and y are used to compute z
+</code></pre>
+<ul>
+<li>
+<p><strong>CU</strong>: Total number of c-uses.</p>
+</li>
+<li>
+<p><strong>PU</strong>: Total number of p-uses.</p>
+</li>
+</ul>
+<h3 id="all-defs-coverage"><a class="header" href="#all-defs-coverage">All-Defs Coverage</a></h3>
+<p>All-Defs coverage is a white-box testing method that covers all definitions of a variable in a program. The goal of all-defs coverage is to ensure that for each def, at least one use must be reached.</p>
+<p><img src="chapters/Software_Testing/./images/image19.png" alt="All-Defs Coverage" /></p>
+<h3 id="all-uses-coverage"><a class="header" href="#all-uses-coverage">All-Uses Coverage</a></h3>
+<p>All-Uses coverage is a white-box testing method that covers all uses of a variable in a program. The goal of all-uses coverage is to ensure that for each def, all uses must be reached.</p>
+<p><img src="chapters/Software_Testing/./images/image20.png" alt="All-Uses Coverage" /></p>
+<h3 id="all-du-paths-coverage"><a class="header" href="#all-du-paths-coverage">All-Du-Paths Coverage</a></h3>
+<p>All-Du-Paths coverage is a white-box testing method that covers all du-paths in a program. The goal of all-du-paths coverage is to ensure that for each def-use pair, all paths between defs and uses must be covered.</p>
+<p><img src="chapters/Software_Testing/./images/image21.png" alt="All-Du-Paths Coverage" /></p>
+<h3 id="coverage-tools"><a class="header" href="#coverage-tools">Coverage Tools</a></h3>
+<ul>
+<li>
+<p>One advantage of coverage criteria is that it can be measured automatically.</p>
+</li>
+<li>
+<p>Helps us in measuring how much unit testing has been done and how much is left.</p>
+</li>
+<li>
+<p>Java has a number of coverage tools that can be used to measure the coverage of the code, such as:</p>
+<ul>
+<li>
+<p><strong>CodeCover</strong>: An open-source code coverage tool for Java under Eclipse.</p>
+</li>
+<li>
+<p><strong>Emma</strong>: A free Java tool that calculates the percentage of code accessed by tests.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="chapters/Software_Testing/./images/image22.png" alt="Coverage Tools" /></p>
+<hr />
+<h2 id="mutation-testing"><a class="header" href="#mutation-testing">Mutation Testing</a></h2>
 
                     </main>
 
