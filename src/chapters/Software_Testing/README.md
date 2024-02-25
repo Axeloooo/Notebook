@@ -47,6 +47,19 @@
   - [Combinatorial Testing](#combinatorial-testing)
   - [Profile-Based Testing](#profile-based-testing)
 - [White Box Testing](#white-box-testing)
+  - [Control Flow Testing](#control-flow-testing)
+  - [Statement Coverage](#statement-coverage)
+  - [Decision Coverage](#decision-coverage)
+  - [Condition Coverage](#condition-coverage)
+  - [Modified Condition-Decision Coverage (MC/DC)](#modified-condition-decision-coverage-mcdc)
+  - [Path Coverage](#path-coverage)
+  - [Data Flow Testing](#data-flow-testing)
+  - [Def And Use Path](#def-and-use-path)
+  - [All-Defs Coverage](#all-defs-coverage)
+  - [All-Uses Coverage](#all-uses-coverage)
+  - [All-Du-Paths Coverage](#all-du-paths-coverage)
+  - [Coverage Tools](#coverage-tools)
+- [Mutation Testing](#mutation-testing)
 
 ---
 
@@ -691,3 +704,126 @@ Assume that the following is the operational profile for a VCR system. The follo
 ---
 
 ## White Box Testing
+
+Also known as structural testing, glass box or open box testing.
+
+A software testing technique in which explicit knowledge of the internal working of SUT is used to select tests, execute tests and collect test data.
+
+Unlike black box testing that is using the program specification to examine outputs, white box testing is based on specific knowledge of the source code to define the test cases and to examine outputs.
+
+### Control Flow Testing
+
+### Statement Coverage
+
+Statement coverage is a white-box testing method that covers all nodes in a control flow graph. In general, several test cases are required to achieve 100% statement coverage. The goal of statement coverage is to ensure that each line of code is executed at least once. It is calculated as follows:
+
+`Statement Coverage = (Number of Executed Statements / Total Number of Statements) * 100`
+
+![Statement Coverage](./images/image14.png)
+
+_Usually, the percentage of statement coverage is done by the testing tool._
+
+### Decision Coverage
+
+Select a test set such that, by executing the program for each test case in the set, each edge of CFG’s decision (predicate) node(s) is traversed at least once. The goal of decision coverage is to ensure that each decision in the code is executed at least once. It is calculated as follows:
+
+`Decision Coverage = (Number of Executed Decisions / Total Number of Decisions) * 100`
+
+![Decision Coverage](./images/image15.png)
+
+_Usually, the percentage of decision coverage is done by the testing tool._
+
+### Condition Coverage
+
+Condition coverage is a more powerful test coverage criteria. Design a test set such that each individual condition in the program to be both True and False (regardless of the truth or falsity of predicates combining those conditions). The goal of condition coverage is to ensure that each condition in the code is executed at least once. It is calculated as follows:
+
+`Condition Coverage = (Number of Executed Conditions / Total Number of Conditions) * 100`
+
+![Condition Coverage](./images/image16.png)
+
+_Usually, the percentage of condition coverage is done by the testing tool._
+
+### Modified Condition-Decision Coverage (MC/DC)
+
+Modified condition/decision coverage (MC/DC) effectively tests “important combinations” of conditions. Only combinations of values such that every atomic condition Ci toggles (impacts) the overall condition’s truth value (True and False), i.e., the outcome of a decision changes as a result of changing each single condition.
+
+![MC/DC Coverage](./images/image17.png)
+
+### Path Coverage
+
+Path coverage selects a test set such that by executing the program for each test case, all paths leading from the initial to the final node of program’s control flow graph are traversed. Path coverage counts the number of full paths from input to output through a program that get executed. Full path coverage will lead to full branch coverage.
+
+![Path Coverage](./images/image18.png)
+
+### Data Flow Testing
+
+Test the connections between variable definitions (“write”) and variable uses (“read”).
+Starting point: variation of the control flow graph (CFG) annotated with location of defined and used variables.
+
+### Def And Use Path
+
+- **def**: A variable is defined.
+
+- **use**: A variable is used.
+
+- **du-pair**: A pair of def and use.
+
+- **du-path**: A path from a def to a use.
+
+- **def-clear path**: A path from a def to a use that is not affected by any other def.
+
+- **Predicate use (p-use)**: A variable is used to decide whether a predicate evaluates to true or false (e.g., in an if statement).
+
+```java
+if (x > 0) { // x is a predicate use
+  y = 1;
+} else {
+  y = 2;
+}
+```
+
+- **Computational use (c-use)**: Compute a value for defining other variables or output values (e.g., in an assignment statement).
+
+```java
+z = x + y; // x and y are used to compute z
+```
+
+- **CU**: Total number of c-uses.
+
+- **PU**: Total number of p-uses.
+
+### All-Defs Coverage
+
+All-Defs coverage is a white-box testing method that covers all definitions of a variable in a program. The goal of all-defs coverage is to ensure that for each def, at least one use must be reached.
+
+![All-Defs Coverage](./images/image19.png)
+
+### All-Uses Coverage
+
+All-Uses coverage is a white-box testing method that covers all uses of a variable in a program. The goal of all-uses coverage is to ensure that for each def, all uses must be reached.
+
+![All-Uses Coverage](./images/image20.png)
+
+### All-Du-Paths Coverage
+
+All-Du-Paths coverage is a white-box testing method that covers all du-paths in a program. The goal of all-du-paths coverage is to ensure that for each def-use pair, all paths between defs and uses must be covered.
+
+![All-Du-Paths Coverage](./images/image21.png)
+
+### Coverage Tools
+
+- One advantage of coverage criteria is that it can be measured automatically.
+
+- Helps us in measuring how much unit testing has been done and how much is left.
+
+- Java has a number of coverage tools that can be used to measure the coverage of the code, such as:
+
+  - **CodeCover**: An open-source code coverage tool for Java under Eclipse.
+
+  - **Emma**: A free Java tool that calculates the percentage of code accessed by tests.
+
+![Coverage Tools](./images/image22.png)
+
+---
+
+## Mutation Testing
