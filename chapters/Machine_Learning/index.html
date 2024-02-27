@@ -1673,6 +1673,107 @@ X_test_preprocessed = preprocessor.transform(X_test)
 <p><em>The code snippet above shows how to use the <code>ColumnTransformer</code> method to transform the data.</em></p>
 <p><img src="./images/image64.png" alt="ColumnTransformer" /></p>
 <hr />
+<h2 id="hyperparameter-tuning-i"><a class="header" href="#hyperparameter-tuning-i">Hyperparameter Tuning I</a></h2>
+<h3 id="cross-validation-1"><a class="header" href="#cross-validation-1">Cross Validation</a></h3>
+<p>Cross validation is a technique for evaluating the performance of a machine learning model on different subsets of the data. It helps to avoid overfitting and underfitting, and to estimate the generalization error of the model.</p>
+<p>One common method of cross-validation is <code>k-fold cross-validation</code>, where the data is split into k equal parts, or folds.</p>
+<p>The model is trained on k-1 folds and tested on the remaining fold.</p>
+<p>This process is repeated k times, each time using a different fold as the test set.</p>
+<p><img src="./images/image67.png" alt="Cross Validation" /></p>
+<pre><code class="language-python">from sklearn.model_selection import KFold
+from sklearn.metrics import accuracy_score, f1_score
+
+# Instantiate the k-fold cross-validator
+kf = KFold(n_splits=5, shuffle=True, random_state=0)
+
+# Perform k-fold cross-validation
+for train_index, test_index in kf.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    # Fit the model and make predictions
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>k-fold cross-validator</code> to evaluate the performance of a machine learning model.</em></p>
+<h3 id="cross-validation-advantages"><a class="header" href="#cross-validation-advantages">Cross Validation Advantages</a></h3>
+<ul>
+<li>
+<p>It helps to prevent overfitting, which occurs when a model is trained too well on the training data and performs poorly on new, unseen
+data.</p>
+</li>
+<li>
+<p>It provides a more realistic estimate of the model’s generalization performance, i.e., its ability to perform well on new, unseen data.</p>
+</li>
+<li>
+<p>It can be used to compare different models and select the one that performs the best on average.</p>
+</li>
+</ul>
+<h3 id="cross-validation-disadvantages"><a class="header" href="#cross-validation-disadvantages">Cross Validation Disadvantages</a></h3>
+<ul>
+<li>
+<p>It is computationally expensive, as it requires training and testing the model multiple times.</p>
+</li>
+<li>
+<p>It can introduce variability in the results, depending on how the data is partitioned and shuffled.</p>
+</li>
+<li>
+<p>It may not be suitable for some types of data, such as time series or spatial data, where the order or location of the data points matters.</p>
+</li>
+</ul>
+<h3 id="stratified-cross-validation"><a class="header" href="#stratified-cross-validation">Stratified Cross Validation</a></h3>
+<p>Stratified Cross Validation is a method of evaluating the performance of a machine learning model on unseen data.</p>
+<p>It is similar to regular cross-validation, but it ensures that each fold or subset of the data has the same proportion of classes as the original data. This helps to avoid bias and improve the accuracy of the model.</p>
+<p>Stratified cross-validation is especially useful for classification problems, where the outcome variable has two or more categories.</p>
+<p><img src="./images/image68.png" alt="Stratified Cross Validation" /></p>
+<pre><code class="language-python">from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score, f1_score
+
+# Instantiate the stratified k-fold cross-validator
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+
+# Perform stratified k-fold cross-validation
+for train_index, test_index in skf.split(X, y):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    # Fit the model and make predictions
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>stratified k-fold cross-validator</code> to evaluate the performance of a machine learning model.</em></p>
+<hr />
+<h2 id="hyperparameter-tuning-ii"><a class="header" href="#hyperparameter-tuning-ii">Hyperparameter Tuning II</a></h2>
+<h3 id="train-validation-and-test-sets"><a class="header" href="#train-validation-and-test-sets">Train Validation And Test Sets</a></h3>
+<p>In machine learning, there are two main approaches for splitting a
+dataset into train and test sets: the <code>train-test split</code> and the <code>train-validation-test split</code>.</p>
+<ul>
+<li><strong>Train-Test Split</strong>: This approach involves splitting the dataset into two parts: a training set for model training and a test set for model evaluation.</li>
+</ul>
+<p><img src="./images/image65.png" alt="Train-Test Split" /></p>
+<ul>
+<li><strong>Train-Validation-Test Split</strong>: This approach involves splitting the dataset into three parts: a training set for model training, a validation set for hyperparameter tuning, and a test set for model evaluation.</li>
+</ul>
+<p><img src="./images/image66.png" alt="Train-Validation-Test Split" /></p>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Split the training set into training and validation sets
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=0)
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>train-validation-test split</code> to split the data into training, validation, and test sets.</em></p>
+<h3 id="grid-search"><a class="header" href="#grid-search">Grid Search</a></h3>
+<h3 id="halving-grid-search"><a class="header" href="#halving-grid-search">Halving Grid Search</a></h3>
 
                     </main>
 
