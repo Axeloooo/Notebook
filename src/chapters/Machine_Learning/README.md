@@ -1623,3 +1623,123 @@ _The code snippet above shows how to use the `ColumnTransformer` method to trans
 ![ColumnTransformer](./images/image64.png)
 
 ---
+
+## Hyperparameter Tuning I
+
+### Cross Validation
+
+Cross validation is a technique for evaluating the performance of a machine learning model on different subsets of the data. It helps to avoid overfitting and underfitting, and to estimate the generalization error of the model.
+
+One common method of cross-validation is `k-fold cross-validation`, where the data is split into k equal parts, or folds.
+
+The model is trained on k-1 folds and tested on the remaining fold.
+
+This process is repeated k times, each time using a different fold as the test set.
+
+![Cross Validation](./images/image67.png)
+
+```python
+from sklearn.model_selection import KFold
+from sklearn.metrics import accuracy_score, f1_score
+
+# Instantiate the k-fold cross-validator
+kf = KFold(n_splits=5, shuffle=True, random_state=0)
+
+# Perform k-fold cross-validation
+for train_index, test_index in kf.split(X):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    # Fit the model and make predictions
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+```
+
+_The code snippet above shows how to use the `k-fold cross-validator` to evaluate the performance of a machine learning model._
+
+### Cross Validation Advantages
+
+- It helps to prevent overfitting, which occurs when a model is trained too well on the training data and performs poorly on new, unseen
+  data.
+
+- It provides a more realistic estimate of the model’s generalization performance, i.e., its ability to perform well on new, unseen data.
+
+- It can be used to compare different models and select the one that performs the best on average.
+
+### Cross Validation Disadvantages
+
+- It is computationally expensive, as it requires training and testing the model multiple times.
+
+- It can introduce variability in the results, depending on how the data is partitioned and shuffled.
+
+- It may not be suitable for some types of data, such as time series or spatial data, where the order or location of the data points matters.
+
+### Stratified Cross Validation
+
+Stratified Cross Validation is a method of evaluating the performance of a machine learning model on unseen data.
+
+It is similar to regular cross-validation, but it ensures that each fold or subset of the data has the same proportion of classes as the original data. This helps to avoid bias and improve the accuracy of the model.
+
+Stratified cross-validation is especially useful for classification problems, where the outcome variable has two or more categories.
+
+![Stratified Cross Validation](./images/image68.png)
+
+```python
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score, f1_score
+
+# Instantiate the stratified k-fold cross-validator
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=0)
+
+# Perform stratified k-fold cross-validation
+for train_index, test_index in skf.split(X, y):
+    X_train, X_test = X[train_index], X[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+
+    # Fit the model and make predictions
+    model.fit(X_train, y_train)
+    y_pred = model.predict(X_test)
+
+    # Evaluate the model
+    accuracy = accuracy_score(y_test, y_pred)
+    f1 = f1_score(y_test, y_pred)
+```
+
+_The code snippet above shows how to use the `stratified k-fold cross-validator` to evaluate the performance of a machine learning model._
+
+---
+
+## Hyperparameter Tuning II
+
+### Train Validation And Test Sets
+
+In machine learning, there are two main approaches for splitting a
+dataset into train and test sets: the `train-test split` and the `train-validation-test split`.
+
+- **Train-Test Split**: This approach involves splitting the dataset into two parts: a training set for model training and a test set for model evaluation.
+
+![Train-Test Split](./images/image65.png)
+
+- **Train-Validation-Test Split**: This approach involves splitting the dataset into three parts: a training set for model training, a validation set for hyperparameter tuning, and a test set for model evaluation.
+
+![Train-Validation-Test Split](./images/image66.png)
+
+```python
+from sklearn.model_selection import train_test_split
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Split the training set into training and validation sets
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.1, random_state=0)
+```
+
+_The code snippet above shows how to use the `train-validation-test split` to split the data into training, validation, and test sets._
+
+### Grid Search
+
+### Halving Grid Search
