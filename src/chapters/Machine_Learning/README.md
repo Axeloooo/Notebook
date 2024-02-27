@@ -92,6 +92,14 @@
   - [OrdinalEncoder](#ordinalencoder)
   - [SimpleImputer](#simpleimputer)
   - [ColumnTransformer](#columntransformer)
+- [Hyperparameter Tuning I](#hyperparameter-tuning-i)
+  - [Cross Validation](#cross-validation)
+  - [Cross Validation Advantages](#cross-validation-advantages)
+  - [Cross Validation Disadvantages](#cross-validation-disadvantages)
+  - [Standard Error](#standard-error)
+  - [Stratified Cross Validation](#stratified-cross-validation)
+- [Hyperparameter Tuning II](#hyperparameter-tuning-ii)
+  - [Train Validation And Test Sets](#train-validation-and-test-sets)
 
 ---
 
@@ -1677,6 +1685,20 @@ _The code snippet above shows how to use the `k-fold cross-validator` to evaluat
 - It can introduce variability in the results, depending on how the data is partitioned and shuffled.
 
 - It may not be suitable for some types of data, such as time series or spatial data, where the order or location of the data points matters.
+
+### Standard Error
+
+The Standard Error (SE) is a way to measure how accurate an estimated value is, like the coefficients in a linear regression. It shows the average amount by which estimates can vary when we take multiple samples from the same group.
+
+```python
+import numpy as np
+import scipy
+
+# Calculate the confidence interval
+confidence_interval = np.mean(acc_scores) + scipy.sem(acc_scores)
+```
+
+_The code snippet above shows how to use the `Standard Error` to calculate the confidence interval._
 
 ### Stratified Cross Validation
 
