@@ -134,13 +134,13 @@ item = {
     "price": 0.99,
 }
 
-with open('data.json', 'w') as f:
+with open("data.json", "w") as f:
     json.dump(item, f) # write python object to json file
 
-with open('data.json', 'r') as f:
+with open("data.json", "r") as f:
     data = json.load(f) # load json data into python object
 
-print(data) # {'name': 'egg', 'price': 0.99}
+print(data) # {"name": "egg", "price": 0.99}
 ```
 
 ### YAML
@@ -172,16 +172,16 @@ item = {
     "price": 0.99,
 }
 
-with open('data.yaml', 'w') as f:
+with open("data.yaml", "w") as f:
     yaml.dump(item, f) # write python object to yaml file
 
-with open('data.yaml', 'r') as f:
-    data = yaml.load(f, Loader=yaml.FullLoader) # load yaml data into python object
+with open("data.yaml", "r") as f:
+    data = yaml.load(f) # load yaml data into python object
 
-print(data) # {'name': 'egg', 'price': 0.99}
+print(data) # {"name": "egg", "price": 0.99}
 ```
 
-Note: The yaml module is not part of the standard library, so you’ll need to install it first. You can do so with pip:
+_**Note**: The yaml module is not part of the standard library, so you’ll need to install it first. You can do so with pip:_
 
 ```bash
 pip install pyyaml

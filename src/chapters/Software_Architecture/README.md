@@ -51,6 +51,9 @@
   - [CIA Triad](#cia-triad)
   - [Security Threats](#security-threats)
   - [Business Continuity Planning (BCP)](#business-continuity-planning-bcp)
+- [Domain Driven Design (DDD)](#domain-driven-design-ddd)
+  - [Key Concepts](#key-concepts)
+  - [Layers In DDD](#layers-in-ddd)
 
 ---
 
@@ -552,3 +555,37 @@ Business continuity is a series of processes that ensure critical business funct
 - **Recovery Point Objective (RPO)**: The recovery point objective (RPO) is the age of files that must be recovered from backup storage for normal operations to resume if a computer, system, or network goes down as a result of a hardware, program, or communications failure.
 
 - **Recovery Time Objective (RTO)**: The Recovery Time Objective (RTO) is the duration of time and a service level within which a business process must be restored after a disaster in order to avoid unacceptable consequences associated with a break in continuity.
+
+---
+
+## Domain Driven Design (DDD)
+
+![DDD](./images/image37.png)
+
+Domain-Driven Design (DDD) is an approach to software development that focuses on modeling the business domain and using a common language between developers and domain experts. It aims to create better software by aligning the technical design with the business model.
+
+### Key Concepts
+
+- **Ubiquitous Language**: A common language used by all team members to ensure clear communication.
+
+- **Entities**: Objects that are defined by their identity, rather than their attributes.
+
+- **Value Objects**: Objects that describe characteristics of the domain with no conceptual identity.
+
+- **Aggregates**: A cluster of domain objects that can be treated as a single unit.
+
+- **Repositories**: Mechanisms for encapsulating storage, retrieval, and search behavior.
+
+- **Services**: Operations offered as interfaces that stand alone in the model, without encapsulating state.
+
+- **Factories**: Create complex objects and aggregates with a consistent interface.
+
+![Key Concepts](./images/image36.png)
+
+_The image above shows the relationship between aggregates, entities, and value objects._
+
+### Layers In DDD
+
+![Layers In DDD](./images/image35.png)
+
+---
