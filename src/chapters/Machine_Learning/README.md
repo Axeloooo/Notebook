@@ -1764,4 +1764,81 @@ _The code snippet above shows how to use the `train-validation-test split` to sp
 
 ### Grid Search
 
+GridSearchCV is a function that performs hyperparameter optimization by
+training and evaluating a machine learning model using different combinations of
+hyperparameters.
+
+- It applies a grid search to an array of hyperparameters, which means it tries every possible combination of the values you specify for each hyperparameter.
+
+- It cross-validates your model using k-fold cross-validation, which means it splits your data into k subsets and uses one subset as the test set and the rest as the training set. It repeats this process k times, each time using a different subset as the test set. This could help to avoid overfitting and gives a more reliable estimate of the model's performance.
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.model_selection import GridSearchCV
+
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Initialize the classifier
+svc = SVC()
+
+# Define the hyperparameters and their values
+param_grid = {"C": [0.1, 1, 10, 100],
+              "gamma": [1, 0.1, 0.01, 0.001],
+              "kernel": ["rbf", "linear"]}
+
+# Instantiate the grid search
+grid_search = GridSearchCV(estimator=svc, param_grid=param_grid, cv=5, scoring="accuracy")
+
+# Fit the grid search to the data
+grid_search.fit(X_train, y_train)
+
+# Get the best hyperparameters
+best_hyperparameters = grid_search.best_params_
+
+# Get the best model
+best_model = grid_search.best_estimator_.score(X_test, y_test)
+```
+
+_The code snippet above shows how to use the `GridSearchCV` method to perform hyperparameter optimization._
+
 ### Halving Grid Search
+
+HalvingGridSearchCV is a scikit-learn estimator that performs a grid search over specified parameter values with successive halving.
+
+Successive halving is a search strategy that starts evaluating all the candidates with a small amount of resources and iteratively selects the best candidates, using more and more resources.
+
+This can be much faster than a regular grid search, especially when the number of candidates is large.
+
+```python
+from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.model_selection import HalvingGridSearchCV
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Initialize the classifier
+svc = SVC()
+
+# Define the hyperparameters and their values
+param_grid = {"C": [0.1, 1, 10, 100],
+              "gamma": [1, 0.1, 0.01, 0.001],
+              "kernel": ["rbf", "linear"]}
+
+# Instantiate the halving grid search
+halving_grid_search = HalvingGridSearchCV(estimator=svc, param_grid=param_grid, cv=5, scoring="accuracy")
+
+# Fit the halving grid search to the data
+halving_grid_search.fit(X_train, y_train)
+
+# Get the best hyperparameters
+best_hyperparameters = halving_grid_search.best_params_
+
+# Get the best model
+best_model = halving_grid_search.best_estimator_.score(X_test, y_test)
+```
+
+_The code snippet above shows how to use the `HalvingGridSearchCV` method to perform hyperparameter optimization._
