@@ -2753,6 +2753,119 @@ best_hyperparameters = halving_grid_search.best_params_
 best_model = halving_grid_search.best_estimator_.score(X_test, y_test)
 </code></pre>
 <p><em>The code snippet above shows how to use the <code>HalvingGridSearchCV</code> method to perform hyperparameter optimization.</em></p>
+<h2 id="pipelines"><a class="header" href="#pipelines">Pipelines</a></h2>
+<p>A pipeline is a way of automating this workflow by chaining together a sequence of data transformers with an optional final predictor. A pipeline allows
+us to:</p>
+<ul>
+<li>
+<p>Simplify the code by avoiding intermediate variables and fit/transform calls</p>
+</li>
+<li>
+<p>Ensure consistent preprocessing by applying the same steps to both the training and the test data</p>
+</li>
+<li>
+<p>Enable parameter setting by using the names of the steps and the parameter names separated by a '__'</p>
+</li>
+<li>
+<p>Allow for easy cross-validation and grid search over the whole process</p>
+</li>
+</ul>
+<h3 id="make_pipeline"><a class="header" href="#make_pipeline">make_pipeline</a></h3>
+<p>One of the easiest ways to create a pipeline in sklearn is to use the <code>make_pipeline</code> function, which takes a list of estimator objects as arguments and returns a pipeline object.</p>
+<pre><code class="language-python">from sklearn.svm import SVC
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+
+# Create a pipeline
+pipe = make_pipeline(StandardScaler(), SVC(), memory=None, verbose=False)
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>make_pipeline</code> method to create a pipeline.</em></p>
+<p>where:</p>
+<ul>
+<li>
+<p><strong>steps</strong>: Is a list of estimator objects that are chained together.</p>
+</li>
+<li>
+<p><strong>memory</strong>: Is an optional argument that can be used to cache the fitted transformers of the pipeline.</p>
+</li>
+<li>
+<p><strong>verbose</strong> Is an optional argument that can be used to print the time elapsed while fitting each step.</p>
+</li>
+</ul>
+<h3 id="stacking-regressorclassifier"><a class="header" href="#stacking-regressorclassifier">Stacking Regressor/Classifier</a></h3>
+<p>Stacking is an ensemble learning technique that combines the predictions of multiple base models, such as decision trees, linear models, etc., and uses a meta-model to produce the final output. The meta-model can be either a regressor or a classifier, depending on the task.</p>
+<ul>
+<li>
+<p>The main advantage of stacking is that it can leverage the strengths of each base model and learn how to best weigh their predictions with the meta-model.</p>
+</li>
+<li>
+<p>stacking also has some drawbacks, such as increased complexity and computational cost, and the need for careful tuning of the hyperparameters of the base and meta-models.</p>
+</li>
+</ul>
+<pre><code class="language-python">from sklearn.ensemble import StackingRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.tree import DecisionTreeRegressor
+
+# Create a stacking regressor
+stacking_regressor = StackingRegressor(
+    estimators=[('lr', LinearRegression()), ('rf', RandomForestRegressor()), ('dt', DecisionTreeRegressor())],
+    final_estimator=RandomForestRegressor()
+)
+
+# Fit the stacking regressor to the data
+stacking_regressor.fit(X_train, y_train)
+
+# Predict the labels of the test set
+y_pred = stacking_regressor.predict(X_test)
+
+# Evaluate the performance of the stacking regressor
+score = stacking_regressor.score(X_test, y_test)
+
+# Get the final estimator
+final_estimator = stacking_regressor.final_estimator_
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>StackingRegressor</code> method to create a stacking regressor.</em></p>
+<h3 id="cross-validation-and-grid-search-with-pipelines"><a class="header" href="#cross-validation-and-grid-search-with-pipelines">Cross-Validation and Grid Search with Pipelines</a></h3>
+<ul>
+<li>
+<p>To use a pipeline for cross-validation, we can use the cross_val_score function, which takes a pipeline object, the data, the target, and the number of folds as arguments, and returns an array of scores for each fold.</p>
+</li>
+<li>
+<p>To use a pipeline for grid search, we can use the GridSearchCV class, which takes a pipeline object, a parameter grid, and the number of folds as arguments, and returns a grid search object that can be fitted on the data.</p>
+</li>
+</ul>
+<pre><code class="language-python">from sklearn.model_selection import train_test_split
+from sklearn.svm import SVC
+from sklearn.pipeline import make_pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import cross_val_score, GridSearchCV
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
+
+# Create a pipeline
+pipe = make_pipeline(StandardScaler(), SVC())
+
+# 5-fold cross-validation
+scores = cross_val_score(pipe, X_train, y_train, cv=5)
+
+# Perform grid search
+param_grid = {'svc__C': [0.1, 1, 10, 100],
+              'svc__gamma': [1, 0.1, 0.01, 0.001]}
+
+grid_search = GridSearchCV(pipe, param_grid, cv=5)
+
+# Fit the grid search to the data
+grid_search.fit(X_train, y_train)
+
+# Get the best hyperparameters
+best_hyperparameters = grid_search.best_params_
+
+# Get the best score
+best_score = grid_search.best_score_
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>make_pipeline</code> method to create a pipeline and perform cross-validation and grid search.</em></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="software-architecture"><a class="header" href="#software-architecture">Software Architecture</a></h1>
 <hr />
 <h2 id="table-of-contents-2"><a class="header" href="#table-of-contents-2">Table of Contents</a></h2>
