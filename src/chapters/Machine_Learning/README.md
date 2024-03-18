@@ -1895,7 +1895,7 @@ from sklearn.tree import DecisionTreeRegressor
 
 # Create a stacking regressor
 stacking_regressor = StackingRegressor(
-    estimators=[('lr', LinearRegression()), ('rf', RandomForestRegressor()), ('dt', DecisionTreeRegressor())],
+    estimators=[("lr", LinearRegression()), ("rf", RandomForestRegressor()), ("dt", DecisionTreeRegressor())],
     final_estimator=RandomForestRegressor()
 )
 
@@ -1937,8 +1937,8 @@ pipe = make_pipeline(StandardScaler(), SVC())
 scores = cross_val_score(pipe, X_train, y_train, cv=5)
 
 # Perform grid search
-param_grid = {'svc__C': [0.1, 1, 10, 100],
-              'svc__gamma': [1, 0.1, 0.01, 0.001]}
+param_grid = {"svc__C": [0.1, 1, 10, 100],
+              "svc__gamma": [1, 0.1, 0.01, 0.001]}
 
 grid_search = GridSearchCV(pipe, param_grid, cv=5)
 
@@ -1953,3 +1953,79 @@ best_score = grid_search.best_score_
 ```
 
 _The code snippet above shows how to use the `make_pipeline` method to create a pipeline and perform cross-validation and grid search._
+
+## Text Data
+
+### CountVectorizer
+
+CountVectorizer is utilized to transform text data into a bag-of-words representation. It standardizes all text data to lowercase, ensuring that words with identical spellings are recognized as the same token.
+
+```python
+from sklearn.feature_extraction.text import CountVectorizer
+import pandas as pd
+
+# Define the documents
+docs = ["Calgary is known for its annual Stampede.",
+"The Calgary Tower offers stunning views of the city.",
+"Calgary's weather can be unpredictable." ]
+
+# Initialize the CountVectorizer
+vectorizer = CountVectorizer()
+
+# Fit the vectorizer to the documents
+vectorizer.fit(docs)
+
+# Transform the documents into a bag-of-words matrix
+bag_of_words = vectorizer.transform(docs)
+
+# Get the vocabulary
+vocabulary = vectorizer.vocabulary_
+
+# Convert the matrix to a DataFrame
+bag_of_words_df = pd.DataFrame(bag_of_words.toarray(), columns=vectorizer.get_feature_names_out())
+```
+
+_The code snippet above shows how to use the `CountVectorizer` method to transform text data into a bag-of-words representation._
+
+![CountVectorizer](./images/image69.png)
+
+### TfidfVectorizer
+
+TfidfVectorizer is an advanced feature extraction tool from the scikit-learn library that converts text data into a numerical matrix of TF-IDF features, suitable for use in machine learning models. By default, the TfidfVectorizer normalizes the TF-IDF matrix on a row-by-row basis. This normalization can be either L2 (Euclidean) or L1 (Manhattan), with L2 being the default setting
+
+- **TF (Term Frequency)**: This quantifies the frequency of a term within a single document, giving higher weight to terms that occur more frequently.
+
+- **IDF (Inverse Document Frequency)**: This assesses the significance of a term across the entire document corpus. It diminishes the weight of terms that occur very commonly across documents, thereby amplifying the importance of rarer terms.
+
+```python
+from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
+
+# Define the documents
+docs_ext = ["Calgary is known for its annual Stampede.",
+"The Calgary Tower offers stunning views of the city.",
+"Calgary's weather can be unpredictable.",
+"Calgary, Calgary, a city so vibrant, so vibrant.",
+"The Rockies, the Rockies, so majestic, so majestic."]
+
+# Initialize the TfidfVectorizer
+vectorizer = TfidfVectorizer(ngram_range=(1,2), stop_words = "english")
+
+# Fit the vectorizer to the documents
+vectorizer.fit(docs_ext)
+
+# Transform the documents into a numerical matrix of TF-IDF features
+tfidf_matrix = vectorizer.transform(docs_ext)
+
+# Get the vocabulary
+vocabulary = vectorizer.vocabulary_
+
+# Convert the matrix to a DataFrame
+tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=vectorizer.get_feature_names_out())
+```
+
+_**Note**: The `ngram_range` parameter specifies the range of n-grams to be extracted from the text data. The `stop_words` parameter removes common words encountered in the English language from the text data._
+
+_The code snippet above shows how to use the `TfidfVectorizer` method to transform text data into a numerical matrix of TF-IDF features._
+
+![TfidfVectorizer](./images/image70.png)
