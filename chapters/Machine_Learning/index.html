@@ -1868,6 +1868,7 @@ best_hyperparameters = halving_grid_search.best_params_
 best_model = halving_grid_search.best_estimator_.score(X_test, y_test)
 </code></pre>
 <p><em>The code snippet above shows how to use the <code>HalvingGridSearchCV</code> method to perform hyperparameter optimization.</em></p>
+<hr />
 <h2 id="pipelines"><a class="header" href="#pipelines">Pipelines</a></h2>
 <p>A pipeline is a way of automating this workflow by chaining together a sequence of data transformers with an optional final predictor. A pipeline allows
 us to:</p>
@@ -1981,7 +1982,9 @@ best_hyperparameters = grid_search.best_params_
 best_score = grid_search.best_score_
 </code></pre>
 <p><em>The code snippet above shows how to use the <code>make_pipeline</code> method to create a pipeline and perform cross-validation and grid search.</em></p>
+<hr />
 <h2 id="text-data"><a class="header" href="#text-data">Text Data</a></h2>
+<p>Bag-of-words is a technique in natural language processing where we ignore the structure of input text and focus solely on word occurrences. It is called a "bag" of words because the order of the words is discarded.</p>
 <h3 id="countvectorizer"><a class="header" href="#countvectorizer">CountVectorizer</a></h3>
 <p>CountVectorizer is utilized to transform text data into a bag-of-words representation. It standardizes all text data to lowercase, ensuring that words with identical spellings are recognized as the same token.</p>
 <pre><code class="language-python">from sklearn.feature_extraction.text import CountVectorizer
@@ -2047,6 +2050,92 @@ tfidf_df = pd.DataFrame(tfidf_matrix.toarray(), columns=vectorizer.get_feature_n
 <p><em><strong>Note</strong>: The <code>ngram_range</code> parameter specifies the range of n-grams to be extracted from the text data. The <code>stop_words</code> parameter removes common words encountered in the English language from the text data.</em></p>
 <p><em>The code snippet above shows how to use the <code>TfidfVectorizer</code> method to transform text data into a numerical matrix of TF-IDF features.</em></p>
 <p><img src="./images/image70.png" alt="TfidfVectorizer" /></p>
+<hr />
+<h2 id="dimensionality-reduction"><a class="header" href="#dimensionality-reduction">Dimensionality Reduction</a></h2>
+<p>Dimensionality reduction aims to reduce the number of variables in a dataset while preserving essential information. There are two main types of dimensionality reduction methods:</p>
+<ul>
+<li>
+<p><strong>Feature Selection</strong>: This approach involves selecting a subset of relevant features and discarding the rest. The goal is to identify features that have a significant impact on the outcome or problem being addressed. This process requires expertise in the domain and can be done manually or automatically using statistical or machine learning techniques. <em>Example: Recursive Feature Elimination (RFE)</em>.</p>
+</li>
+<li>
+<p><strong>Feature Extraction</strong>: This method transforms original features into a new set of features with reduced dimensions using mathematical methods. These new features often combine aspects of the original ones, chosen to capture the most variance or information. <em>Example: Principal Component Analysis (PCA)</em>.</p>
+</li>
+</ul>
+<h3 id="principal-component-analysis-pca"><a class="header" href="#principal-component-analysis-pca">Principal Component Analysis (PCA)</a></h3>
+<p>Principal Component Analysis (PCA) is a statistical technique used for dimensionality reduction. It simplifies the complexity in high-dimensional data while retaining trends and patterns. PCA achieves this by transforming the original variables into a new set of variables, the principal components, which are uncorrelated and ordered so that the first few retain most of the variation present in all of the original variables.</p>
+<ul>
+<li>
+<p><strong>Principal Axes</strong>: These are the directions in the feature space that maximize the variance of the data. The data is projected onto these axes to obtain the principal components.</p>
+</li>
+<li>
+<p><strong>Principal Components (Scores)</strong>: These are the new features formed from linear combinations of the original features, aligned with the principal axes.</p>
+</li>
+<li>
+<p><strong>Loadings</strong>: The weights assigned to the original variables that define the principal axes.</p>
+</li>
+<li>
+<p><strong>Explained Variance</strong>: The amount of variance captured by each principal component.</p>
+</li>
+<li>
+<p><strong>Explained Variance Ratio</strong>: The proportion of the dataset's total variance that is explained by each principal component.</p>
+</li>
+</ul>
+<pre><code class="language-python">from sklearn.decomposition import PCA
+
+# Initialize the PCA with 2 components
+pca = PCA(n_components=2)
+
+# Fit the PCA to the data
+pca.fit(X)
+
+# Transform the data into the new feature space
+X_pca = pca.transform(X)
+
+# Get the explained variance ratio
+explained_variance_ratio = pca.explained_variance_ratio_
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>PCA</code> method to perform dimensionality reduction.</em></p>
+<p><img src="./images/image71.png" alt="PCA" /></p>
+<hr />
+<h3 id="t-sne"><a class="header" href="#t-sne">t-SNE</a></h3>
+<p>t-Distributed Stochastic Neighbor Embedding (t-SNE) is a powerful method for visualizing complex, high-dimensional data in a space of fewer dimensions. It's particularly effective for exploring and analyzing data, as it retains the local structure and reveals patterns and clusters.</p>
+<ul>
+<li><strong>Perplexity</strong>: Perplexity controls the balance between preserving local and global structures. It determines the number of nearest neighbors used in the algorithm. Larger datasets usually require a larger perplexity. A value between 5 and 50 is recommended. An increase in perplexity generally allows t-SNE to capture broader data trends, potentially enhancing the visibility of global structures and spreading out the clusters. A lower perplexity value emphasizes the preservation of local data intricacies, often resulting in denser clusters.</li>
+</ul>
+<pre><code class="language-python">from sklearn.manifold import TSNE
+
+# Initialize the t-SNE
+tsne = TSNE(n_components=2, random_state=0, perplexity=30)
+
+# Fit the t-SNE to the data
+X_tsne = tsne.fit_transform(X)
+</code></pre>
+<p><em>The code snippet above shows how to use the <code>t-SNE</code> method to perform dimensionality reduction.</em></p>
+<p><img src="./images/image72.png" alt="t-SNE" /></p>
+<p>Advantages of t-SNE:</p>
+<ul>
+<li>
+<p>Preserves local structure</p>
+</li>
+<li>
+<p>Captures non-linear relationships</p>
+</li>
+<li>
+<p>Robust to outliers</p>
+</li>
+</ul>
+<p>Disadvantages of t-SNE:</p>
+<ul>
+<li>
+<p>Computationally intensive</p>
+</li>
+<li>
+<p>Not ideal for pre-processing</p>
+</li>
+<li>
+<p>Sensitive to hyperparameters</p>
+</li>
+</ul>
 
                     </main>
 
