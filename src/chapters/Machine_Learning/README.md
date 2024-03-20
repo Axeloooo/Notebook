@@ -1843,6 +1843,8 @@ best_model = halving_grid_search.best_estimator_.score(X_test, y_test)
 
 _The code snippet above shows how to use the `HalvingGridSearchCV` method to perform hyperparameter optimization._
 
+---
+
 ## Pipelines
 
 A pipeline is a way of automating this workflow by chaining together a sequence of data transformers with an optional final predictor. A pipeline allows
@@ -1954,7 +1956,11 @@ best_score = grid_search.best_score_
 
 _The code snippet above shows how to use the `make_pipeline` method to create a pipeline and perform cross-validation and grid search._
 
+---
+
 ## Text Data
+
+Bag-of-words is a technique in natural language processing where we ignore the structure of input text and focus solely on word occurrences. It is called a "bag" of words because the order of the words is discarded.
 
 ### CountVectorizer
 
@@ -2029,3 +2035,85 @@ _**Note**: The `ngram_range` parameter specifies the range of n-grams to be extr
 _The code snippet above shows how to use the `TfidfVectorizer` method to transform text data into a numerical matrix of TF-IDF features._
 
 ![TfidfVectorizer](./images/image70.png)
+
+---
+
+## Dimensionality Reduction
+
+Dimensionality reduction aims to reduce the number of variables in a dataset while preserving essential information. There are two main types of dimensionality reduction methods:
+
+- **Feature Selection**: This approach involves selecting a subset of relevant features and discarding the rest. The goal is to identify features that have a significant impact on the outcome or problem being addressed. This process requires expertise in the domain and can be done manually or automatically using statistical or machine learning techniques. _Example: Recursive Feature Elimination (RFE)_.
+
+- **Feature Extraction**: This method transforms original features into a new set of features with reduced dimensions using mathematical methods. These new features often combine aspects of the original ones, chosen to capture the most variance or information. _Example: Principal Component Analysis (PCA)_.
+
+### Principal Component Analysis (PCA)
+
+Principal Component Analysis (PCA) is a statistical technique used for dimensionality reduction. It simplifies the complexity in high-dimensional data while retaining trends and patterns. PCA achieves this by transforming the original variables into a new set of variables, the principal components, which are uncorrelated and ordered so that the first few retain most of the variation present in all of the original variables.
+
+- **Principal Axes**: These are the directions in the feature space that maximize the variance of the data. The data is projected onto these axes to obtain the principal components.
+
+- **Principal Components (Scores)**: These are the new features formed from linear combinations of the original features, aligned with the principal axes.
+
+- **Loadings**: The weights assigned to the original variables that define the principal axes.
+
+- **Explained Variance**: The amount of variance captured by each principal component.
+
+- **Explained Variance Ratio**: The proportion of the dataset's total variance that is explained by each principal component.
+
+```python
+from sklearn.decomposition import PCA
+
+# Initialize the PCA with 2 components
+pca = PCA(n_components=2)
+
+# Fit the PCA to the data
+pca.fit(X)
+
+# Transform the data into the new feature space
+X_pca = pca.transform(X)
+
+# Get the explained variance ratio
+explained_variance_ratio = pca.explained_variance_ratio_
+```
+
+_The code snippet above shows how to use the `PCA` method to perform dimensionality reduction._
+
+![PCA](./images/image71.png)
+
+---
+
+### t-SNE
+
+t-Distributed Stochastic Neighbor Embedding (t-SNE) is a powerful method for visualizing complex, high-dimensional data in a space of fewer dimensions. It's particularly effective for exploring and analyzing data, as it retains the local structure and reveals patterns and clusters.
+
+- **Perplexity**: Perplexity controls the balance between preserving local and global structures. It determines the number of nearest neighbors used in the algorithm. Larger datasets usually require a larger perplexity. A value between 5 and 50 is recommended. An increase in perplexity generally allows t-SNE to capture broader data trends, potentially enhancing the visibility of global structures and spreading out the clusters. A lower perplexity value emphasizes the preservation of local data intricacies, often resulting in denser clusters.
+
+```python
+from sklearn.manifold import TSNE
+
+# Initialize the t-SNE
+tsne = TSNE(n_components=2, random_state=0, perplexity=30)
+
+# Fit the t-SNE to the data
+X_tsne = tsne.fit_transform(X)
+```
+
+_The code snippet above shows how to use the `t-SNE` method to perform dimensionality reduction._
+
+![t-SNE](./images/image72.png)
+
+Advantages of t-SNE:
+
+- Preserves local structure
+
+- Captures non-linear relationships
+
+- Robust to outliers
+
+Disadvantages of t-SNE:
+
+- Computationally intensive
+
+- Not ideal for pre-processing
+
+- Sensitive to hyperparameters
